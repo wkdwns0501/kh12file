@@ -2,6 +2,8 @@ package data;
 
 public class Test09 {
 	public static void main(String[] args) {
+		//한 달에 200만원씩 30년을 모으면 얼마인지 계산하여 출력
+		
 		//입력 //만약 int의 범위를 넘어간다고하면
 		int money = 2000000; // long money = 20000000000L;
 		int year = 30;

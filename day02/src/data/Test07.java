@@ -2,7 +2,7 @@ package data;
 
 public class Test07 {
 	public static void main(String[] args) {
-		//버스 요금 계산 문제
+		//버스 요금 계산 문제 , 성인 2명과 어린이 1명의 요금을 구하여 출력하세요
 		
 		//입력
 		int adultPrice = 1200 , adultCount = 2;

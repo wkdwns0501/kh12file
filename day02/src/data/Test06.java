@@ -1,7 +1,6 @@
 package data;
 
 public class Test06 {
-
 	public static void main(String[] args) {
 		//영화관 금액 계산 문제
 		

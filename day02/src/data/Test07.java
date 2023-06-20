@@ -1,7 +1,6 @@
 package data;
 
 public class Test07 {
-
 	public static void main(String[] args) {
 		//버스 요금 계산 문제
 		

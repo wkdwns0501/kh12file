@@ -12,11 +12,14 @@ public class Test07 {
 		
 		int year = 2000;
 		
-		boolean alpha = year % 4 == 0; // 4의 배수 O
-		boolean beta = year % 100 != 0; // 100의 배수 X
-		boolean gamma = year % 400 == 0; // 400의 배수 O
+		boolean alpha = year % 4 == 0; // 4의 배수 O (include) // 1번
+		boolean beta = year % 100 != 0; // 100의 배수 X (exclude) //2번
+		//boolean beta = !(year % 100 != 0); // 같은 말이지만 위에것이 더좋다. 괄호는 안쓸수록 좋기 때문에
+		boolean gamma = year % 400 == 0; // 400의 배수 O (include) //3번
+		//조건에는 우선순위가 있다 (여기서는 3번이 1순위)
 		
-		boolean leapYear = (alpha && beta) || gamma;
+		boolean leapYear = gamma || alpha && beta  ; 
+		// 3번이 true면 뒤에가 뭐든 true기 때문에 뒷부분을 실행하지 않는다 (&&도 같은 맥락)
 		
 		System.out.println(leapYear);
 	}

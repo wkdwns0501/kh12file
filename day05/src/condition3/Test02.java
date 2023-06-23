@@ -2,7 +2,7 @@ package condition3;
 
 public class Test02 {
 	public static void main(String[] args) {
-		//switch~case 구문
+		//switch~case 구문 ,책갈피
 		// - if 구문은 "순차적"으로 실행되는 특징이 있다
 		// - 이게 문제가 되는 상황이 있다
 		

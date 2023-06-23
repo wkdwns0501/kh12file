@@ -12,7 +12,7 @@ public class Test05 {
 		//(과속이 아니면 벌금은 없습니다)
 		
 		Scanner sc = new Scanner(System.in);
-		System.out.print("자동차 속도 : ");
+		System.out.print("속도(Km) : ");
 		int speed = sc.nextInt();
 		sc.close();
 		
@@ -21,7 +21,7 @@ public class Test05 {
 		int totalFine;
 		
 		if (speed > limit) {
-			totalFine = fine + ((speed - limit) / 10) * 10000;
+			totalFine = fine + ((speed - limit) / 10) * 10000; // 이런류의 문제에서 많이 사용한다
 		}
 		else {
 			totalFine = 0;
@@ -29,4 +29,5 @@ public class Test05 {
 		
 		System.out.println("예상 벌금 : " + totalFine + "원");
 	}
-}
+} // 실행을 너무 많이하면 실행창이 쌓여서 과부화가 걸릴수있다 (컴퓨터 성능에 따라 다르겠지만 보통 20개이상 열리면 다운된다)
+  // Console창에서 우클 ->Terminate/Disconnect All 누르면 실행중인 창이 모두 꺼진다.

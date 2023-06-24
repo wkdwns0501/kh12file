@@ -39,7 +39,7 @@ public class Test05 {
 			result = sec / 60 / 60 / 24 + "일 전";
 		}
 		else {
-			result = "오래전";
+			result = sec / 60 / 60 / 24 / 365 + "년 전";
 		}
 		System.out.println(result);
 	}

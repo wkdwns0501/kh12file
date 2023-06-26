@@ -19,26 +19,28 @@ public class Test05 {
 		sc.close();
 		
 		String result;
-		if(sec < 10) {  					
-			result = "방금 전";
+		int min = 60;
+		int hour = min * 60;
+		int day = hour * 24;
+		int year = day * 365;
+		if(sec < 10) {
+			result = "방금전";
 		}
-		else if(sec < 1 * 60) {
+		else if (sec < min) {
 			result = sec + "초 전";
 		}
-		else if(sec < 1 * 60 * 60) { 
-			result = sec / 60 + "분 전";
+		else if (sec < hour) {
+			result = sec / 60  + "분 전";
 		}
-		else if(sec < 1 * 24 * 60 * 60) {
+		else if (sec < day) {
 			result = sec / 60 / 60 + "시간 전";
 		}
-		else if(sec < 1 * 365 * 24 * 60 * 60) {
-			result = sec / 24 / 60 / 60  +"일 전";
+		else if (sec < year) {
+			result = sec / 60 / 60 / 24 + "일 전";
 		}
 		else {
-			result = "오래 전";
+			result = sec / 60 / 60 / 24 / 365 + "년 전";
 		}
-		
-		//출력
 		System.out.println(result);
 	}
 }

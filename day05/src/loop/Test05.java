@@ -7,6 +7,7 @@ public class Test05 {
 		for (int i = 1 ; i <= 99 ; i++) {
 			int ten = i / 10;
 			int one = i % 10;
+
 			if (ten == 3 || ten == 6 || ten == 9 || one == 3 || one == 6 || one == 9) {
 				System.out.println(i);
 			}

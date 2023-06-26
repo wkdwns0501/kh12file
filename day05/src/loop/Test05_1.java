@@ -10,11 +10,13 @@ public class Test05_1 {
 			boolean clap = ten || one;
 			boolean doubleClap = ten && one;
 			if (clap) {
-				System.out.println("짝");
-			}
 				if (doubleClap) {
-					
+					System.out.println("짝짝");
 				}
+				else {
+					System.out.println("짝");
+				}
+			}
 			else {
 				System.out.println(i);
 			}

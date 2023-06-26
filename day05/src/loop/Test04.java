@@ -7,7 +7,7 @@ public class Test04 {
 		for (int i = 1 ; i <=99 ; i++) {
 			int ten = i / 10;
 			int one = i % 10;
-			if (ten == 5 || one == 5) {
+			if (ten == 5 || one == 5) { // else 는 할게없으면 지워도 괜찮다
 				System.out.println(i);
 			}
 		}

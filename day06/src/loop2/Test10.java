@@ -19,9 +19,9 @@ public class Test10 {
 		
 		int totalHour = totalTime / 60;
 		int totalMin = totalTime % 60;
-		double avgTime = totalTime / 5;
-		int avgHour = (int)avgTime / 60;
-		int avgMin = (int)avgTime % 60;
+		double avgTime = totalTime / 5; // int avgTime + totalTime / 5;
+		int avgHour = (int)avgTime / 60; // int avgHour = avgTime / 60;
+		int avgMin = (int)avgTime % 60; // int avgMin = avgTime % 60;
 		
 		System.out.println("총 공부한 시간 : " + totalHour + "시간 " + totalMin + "분");
 		System.out.println("일 평균 약 " + avgHour + "시간 " + avgMin + "분");

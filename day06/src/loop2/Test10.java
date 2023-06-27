@@ -6,8 +6,10 @@ public class Test10 {
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
+		System.out.print("일수 입력 : ");
+		int day = sc.nextInt();
 		int totalTime = 0;
-		for (int day = 1 ; day <= 5 ; day++) {
+		for (int i = 1 ;i <= day ; i++) {
 		System.out.print("시간 : ");
 		int hour = sc.nextInt();
 		System.out.print("분 : ");
@@ -19,7 +21,7 @@ public class Test10 {
 		
 		int totalHour = totalTime / 60;
 		int totalMin = totalTime % 60;
-		double avgTime = totalTime / 5; // int avgTime + totalTime / 5;
+		double avgTime = totalTime / day; // int avgTime + totalTime / day;
 		int avgHour = (int)avgTime / 60; // int avgHour = avgTime / 60;
 		int avgMin = (int)avgTime % 60; // int avgMin = avgTime % 60;
 		

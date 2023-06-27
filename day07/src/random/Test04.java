@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Test04 {
 	public static void main(String[] args) {
-		
+		//주사위 더블 문제
 		Random r = new Random();
 		
 		int count = 0;

@@ -2,7 +2,7 @@ package array;
 
 import java.util.Scanner;
 
-public class Test7 {
+public class Test07 {
 	public static void main(String[] args) {
 		//학생 5명의 시험점수를 입력받아서 저장하고 다음 문제를 푸세요.
 		Scanner sc = new Scanner(System.in);

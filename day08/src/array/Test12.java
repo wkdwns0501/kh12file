@@ -14,7 +14,7 @@ public class Test12 {
 			int right = data.length-1-left;//오른쪽 위치
 			int backup = data[left];
 			data[left] = data[right];
-			data[right] =backup;
+			data[right] = backup;
 		}
 		for (int i = 0 ; i < data.length ; i++) {
 			System.out.println(data[i]);

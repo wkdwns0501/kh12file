@@ -10,14 +10,16 @@ public class Test13 {
 		//2. 어디랑 섞일지 대상 위치는 모르며 같은 위치일 수도 있다
 		//3. 랜덤으로 정해진 위치와 현재 위치의 데이터를 바꾸도록 구현
 		Random r = new Random();
+		
 		int []card = new int[] {30,50,20,10,40};
 		
 		for (int i = 0 ; i < card.length ; i++) {
-			int num = r.nextInt(5);
+			int num = r.nextInt(card.length);
 			int backup = card[i];
 			card[i] = card[num];
 			card[num] = backup;
 		}
+		
 		for (int i = 0 ; i < card.length ; i++) {
 			System.out.println(card[i]);
 		}

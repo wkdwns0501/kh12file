@@ -7,7 +7,7 @@ public class Test10 {
 		
 		double []height = new double[] {150.8, 180.2, 175.9, 162.7, 170.3};
 		int min = 0; //위치(Index)는 무조건 정수(int)이다 // long 은 안된다
-		for(int i = 0 ; i < height.length ; i++) {
+		for(int i = 1 ; i < height.length ; i++) {
 			if(height[min] > height[i]) {
 				min = i;
 			}

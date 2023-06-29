@@ -16,12 +16,13 @@ public class Test02 {
 		//System.out.println(score); // 통합리모컨
 		//System.out.println(score[0]); // 통합리모컨   // 의미없는 출력값이 나옴
 		
-		System.out.println(score[0][0]);
-		System.out.println(score[0][1]);
-		System.out.println(score[0][2]);
+		System.out.print(score[0][0] + "\t");
+		System.out.print(score[0][1] + "\t");
+		System.out.print(score[0][2] + "\t");
+		System.out.println();
 		//System.out.println(score[0][3]); //에러, 범위초과
-		System.out.println(score[1][0]);
-		System.out.println(score[1][1]);
-		System.out.println(score[1][2]);
+		System.out.print(score[1][0] + "\t");
+		System.out.print(score[1][1] + "\t");
+		System.out.print(score[1][2] + "\t");
 	}
 }

@@ -28,12 +28,12 @@ public class advance {
 				count++;
 				if(count >= 10) {
 					break;
+					}
+				}
+				else {
+					i--;
 				}
 			}
-			else {
-				i--;
-			}
-		}
 		
 		
 		

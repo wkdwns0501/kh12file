@@ -3,7 +3,7 @@ package array3;
 import java.util.Random;
 
 public class advance_answer {
-	public static void main(String[] args) {
+	public static void main(String[] args) { // 강사님 풀이 복붙
 		//입력
 		int row = 5, col = 5;
 		int bomb = 10;

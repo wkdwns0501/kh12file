@@ -51,9 +51,9 @@ System.out.println("Hello!");
 ![설명](주소)
 ```
 
-```
-![배경화면](https://github.com/wkdwns0501/kh12file/blob/main/%EB%B0%B0%EA%B2%BD%ED%99%94%EB%A9%B4.jpg?raw=true)
-```
+
+![배경화면](https://upload2.inven.co.kr/upload/2018/03/30/bbs/i16049611277.jpg)
+
 
 # 하이퍼링크 삽입
 

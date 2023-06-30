@@ -3,11 +3,13 @@ package opp.test3;
 public class Test01 {
 	public static void main(String[] args) {
 		
+		//생성
 		Soccer a = new Soccer();
 		Soccer b = new Soccer();
 		Soccer c = new Soccer();
 		Soccer d = new Soccer();
 		
+		//초기화
 		a.rank = 1;
 		a.name = "킬리안 음바페";
 		a.country = "프랑스";
@@ -28,6 +30,7 @@ public class Test01 {
 		d.country = "아르헨티나";
 		d.goal = 4;
 		
+		//출력
 		System.out.println("순위 : " + a.rank);
 		System.out.println("이름 : " + a.name);
 		System.out.println("국가 : " + a.country);

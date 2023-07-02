@@ -62,10 +62,10 @@ public class advance {
 		
 		//출력
 		for(int i = 0 ; i < row ; i++) {
-			for(int k = 0 ; k< col ; k++) {
+			for(int k = 0 ; k < col ; k++) {
 				if(data[i][k] == 0) System.out.print("　");
 				else if(data[i][k] == 9) System.out.print("◈");
-				else System.out.print(data[i][k]); break;
+				else System.out.print(data[i][k]);
 				System.out.print("\t");
 			}
 			System.out.println("\n");

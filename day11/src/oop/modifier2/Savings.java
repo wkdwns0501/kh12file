@@ -1,6 +1,6 @@
 package oop.modifier2;
 
-public class Subscribers {
+public class Savings {
 	private String name;
 	private int period, count, money;
 	private long bal;
@@ -49,10 +49,10 @@ public class Subscribers {
 		if(this.period * 12 < this.count) return " (만기)";
 		else return "";
 	}
-	public Subscribers(String name, int period, int money, long bal) {
+	public Savings(String name, int period, int money, long bal) {
 		this(name, period, 1, money, bal);
 	}
-	public Subscribers(String name, int period, int count, int money, long bal) {
+	public Savings(String name, int period, int count, int money, long bal) {
 		this.setName(name);
 		this.setPeriod(period);
 		this.setCount(count);

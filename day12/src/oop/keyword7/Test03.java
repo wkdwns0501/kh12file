@@ -10,7 +10,7 @@ public class Test03 {
 		System.out.println(year);
 		
 		int day1 = Calendar.getInstance().get(Calendar.DATE);
-		int day2 = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+		int day2 = Calendar.getInstance().get(Calendar.DAY_OF_MONTH); //Date와 같음
 		System.out.println(day1);
 		System.out.println(day2);
 	}

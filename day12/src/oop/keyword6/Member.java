@@ -31,9 +31,6 @@ public class Member {
 		this.nickName = nickName;
 	}
 	
-//	public String getPwM() {
-//		return "" + this.passWord.charAt(0) + this.passWord.charAt(1) + "**********";
-//	}
 	public String getPwM() {
 		return "" + this.passWord.charAt(0) + this.passWord.charAt(1) + "**********";
 	}

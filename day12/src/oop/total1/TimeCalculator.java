@@ -1,25 +1,23 @@
 package oop.total1;
 
-import oop.keyword3.Time2;
-
 public class TimeCalculator {
 	
-	//더하기
-	public static Time2 plus(Time2 a, Time2 b) {
-		Time result = new Time(a.getValue()+b.getValue())
-//		return a + b;
-	}
-	
-	//빼기
-	public static int minus(int totalSec1, int totalSec2) {
-		if(a.getValue> ) {
-			return totalSec1 - totalSec2;
+	//시간 덧셈 메소드
+		public static Time plus(Time a, Time b) {
+			long sum = a.getValue() + b.getValue();
+			Time result = new Time(sum);
+			return result;		
 		}
-		else if (totalSec1 < totalSec2) {
-			return totalSec2 - totalSec1;
+		//시간 뺄셈 메소드
+		public static Time minus(Time a, Time b) {
+			long diff;
+			if(a.getValue() > b.getValue()) {
+				diff = a.getValue() - b.getValue();
+			}
+			else {
+				diff = b.getValue() - a.getValue();
+			}
+			Time result = new Time(diff);
+			return result;
 		}
-		else {
-			return 0;
-		}
-	}
 }

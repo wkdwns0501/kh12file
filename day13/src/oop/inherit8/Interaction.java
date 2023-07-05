@@ -5,9 +5,8 @@ package oop.inherit8;
 public class Interaction {
 	
 	//전투 기능
-	public static void battle(Warrior a, Warrior b) {
+	public static void battle(Player a, Player b) {
 		a.attack();
 		b.attack();
 	}
-	
 }

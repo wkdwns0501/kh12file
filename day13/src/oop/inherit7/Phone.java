@@ -5,6 +5,7 @@ package oop.inherit7;
 //= 부모클래스
 //= 일반 클래스처럼 필드, 메소드, 생성자를 가질 수 있다
 //= (중요) 추상 클래스는 추상 메소드를 가질 수 있다
+//
 public abstract class Phone {
 	//공통 필드
 	protected String number;

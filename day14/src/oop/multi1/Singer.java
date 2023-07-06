@@ -6,8 +6,8 @@ package oop.multi1;
 //- super 키워드의 대상이 될 수 없다
 public interface Singer {
 	//필드 - 일반적인 필드 생성불가, 상수만 가능 - (public static final 자동완성)
-//	String name = "아무개";
-//	private String name;
+	//	String name = "아무개";
+	//	private String name;
 	
 	//메소드 - 추상 메소드만 생성 가능
 	void sing();

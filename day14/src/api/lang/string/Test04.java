@@ -15,19 +15,17 @@ public class Test04 {
 		String nick = sc.next();
 		sc.close();
 		
-		boolean length = nick.length() >= 2 && nick.length() <= 10;
-		boolean word = nick.contains("운영자");
-		
-		if ( !length ) {
+		if ( nick.length() < 2 || nick.length() > 10 ) { //일을 덜 할 수 있게하는 조건을 위에 쓴다
 			System.out.println("글자수는 2글자 이상 10글자 이하만 가능합니다");
 		}
-		else if ( word ) {
-			System.out.println("운영자라는 단어를 포함할 수 없습니다");
+		else if ( nick.contains("운영자") ) {
+			System.out.println("\'운영자\'라는 단어는 포함할 수 없습니다");
 		}
 		else {
 			System.out.println("닉네임 설정이 완료되었습니다");
 		}
-		
+		//화이트리스트 방식 : 여기에 적힌 사람만 되고 나머진 안됨
+		//블랙리스트 방식 : 여기에 적힌사람만 안되고 나머진 됨
 		
 	}
 }

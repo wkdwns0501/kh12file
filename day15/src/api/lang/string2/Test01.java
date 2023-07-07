@@ -1,5 +1,5 @@
 package api.lang.string2;
-
+															//자료 사이트 - Regular Expression 파트
 public class Test01 {								//https://regexper.com/
 	public static void main(String[] args) {	//[가-힣]  -> 한글 한글자
 		//문자열의 구체적인 검사					//[가-힣]{3} -> 한글 한글자 x 3 -> 한글 세글자

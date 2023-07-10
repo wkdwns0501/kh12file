@@ -52,6 +52,7 @@ public class Member {
 		return memberPoint;
 	}
 	public String getMaskPw() {
+		if(this.memberPw == null) return null;
 		return this.memberPw.substring(0,2) + "*".repeat(memberPw.length()-2);
 	}
 	

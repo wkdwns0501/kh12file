@@ -16,7 +16,10 @@ public class Test07 {
 		String memberLevel = sc.next();
 		System.out.print("포인트 : ");
 		String memberPoint = sc.next();
+		sc.close();
 		
+		Member a = new Member(memberId, memberPw, memberName,memberLevel,100);
 		
+		a.show();
 	}
 }

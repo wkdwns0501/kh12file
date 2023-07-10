@@ -10,32 +10,31 @@ public class Member {
 	public void setMemberId(String memberId) {
 		String regex = "^[A-Za-z0-9]{8,20}$";
 		if(memberId.matches(regex)) {
-			System.out.println("멋진 아이디네요!");
 			this.memberId = memberId;
 		}
-		else {
-			System.out.println("8~20자의 알파벳+숫자만 사용 가능합니다.");
-		}
+		else System.out.println("8~20자 알파벳+숫자 로 구성");
+		
 	}
 	public void setMemberPw(String memberPw) {
 		String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$])[A-Za-z0-9!@#$]{8,15}$";
 		if(memberPw.matches(regex)) {
 			this.memberPw = memberPw;
 		}
-		else {
-			System.out.println("8~15자의 알파벳+숫자+특수문자를 반드시 포함하여야 합니다.");
-		}
+		else System.out.println("8~15자 알파벳+숫자+특수문자 반드시 포함하여 구성");
 	}
 	public void setMemberName(String memberName) {
-		String regex = "^[가-힣][가-힣]{1,2}$";
+		String regex = "^[가-힣]{2,7}$";
 		if(memberName.matches(regex)) {
 			this.memberName = memberName;
 		}
-		else {
-			System.out.println("한국인 이름이 아닙니다.");
-		}
+		else System.out.println("한국인 이름만 가능");
 	}
 	public void setMemberLevel(String memberLevel) {
+		switch(memberLevel) {
+		case "관리자":
+		case "우수회원":
+		case "일반회원":
+		}
 		this.memberLevel = memberLevel;
 	}
 	public void setMemberPoint(int memberPoint) {
@@ -57,6 +56,15 @@ public class Member {
 	public int getMemberPoint() {
 		return memberPoint;
 	}
+	public String getFilterPw() {
+		String star = "*";
+		String filterPw = null;
+		for(int i=0; i < memberPw.length(); i++) {
+			int count = memberPw.length();
+			filterPw = filterPw.replace(memberPw, star.repeat(count));
+		}
+		return filterPw;
+	}
 	
 	public Member(String memberId, String memberPw, String memberName, String memberLevel, int memberPoint) {
 		this.setMemberId(memberId);
@@ -65,11 +73,16 @@ public class Member {
 		this.setMemberLevel(memberLevel);
 		this.setMemberPoint(memberPoint);
 	}
-	public Member(String memberId, String memberPw, String memberName, String memberLevel) {
-		this(memberId,memberPw,memberName,memberLevel,100);
+	public Member(String memberId, String memberPw, String memberName) {
+		this(memberId,memberPw,memberName,"일반회원",100);
 	}
 	
 	public void show() {
-		
+		System.out.println("<회원가입 정보>");
+		System.out.println("회원아이디 : " + this.getMemberId());
+		System.out.println("회원비밀번호 : " + this.getMemberPw());
+		System.out.println("회원이름 : " + this.getMemberName());
+		System.out.println("회원 등급 : " + this.getMemberLevel());
+		System.out.println("회원 포인트 : " + this.getMemberPoint());
 	}
 }

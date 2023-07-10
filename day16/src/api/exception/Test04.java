@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Test04 {
 	public static void main(String[] args) {
-		//Test02 예제에서 예외를 
+		//Test02 예제에서 예외를 한 번에 처리하도록 변경
 		try {//플랜A
 			Scanner sc = new Scanner(System.in);
 			

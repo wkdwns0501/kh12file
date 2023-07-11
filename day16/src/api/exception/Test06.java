@@ -11,7 +11,7 @@ public class Test06 {
 			System.out.print("생년월일 입력 (YYYY-MM) : ");
 			String birth = sc.next();
 			sc.close();
-//			String[] part = input.split("-"); // -를 구분자(
+			
 			String a = birth.substring(0, 4);
 			String b = birth.substring(5, 7);
 		

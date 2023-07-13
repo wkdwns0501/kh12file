@@ -11,6 +11,7 @@ public class Test01 {
 		//Set
 		//= 중복이 발생할 수 없는 구조
 		//= 트리구조면 TreeSet, 해시 구조면 HashSet
+		// ->정렬까지 할거면 TreeSet, 정렬이 필요 없으면 HashSet
 		// 해시가 성능적인 부분에서 전반적으로 조금더 좋다 (정렬 때문에)
 		//업캐스팅
 		Set<Integer> a = new TreeSet<>();

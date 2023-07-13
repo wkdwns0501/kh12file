@@ -55,7 +55,7 @@ public class Test04 {
 		//차집합 (minus/except)
 		Set<Integer> minus = new TreeSet<>();
 		minus.addAll(a);
-		minus.retainAll(b);
+		minus.removeAll(b);
 		System.out.println("a - b = " + minus);
  	}
 }

@@ -7,7 +7,7 @@ public class Test03 {
 	public static void main(String[] args) throws IOException, InterruptedException { //예외 전가
 		//파일 또는 디렉터리 생성 및 삭제
 		
-		File target = new File("D:/dummy");
+		File target = new File("D:/dummy"); //->절대 경로
 //		File target = new File("D:/dummy/a/b/c");
 		//파일로 만들고 싶다면 createNewFile()
 //		target.createNewFile();

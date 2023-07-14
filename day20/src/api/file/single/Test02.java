@@ -15,7 +15,7 @@ public class Test02 {
 		File target = new File("sample", "single.kh");
 		FileInputStream stream = new FileInputStream(target);
 		
-		//[프로그램] <--- [출력통로(stream)] <--- [파일객체(target)] <--- [실제파일]
+		//[프로그램] <--- [입력통로(stream)] <--- [파일객체(target)] <--- [실제파일]
 		
 		while(true) {
 			int a = stream.read();

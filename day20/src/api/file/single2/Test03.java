@@ -18,22 +18,30 @@ public class Test03 {
 		File writeTarget = new File("./sample/copy2.txt");
 		FileOutputStream stream2 = new FileOutputStream(writeTarget);
 		
-		long count = 0L;
-		long total = readTarget.length();
-		DecimalFormat fmt = new DecimalFormat("#,##0.00");
-		byte[] buffer = new byte[30];
+//		long count = 0L;
+//		long total = readTarget.length();
+//		DecimalFormat fmt = new DecimalFormat("#,##0.00");
+		byte[] buffer = new byte[4096];
 		
+		long start = System.currentTimeMillis();
+
 		while(true) { 
 			int size = stream1.read(buffer);
 			if(size == -1) break;
 			stream2.write(buffer);
+			
+//			count++;
+//			double percent = count * 100d / total;
+//			System.out.println(count + "/" + total + "("+fmt.format(percent)+"%)");
+			
 //			System.out.print(size);
 //			System.out.print("\t");
 //			System.out.println(Arrays.toString(buffer));
-			count++;
-			double percent = count * 100d / total;
-			System.out.println(count + "/" + total + "("+fmt.format(percent)+"%)");
 		}
+		
+		long end = System.currentTimeMillis();
+		System.out.println("걸린 시간 : " + (end - start) + "(ms)");
+		
 		stream1.close();
 		stream2.close();
 	}

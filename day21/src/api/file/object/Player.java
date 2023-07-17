@@ -9,6 +9,7 @@ public class Player implements Serializable {
 	private String id;
 	private int level;
 	private long money;
+	
 	public String getId() {
 		return id;
 	}
@@ -31,6 +32,7 @@ public class Player implements Serializable {
 	}
 	public void levelUp() {
 		this.level ++;
+		System.out.println("레벨이 1 올랐습니다!");
 	}
 	public Player(String id) {
 		this.setId(id);

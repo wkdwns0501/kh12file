@@ -52,8 +52,8 @@ public class AccountUtil {
 			System.out.print("입력 (1-정보출력/2-입금/3-출금/0-종료) : ");
 			int num = sc.nextInt();
 			if(num == 1) { account.show(); }
-			else if(num == 2) { account.getDeposit(); }
-			else if(num == 3) { account.getWithdraw(); }
+			else if(num == 2) { account.deposit(); }
+			else if(num == 3) { account.withdraw(); }
 			else if(num == 0) {
 				System.out.println("저장 후  프로그램을 종료합니다!");
 				break;

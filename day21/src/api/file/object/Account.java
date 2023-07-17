@@ -9,6 +9,7 @@ public class Account implements Serializable{
 	private long money;
 	
 	public void setName(String name) {
+		if(!name.matches("^[가-힣]{2,7}$")) return;
 		this.name = name;
 	}
 	public void setMoney(long money) {
@@ -25,21 +26,31 @@ public class Account implements Serializable{
 		this.setName(name);
 		this.setMoney(0L);
 	}
-	public long getDeposit() { //입금
+	public void deposit() { //입금
 		Scanner sc = new Scanner(System.in);
 		System.out.print("입금할 금액 입력 : ");
 		long deposit = sc.nextLong();
-		return this.money += deposit ;
+		if(deposit <= 0) {
+			System.out.println("입금할 수 없습니다!");
+			return;
+		}
+		else {
+			this.money += deposit ;
+			System.out.println(deposit + "원이 정상적으로 입금되었습니다!");
+		}
 	}
-	public long getWithdraw() { //출금
+	public void withdraw() { //출금
 		Scanner sc = new Scanner(System.in);
 		System.out.print("출금할 금액 입력 : ");
 		long withdraw = sc.nextLong();
-		if(money < withdraw) {
-			System.out.println("잔액이 부족합니다!");
-			return withdraw;
+		if(money < withdraw || withdraw <=0) {
+			System.out.println("출금할 수 없습니다!");
+			return ;
 		}
-		else return this.money -= withdraw;
+		else {
+			this.money -= withdraw;
+			System.out.println(withdraw + "원이 정상적으로 출금되었습니다!");
+		}
 	}
 	public void show() {
 		System.out.println("<계좌 정보>");

@@ -38,6 +38,7 @@ sms NUMBER
 -- 문제 4 : 커피숍 메뉴 정보
 -- (참고) 테이블 자료형에는 논리가 없다 
 -- number → 1 or 0 , char(1) → Y or N 
+DROP TABLE MENU;
 CREATE TABLE menu(
 name varchar2(60),
 TYPE varchar2(9),

@@ -13,7 +13,6 @@ import java.util.Scanner;
 public class AccountUtil {
 	public static Account load() throws ClassNotFoundException, IOException {
 		Account account;
-		String name = null;
 		File target = new File("sample/bank.kh");
 		System.out.println("KH 은행에 오신 것을 환영합니다!");
 		
@@ -23,16 +22,15 @@ public class AccountUtil {
 			ObjectInputStream obj = new ObjectInputStream(buffer);
 			account = (Account) obj.readObject();
 			obj.close();
-			System.out.println(name + "님 환영합니다");
 		}
 		else {
 			Scanner sc = new Scanner(System.in);
 			System.out.println("처음 방문하셨습니다!");
 			System.out.print("이름 입력 : ");
-			name = sc.next();
+			String name = sc.next();
 			account = new Account(name);
-			System.out.println(name + "님 환영합니다");
 		}
+		System.out.println(account.getName() + "님 환영합니다");
 		return  account;
 	}
 	public static void save(Account account) throws IOException {

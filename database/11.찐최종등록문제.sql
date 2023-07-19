@@ -14,7 +14,7 @@ check(regexp_like(book_publication_date, '^((18|19)[0-9]{2}|20[0-9]{2})-(((0[135
 check(book_page_count >= 1),
 check(book_genre in ('소설', '동화', '자기개발'))
 );
-
+ 
 drop sequence book_seq;
 create sequence book_seq;
 

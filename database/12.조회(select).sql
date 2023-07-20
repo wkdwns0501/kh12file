@@ -107,7 +107,7 @@ select * from product where price >= 1000 and type = '과자';
 -- 2020년에 제조된 상품 조회
 -- select * from product where made like '2020%'; -- 실행안됨
 select * from product where to_char(made, 'yyyy') = '2020'; 
-		-- 문자열로 변환하기 때문에 2020 숫자가 들어가면안된다
+		-- 문자열로 변환하기 때문에 숫자 2020이 들어가면 안된다
 select * from product where extract(year from made) = 2020;
 		-- extract는 숫자로 반환한다
 select * from product where  
@@ -116,3 +116,90 @@ select * from product where
 		and 
 		to_date('2020-12-31 23:59:59', 'yyyy-mm-dd hh24:mi:ss')
 		;  
+		
+-- (Q) 여름(6, 7, 8)월에 생산한 상품 정보 조회
+select * from product where to_char(made, 'mm') in ('06', '07', '08');
+select * from product where extract(month from made) between 6 and 8;
+select * from product where 
+	made between 	  
+		to_date('2020-06-01 00:00:00', 'yyyy-mm-dd hh24:mi:ss') 
+		and 
+		to_date('2020-08-31 23:59:59', 'yyyy-mm-dd hh24:mi:ss')
+		;
+-- (Q) 2019년 하반기에 생산한 상품 정보 조회
+select * from product 
+	where to_char(made, 'yyyy-mm') 
+		in ('2019-07', '2019-08', '2019-09', '2019-10', '2019-11', '2019-12');
+select * from PRODUCT 	
+	where extract(year from made) = 2019
+		and extract(month from made) between 7 and 12;
+select * from product 
+	where made between 	  
+		to_date('2019-07-01 00:00:00', 'yyyy-mm-dd hh24:mi:ss') 
+		and 
+		to_date('2019-12-31 23:59:59', 'yyyy-mm-dd hh24:mi:ss')
+		;
+-- (Q) 2020년 부터 현재까지 생산한 상품 정보 조회
+select * from product 
+	WHERE made between 	  
+		to_date('2020-01-01 00:00:00', 'yyyy-mm-dd hh24:mi:ss') 
+		and 
+		sysdate
+		;
+-- (Q) 최근 1년간 생산한 상품 정보 조회
+-- 오라클 날짜는 기본 계산 단위가 (일) 이다
+-- 따라서 1년전은 sysdate - 365 이다
+select * from product
+	where made between sysdate-365 and sysdate;
+
+-- (응용) 시간까지 고려 (시작일 00시 부터 종료일 23시59분까지)
+select * from product 
+	WHERE made between 	  
+		to_date(
+			to_char(sysdate-365, 'yyyy-mm-dd') || ' ' || '00:00:00',
+			'yyyy-mm-dd hh24:mi:ss' )
+		and 
+		to_date(
+			to_char(sysdate, 'yyyy-mm-dd') || ' ' || '23:59:59', 
+			'yyyy-mm-dd hh24:mi:ss' );
+		
+-------------------------------------------------------
+-- 정렬 (Order)
+-------------------------------------------------------
+-- 모든 조회가 끝나고 나온 결과를 원하는 목적에 따라 재배열
+-- asc(오름차순, ascending) , desc(내림차순, desending)
+-- 정렬을 따로 지정하지 않겠다 (비추천)
+select * from product;
+
+select * from product order by no; -- 안쓰면 오름차순
+select * from product order by no asc;
+select * from porduct order by no desc;
+
+-- 2차 정렬
+select * from product order by price desc, no asc; 
+	-- 가격순으로 내림차순하고 , 같은게있다면 번호순으로 오름차순 해라
+
+-- (Q) 최근에 제조된 상품부터 출력
+select * from product order by made desc;
+  -- 번호가 시퀀스라면 아래코드도 가능
+  -- select * from product order by no desc;
+
+-- (Q) 폐기일이 오래된 상품부터 출력
+select * from product order by expire asc;
+
+-- (Q) 이름순으로 출력 (통상적으로 오름차순), 추가 - 이름이같으면 번호순까지
+select * from product order by name asc, no asc;
+
+-- (Q) 상품을 종류별로 가격이 비싼 순으로 출력, 추가 - 번호순까지
+select * from product order by type asc, price desc, no asc;
+
+-- (Q) 유통기한이 가장 짧은 상품부터 출력, 추가 - 번호순까지
+select * from product order by expire-made+1 asc, no asc;
+
+-- 부여한 별칭으로 정렬 가능
+-- 테이블에도 별칭 부여가 가능하다
+-- * 는 다른 항목과 같이 쓸 수 없고 테이블 이름에 .* 를 추가하여 사용
+select p.*, expire-made+1 유통기한
+from product p order by 유통기한 asc, no asc;
+
+

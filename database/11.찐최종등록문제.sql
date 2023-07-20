@@ -4,17 +4,17 @@ book_id number primary key,
 book_title varchar2(300) not null,
 book_author varchar2(90),
 book_publication_date char(10),
-book_price number(10,2) not null,
+book_price number(*,2) not null, -- (10,2)
 book_publisher varchar(90),
 book_page_count number not null,
 book_genre varchar(12) not null,
-check(regexp_like(book_author,'^[^!@#$]*$')),
+check(regexp_like(book_author,'[^!@#$]+')),
 check(book_price >= 0),
 check(regexp_like(book_publication_date, '^((18|19)[0-9]{2}|20[0-9]{2})-(((0[13578]|1[02])-(0[1-9]|1[0-9]|2[0-9]|3[01]))|((0[469]|11)-(0[1-9]|1[0-9]|2[0-9]|30))|((02)-(0[1-9]|1[0-9]|2[0-9])))$')),
 check(book_page_count >= 1),
 check(book_genre in ('소설', '동화', '자기개발'))
 );
- 
+
 drop sequence book_seq;
 create sequence book_seq;
 
@@ -36,7 +36,7 @@ values (book_seq.nextval, '1984', 'George Orwell', '1949-06-08'
 			, 10.99, 'Secker & Warburg', 328, '동화');
 insert into book(book_id, book_title ,book_author ,book_publication_date 
 							, book_price, book_publisher, book_page_count, book_genre)
-values (book_seq.nextval, 'Pride and Prejudice', 'Jane Austen', '1813-01-28'
+values (book_seq.nextval, 'Pride and Prejudice', 'Jane Austen', '1913-01-28'
 			, 9.99, 'Penguin Classics', 432, '소설');
 insert into book(book_id, book_title ,book_author ,book_publication_date 
 							, book_price, book_publisher, book_page_count, book_genre)

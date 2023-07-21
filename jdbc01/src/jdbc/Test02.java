@@ -21,10 +21,10 @@ public class Test02 {
 		dataSource.setUsername("C##KH");
 		dataSource.setPassword("KH");
 		dataSource.setDriverClassName("oracle.jdbc.OracleDriver");
-		dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
-//		dataSource.setUrl("jdbc:oracle:thin:@khds-c.iptime.org:15215:xe");
+		dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:xe"); //본인사용 PC
+//		dataSource.setUrl("jdbc:oracle:thin:@khds-c.iptime.org:15215:xe"); //학원지정 PC
 		
-		//[3] 구문 전솔 도구 생서 및 전송 
+		//[3] 구문 전솔 도구 생성 및 전송 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource); //의존성
 		
 		jdbcTemplate.update(sql);

@@ -7,6 +7,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 public class Test03 {
 	public static void main(String[] args) {
+		//게시글 정보 수정 프로그램
 		Scanner sc = new Scanner(System.in);
 		System.out.print("번호 : ");
 		int boardNo = sc.nextInt();
@@ -14,13 +15,11 @@ public class Test03 {
 		String boardTitle =sc.next();
 		System.out.print("내용 : ");
 		String boardContent =sc.next();
-		System.out.print("작성자 : ");
-		String boardWriter = sc.next();
 		sc.close();
 		
-		String sql = "update board set board_title=?, board_content=?, board_writer=?"
+		String sql = "update board set board_title=?, board_content=?"
 						+ " where board_no=?";
-		Object[] data = {boardTitle, boardContent, boardWriter, boardNo};
+		Object[] data = {boardTitle, boardContent, boardNo};
 		
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("oracle.jdbc.OracleDriver"); 

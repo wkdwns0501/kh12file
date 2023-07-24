@@ -13,7 +13,7 @@ public class Test01 {
 		//JDBC 조회 (select)
 		//- 두 가지 준비물이 필요하다
 		//- 첫번째는 조회 결과 중 한 줄을 담을 객체 (DTO)
-		//- 두번째는 조회 결과를 DTO에 옮겨담는 방법을 가진 객체 (Mapper)
+		//- 두번째는 조회 결과를 DTO에 옮겨담는 방법(변환)을 가진 객체 (Mapper)
 		
 		String sql = "select * from pocketmon order by no asc";
 //		Object[] data = {};  //홀더(?)가 없으니 필요없다

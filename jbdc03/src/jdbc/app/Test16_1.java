@@ -5,7 +5,7 @@ import java.util.List;
 import jdbc.dao.BoardDao;
 import jdbc.dto.BoardDto;
 
-public class Test17 {
+public class Test16_1 {
 	public static void main(String[] args) {
 		//데이터
 		int page = 1;

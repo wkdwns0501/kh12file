@@ -3,7 +3,6 @@ package jdbc.dao;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import jdbc.dto.BoardDto;
-import jdbc.dto.PocketmonDto;
 import jdbc.util.JdbcUtils;
 //게시글을 CRUD 처리하는 도구
 public class BoardDao {
@@ -29,5 +28,13 @@ public class BoardDao {
 //		int result = jdbcTemplate.update(sql,data); 
 //		return result>0;
 		return jdbcTemplate.update(sql, data) > 0;
+	}
+	
+	//(D)게시글삭제
+	public boolean delete(int boardNo) {
+		String sql = "delete board where board_no=?";
+		Object[] data = {boardNo};
+		JdbcTemplate jdbcTemplate = JdbcUtils.getJdbcTemplate();
+		return jdbcTemplate.update(sql,data) > 0;
 	}
 }

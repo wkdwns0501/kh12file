@@ -62,4 +62,23 @@ public class BoardDao {
 		JdbcTemplate jdbcTemplate = JdbcUtils.getJdbcTemplate();
 		return jdbcTemplate.query(sql, mapper, data);
 	}
+	public List<BoardDto> selectListByPage2(int page, int size){
+		int end = page * size;
+		int begin = end - (size-1);
+		String sql ="select * from ("
+				+"select rownum rn, TMP.* from("
+					+"	select * from board order by board_no desc "
+				+")TMP"
+			+") where rn between ? and ?";
+		Object[] data = {begin, end};
+		JdbcTemplate jdbcTemplate = JdbcUtils.getJdbcTemplate();
+		return jdbcTemplate.query(sql, mapper, data);
+	}
+	public BoardDto selectOne(int boardNo) {
+		String sql = "select * from board where board_no=?";
+		Object[] data = {boardNo};
+		JdbcTemplate jdbcTemplate = JdbcUtils.getJdbcTemplate();
+		List<BoardDto> list = jdbcTemplate.query(sql, mapper, data);
+		return list.isEmpty() ? null : list.get(0);
+	}
 }

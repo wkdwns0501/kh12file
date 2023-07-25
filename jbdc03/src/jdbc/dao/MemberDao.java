@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import jdbc.dto.BoardDto;
 import jdbc.dto.MemberDto;
 import jdbc.mapper.MemberMapper;
 import jdbc.util.JdbcUtils;
@@ -67,11 +66,18 @@ public class MemberDao {
 		
 		String sql ="select * from ("
 						+"select rownum rn, TMP.* from("
-							+"	select * from member "
+							+"select * from member"
 						+")TMP"
 					+") where rn between ? and ?";
 		Object[] data = {begin, end};
 		JdbcTemplate jdbcTemplate = JdbcUtils.getJdbcTemplate();
 		return jdbcTemplate.query(sql, mapper, data);
+	}
+	public MemberDto selectOne(String memberId) {
+		String sql = "select * from member where member_id=?";
+		Object[] data = {memberId};
+		JdbcTemplate jdbcTemplate = JdbcUtils.getJdbcTemplate();
+		List<MemberDto> list = jdbcTemplate.query(sql, mapper, data);
+		return list.isEmpty() ? null : list.get(0);
 	}
 }

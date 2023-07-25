@@ -53,6 +53,25 @@ public class BookDao {
 		JdbcTemplate jdbcTemplate = JdbcUtils.getJdbcTemplate();
 		return jdbcTemplate.query(sql, mapper);
 	}
-	
+	public List<BookDto> selectListByPage(int page, int size){
+		int end = page * size;
+		int begin = end = (size-1);
+		
+		String sql = "select * from ("
+						+ "select rownum rn, TMP.* from("
+							+ "select * from book order by book_id asc"
+						+ ")TMP"
+					+ ") where rn between ? and ?";
+		Object[] data = {begin, end};
+		JdbcTemplate jdbcTemplate = JdbcUtils.getJdbcTemplate();
+		return jdbcTemplate.query(sql, mapper, data);
+	}
+	public BookDto selectOne(int bookId) {
+		String sql = "select * from book where book_id=?";
+		Object[] data = {bookId};
+		JdbcTemplate jdbcTemplate = JdbcUtils.getJdbcTemplate();
+		List<BookDto> list = jdbcTemplate.query(sql, mapper, data);
+		return list.isEmpty() ? null : list.get(0);
+	}
 
 }

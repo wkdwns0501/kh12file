@@ -74,6 +74,7 @@ public class BoardDao {
 		JdbcTemplate jdbcTemplate = JdbcUtils.getJdbcTemplate();
 		return jdbcTemplate.query(sql, mapper, data);
 	}
+	
 	public BoardDto selectOne(int boardNo) {
 		String sql = "select * from board where board_no=?";
 		Object[] data = {boardNo};

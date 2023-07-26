@@ -11,12 +11,12 @@ public class Test21 {
 		BoardDto dto = dao.selectOne(boardNo);
 		
 		if(dto == null) {
-			System.out.println("찾으시는 번호의 게시글이 없어요");
+			System.out.println("게시글 없음");
 		}
 		else {
-			System.out.println(dto.getBoardNo());
-			System.out.println(dto.getBoardTitle());
-			System.out.println(dto.getBoardWriter());
+			System.out.println("번호 : " + dto.getBoardNo());
+			System.out.println("제목 : " +dto.getBoardTitle());
+			System.out.println("작성자 : " +dto.getBoardWriter());
 		}
 	}
 }

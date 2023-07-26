@@ -11,11 +11,14 @@ public class Test22 {
 		MemberDto dto = dao.selectOne(memberId);
 		
 		if(dto == null) {
-			System.out.println("찾으시는 아이디의 회원이 없어요");
+			System.out.println("허용되지 않은 접근방법");
 		}
 		else {
-			System.out.println(dto.getMemberId());
-			System.out.println(dto.getMemberNickname());
+			System.out.println("[회원정보]");
+			System.out.println("아이디 : " + dto.getMemberId());
+			System.out.println("닉네임 : " + dto.getMemberNickname());
+			System.out.println("등급 : " + dto.getMemberLevel());
+			System.out.println("포인트 : " + dto.getMemberPoint());
 		}
 	}
 }

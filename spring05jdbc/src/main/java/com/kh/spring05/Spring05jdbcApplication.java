@@ -1,4 +1,4 @@
-package com.kh.spring03;
+package com.kh.spring05;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

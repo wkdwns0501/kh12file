@@ -18,4 +18,15 @@ public class BoardController {
 		dao.insert(dto);
 		return "게시글 등록 완료!";
 	}
+	
+	@RequestMapping("/update")
+	public String update(@ModelAttribute BoardDto dto) {
+		
+		if(dao.update(dto)) {
+			return "게시글 정보 변경 완료!";
+		}
+		else {
+			return "해당 번호의 글은 존재하지 않습니다";
+		}
+	}
 }

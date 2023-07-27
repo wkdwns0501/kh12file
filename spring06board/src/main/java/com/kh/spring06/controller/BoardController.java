@@ -1,5 +1,7 @@
 package com.kh.spring06.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,5 +41,28 @@ public class BoardController {
 		else {
 			return "존재하지 않는 게시글 번호";
 		}
+	}
+	@RequestMapping("/list")
+	public String list() {
+		List<BoardDto> list = dao.selectList();
+		//홈페이지는 동시에 많은 사람이 사용하기 때문에 안전한게 좋다
+		StringBuffer buffer = new StringBuffer();//safe -> 그래서 버퍼 사용
+//		StringBuilder builder = new StringBuilder();//non-safe
+		for(BoardDto dto : list) {
+			buffer.append(dto);
+			buffer.append("<br>");
+		}
+		return buffer.toString();
+	}
+	
+	@RequestMapping("/detail")
+	public String detail() {
+		List<BoardDto> list = dao.selectDetailList();
+		StringBuffer buffer = new StringBuffer();
+		for(BoardDto dto : list) {
+			buffer.append(dto);
+			buffer.append("<br>");
+		}
+		return buffer.toString();
 	}
 }

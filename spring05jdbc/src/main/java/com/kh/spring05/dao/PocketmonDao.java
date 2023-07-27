@@ -26,4 +26,10 @@ public class PocketmonDao {//Repository, Autowired 세트
 		Object[] data = {dto.getName(), dto.getType(), dto.getNo()};
 		return jdbcTemplate.update(sql,data) > 0;
 	}
+
+	public boolean delete(int no) {
+		String sql = "delete pocketmon where no = ?";
+		Object[] data = {no};
+		return jdbcTemplate.update(sql,data)>0;
+	}
 }

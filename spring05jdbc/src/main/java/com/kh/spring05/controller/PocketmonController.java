@@ -61,4 +61,15 @@ public class PocketmonController {
 //			System.out.println(dto);	//사용자에게는 빈페이지
 //		}
 	}
+	
+	@RequestMapping("/detail")
+	public String detail() {
+		List<PocketmonDto> list = dao.selectList();
+		StringBuffer buffer = new StringBuffer();
+		for(PocketmonDto dto : list) {
+			buffer.append(dto);
+			buffer.append("<br>");
+		}
+		return buffer.toString();
+	}
 }

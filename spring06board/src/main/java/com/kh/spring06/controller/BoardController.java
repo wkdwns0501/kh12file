@@ -56,13 +56,20 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/detail")
-	public String detail() {
-		List<BoardDto> list = dao.selectDetailList();
-		StringBuffer buffer = new StringBuffer();
-		for(BoardDto dto : list) {
-			buffer.append(dto);
-			buffer.append("<br>");
+	public String detail(@RequestParam int boardNo) {
+		BoardDto dto = dao.selectOne(boardNo);
+		if(dto == null) {
+			return "게시글이 존재하지 않습니다";
 		}
-		return buffer.toString();
+		else {
+			//return dto.toString();
+			StringBuffer buffer = new StringBuffer();
+			buffer.append("[제목]" + dto.getBoardTitle());
+			buffer.append("(" + dto.getBoardWriter() + ")");
+			buffer.append("<br>");
+			buffer.append(dto.getBoardContent());
+			buffer.append("<br>");
+			return buffer.toString();
+		}
 	}
 }

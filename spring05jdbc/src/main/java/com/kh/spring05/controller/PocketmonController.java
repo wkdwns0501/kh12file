@@ -63,13 +63,13 @@ public class PocketmonController {
 	}
 	
 	@RequestMapping("/detail")
-	public String detail() {
-		List<PocketmonDto> list = dao.selectList();
-		StringBuffer buffer = new StringBuffer();
-		for(PocketmonDto dto : list) {
-			buffer.append(dto);
-			buffer.append("<br>");
+	public String detail(@RequestParam int no) {
+		PocketmonDto dto = dao.selectOne(no);
+		if(dto == null) {
+			return "존재하지 않는 포켓몬스터";
 		}
-		return buffer.toString();
+		else {
+			return dto.toString();
+		}
 	}
 }

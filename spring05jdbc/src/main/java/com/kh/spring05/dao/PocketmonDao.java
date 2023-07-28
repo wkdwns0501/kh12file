@@ -43,4 +43,11 @@ public class PocketmonDao {//Repository, Autowired 세트
 		String sql = "select * from pocketmon order by no asc";
 		return jdbcTemplate.query(sql, mapper);
 	}
+	
+	public PocketmonDto selectOne(int no) {
+		String sql = "select * from pocketmon where no = ?";
+		Object[] data = {no};
+		List<PocketmonDto> list = jdbcTemplate.query(sql, mapper, data);
+		return list.isEmpty() ? null : list.get(0);
+	}
 }

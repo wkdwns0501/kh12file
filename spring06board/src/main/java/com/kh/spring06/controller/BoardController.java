@@ -16,8 +16,7 @@ public class BoardController {
 	@Autowired
 	private BoardDao dao;
 	@RequestMapping("/insert")
-	public String insert(
-			@ModelAttribute BoardDto dto) {
+	public String insert(@ModelAttribute BoardDto dto) {
 		dao.insert(dto);
 		return "게시글 등록 완료!";
 	}
@@ -42,6 +41,7 @@ public class BoardController {
 			return "존재하지 않는 게시글 번호";
 		}
 	}
+	
 	@RequestMapping("/list")
 	public String list() {
 		List<BoardDto> list = dao.selectList();

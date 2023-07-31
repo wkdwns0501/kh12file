@@ -33,4 +33,9 @@ public class ViewController {
 	public String sns() {
 		return "/WEB-INF/views/sns.jsp";
 	}
+	
+	@RequestMapping("/dummy")
+	public String dummy() {
+		return "/WEB-INF/views/dummy.jsp";
+	}
 }

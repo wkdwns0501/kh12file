@@ -1,5 +1,7 @@
 package com.kh.spring10.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,5 +22,12 @@ public class BoardController {
 		BoardDto dto = dao.selectOne(boardNo);
 		model.addAttribute("dto", dto);
 		return "/WEB-INF/views/board/detail.jsp";
+	}
+	
+	@RequestMapping("/list")
+	public String list(Model model) {
+		List<BoardDto> list = dao.selectList();
+		model.addAttribute("list", list);
+		return "/WEB-INF/views/board/list.jsp";
 	}
 }

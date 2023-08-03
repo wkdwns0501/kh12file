@@ -21,12 +21,19 @@ public class BoardDao {
 	@Autowired
 	private BoardDetailMapper detailMapper;
 	
-	public void insert (BoardDto dto) {
-		String sql = "insert into board(board_no, board_title, "
-				+ "board_content, board_writer) "
-				+ "values(board_seq.nextval, ?, ?, ?)";
-		Object[] data = {dto.getBoardTitle(), dto.getBoardContent(), dto.getBoardWriter()};
-		jdbcTemplate.update(sql, data);
+	//등록과 번호생성가능
+	//select board-seq.nextval from dual
+	//insert in to board(...) values(?, ?, ? ,? 0)
+	public int sequence() {
+		String sql = "select board_seq.nextval from dual";
+		return jdbcTemplate.queryForObject(sql,int.class);
+//		return jdbcTemplate.queryForObject(sql,Integer.class);
+	}
+	
+	public void insert(BoardDto dto) {
+		String sql = "insert into board(board_no, board_title, board_content, board_writer, board_readcount) values(?, ?, ?, ?, 0)";
+		Object[] data= {dto.getBoardNo(), dto.getBoardTitle(), dto.getBoardContent(), dto.getBoardWriter()};
+		jdbcTemplate.update(sql,data);
 	}
 	
 	public boolean update (BoardDto dto) {

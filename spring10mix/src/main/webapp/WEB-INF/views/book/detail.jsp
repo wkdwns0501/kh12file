@@ -29,6 +29,7 @@
 				<li>${dto.bookPageCount}</li>
 				<li>${dto.bookGenre}</li>
 			</ul>
+			<a href="edit?bookId=${dto.bookId}">정보수정</a>
 		</c:when>
 		<c:otherwise>
 			<h1>존재하지 않는 도서입니다</h1>

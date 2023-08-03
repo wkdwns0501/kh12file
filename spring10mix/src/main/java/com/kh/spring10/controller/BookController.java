@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.spring10.dao.BookDao;
 import com.kh.spring10.dto.BookDto;
+import com.kh.spring10.dto.PocketmonDto;
 
 @Controller
 @RequestMapping("/book")
@@ -43,5 +44,20 @@ public class BookController {
 	public String insert(@ModelAttribute BookDto dto) {
 		dao.insert(dto);
 		return "redirect:list";
+	}
+	
+	@GetMapping("/edit")
+	public String edit(@RequestParam int bookId, Model model) {
+		BookDto dto = dao.selectOne(bookId);
+		model.addAttribute("dto", dto);
+		return "/WEB-INF/views/book/edit.jsp";
+	}
+	@PostMapping("/edit")
+	public String edit(@ModelAttribute BookDto dto) {
+		boolean result = dao.update(dto);
+		
+		//성공시 redirect를 반환
+		if(result) return "redirect:detail?bookId=" +dto.getBookId();
+		else return "redirect:에러페이지 주소";
 	}
 }

@@ -61,4 +61,24 @@ import com.kh.spring10.dto.PocketmonDto;
 		//return "redirect:list"; //상대경로
 		return "redirect:/pocketmon/list"; //절대경로
 	}
+	
+	//수정
+	//- 수정 역시 등록처럼 두 개의 매핑이 필요(작성, 처리)
+	//- 전송방식으로 구분하여 구현
+	//- 화면에 기존 정보를 표시할 수 있도록 조회하여 전달
+	
+	@GetMapping("/edit")
+	public String edit(@RequestParam int no, Model model) {
+		PocketmonDto dto = dao.selectOne(no);
+		model.addAttribute("dto", dto);
+		return "/WEB-INF/views/pocketmon/edit.jsp";
+	}
+	@PostMapping("/edit")
+	public String edit(@ModelAttribute PocketmonDto dto) {
+		boolean result = dao.update(dto);
+		
+		//성공시 redirect를 반환
+		if(result) return "redirect:detail?no=" +dto.getNo();
+		else return "redirect:에러페이지 주소";
+	}
 }

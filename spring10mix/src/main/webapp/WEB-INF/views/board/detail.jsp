@@ -30,6 +30,7 @@
 					<td>${dto.boardContent}</td>
 				</tr>
 			</table>
+			<a href="edit?boardNo=${dto.boardNo}">정보수정</a>
 		</c:when>
 		<c:otherwise>
 			<h1>존재하지 않는 게시글입니다</h1>

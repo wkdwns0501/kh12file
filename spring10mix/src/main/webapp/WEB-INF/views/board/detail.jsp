@@ -30,13 +30,19 @@
 					<td>${dto.boardContent}</td>
 				</tr>
 			</table>
-			<a href="edit?boardNo=${dto.boardNo}">정보수정</a>
+			
 		</c:when>
 		<c:otherwise>
 			<h1>존재하지 않는 게시글입니다</h1>
 			<img src="https://dummyimage.com/600x400/000/fff">
 		</c:otherwise>
 	</c:choose>
+	<c:if test="${dto != null}">
+		<h2><a href="edit?boardNo=${dto.boardNo}">수정하기</a></h2>
+		<h2><a href="delete?boardNo=${dto.boardNo}">삭제하기</a></h2>
+		<h2><a href="delete/${dto.boardNo}">삭제하기2</a></h2>
+	</c:if>
+		
 	<h2><a href="list">목록으로</a></h2>
 	
 </body>

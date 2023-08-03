@@ -37,6 +37,7 @@
 	<%-- 	<c:if test="${not empty dto}"> --%>
 	<c:if test="${dto != null}">
 	<h2><a href="edit?bookId=${dto.bookId}">수정하기</a></h2>
+	<h2><a href="delete?bookId=${dto.bookId}">삭제하기</a></h2>
 	</c:if>
 	
 	<a href="list">목록보기</a>

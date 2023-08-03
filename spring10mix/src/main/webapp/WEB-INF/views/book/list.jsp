@@ -12,6 +12,7 @@
 			<th>저자</th>
 			<th>출판사</th>
 			<th>장르</th>
+			<th>메뉴</th>
 		</tr>	
 	</thead>
 	<tbody align="center">
@@ -24,6 +25,7 @@
 				<td>${dto.bookAuthor}</td>
 				<td>${dto.bookPublisher}</td>
 				<td>${dto.bookGenre}</td>
+				<td><a href="delete?bookId=${dto.bookId}">삭제하기</a></td>
 			</tr>
 		</c:forEach>
 	</tbody>

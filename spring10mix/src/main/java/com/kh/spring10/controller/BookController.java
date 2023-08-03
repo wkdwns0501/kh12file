@@ -60,4 +60,11 @@ public class BookController {
 		if(result) return "redirect:detail?bookId=" +dto.getBookId();
 		else return "redirect:에러페이지 주소";
 	}
+	
+	@RequestMapping("/delete")
+	public String delete(@RequestParam int bookId) {
+		boolean result = dao.delete(bookId);
+		if(result) return "redirect:list";
+		else return "redirect:에러페이지";
+	}
 }

@@ -35,6 +35,7 @@
 		</c:otherwise>	
 	</c:choose>
 	
+	<a href="list">목록보기</a>
 	
 </body>
 </html>

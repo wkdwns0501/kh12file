@@ -36,7 +36,7 @@
 			<img src="https://dummyimage.com/600x400/000/fff">
 		</c:otherwise>
 	</c:choose>
-
+	<h2><a href="list">목록으로</a></h2>
 	
 </body>
 </html>

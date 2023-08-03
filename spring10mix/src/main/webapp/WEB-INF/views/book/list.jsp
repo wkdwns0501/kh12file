@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <h1>도서 목록</h1>
-
+<h2><a href="insert">신규등록</a></h2>
 <table border="1">
 	<thead>
 		<tr>
@@ -11,6 +11,7 @@
 			<th>도서명</th>
 			<th>저자</th>
 			<th>출판사</th>
+			<th>장르</th>
 		</tr>	
 	</thead>
 	<tbody align="center">
@@ -22,6 +23,7 @@
 				</td>
 				<td>${dto.bookAuthor}</td>
 				<td>${dto.bookPublisher}</td>
+				<td>${dto.bookGenre}</td>
 			</tr>
 		</c:forEach>
 	</tbody>

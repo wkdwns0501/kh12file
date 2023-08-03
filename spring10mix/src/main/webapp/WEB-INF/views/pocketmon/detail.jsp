@@ -23,7 +23,7 @@
 	</c:choose>
 	
 <!-- 	<a href="/pocketmon/list">목록보기</a> -->
-	<a href="list">목록보기</a>
+	<h2><a href="list">목록으로</a></h2>
 	
 
 </body>

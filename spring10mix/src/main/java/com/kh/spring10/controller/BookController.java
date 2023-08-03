@@ -48,8 +48,8 @@ public class BookController {
 	
 	@GetMapping("/edit")
 	public String edit(@RequestParam int bookId, Model model) {
-		BookDto dto = dao.selectOne(bookId);
-		model.addAttribute("dto", dto);
+//		BookDto dto = dao.selectOne(bookId);
+		model.addAttribute("dto", dao.selectOne(bookId));
 		return "/WEB-INF/views/book/edit.jsp";
 	}
 	@PostMapping("/edit")

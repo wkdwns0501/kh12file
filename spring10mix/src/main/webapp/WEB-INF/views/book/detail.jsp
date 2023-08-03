@@ -29,12 +29,15 @@
 				<li>${dto.bookPageCount}</li>
 				<li>${dto.bookGenre}</li>
 			</ul>
-			<a href="edit?bookId=${dto.bookId}">정보수정</a>
 		</c:when>
 		<c:otherwise>
 			<h1>존재하지 않는 도서입니다</h1>
 		</c:otherwise>	
 	</c:choose>
+	<%-- 	<c:if test="${not empty dto}"> --%>
+	<c:if test="${dto != null}">
+	<h2><a href="edit?bookId=${dto.bookId}">수정하기</a></h2>
+	</c:if>
 	
 	<a href="list">목록보기</a>
 	

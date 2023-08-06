@@ -40,4 +40,11 @@ public class MixController {
 		model.addAttribute("price", price); 
 		return "/WEB-INF/views/test02.jsp";
 	}
+	
+//	@RequestMapping("/test03")
+//	public String test(Model model, @RequestParam int no) {
+//		model.addAllAttributes("name", name);
+//		model.addAllAttributes("type",type);
+//		return "/WEB-INF/views/test03.jsp";
+//	}
 }

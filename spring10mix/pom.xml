@@ -60,26 +60,13 @@
     			<groupId>org.apache.tomcat.embed</groupId>
     			<artifactId>tomcat-embed-jasper</artifactId>
 			</dependency>
-<<<<<<< HEAD
-			<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-			<dependency>
-			    <groupId>org.projectlombok</groupId>
-			    <artifactId>lombok</artifactId>
-			    <version>1.18.28</version>
-			    <scope>provided</scope>
-			</dependency>
-
-	</dependencies>
-=======
 			
 		<dependency>
     		<groupId>org.projectlombok</groupId>
    			<artifactId>lombok</artifactId>
-   			 <version>1.18.28</version>
     		<scope>provided</scope>
 			</dependency>
 		</dependencies>
->>>>>>> branch 'main' of https://github.com/wkdwns0501/kh12file.git
 
 	<build>
 		<plugins>

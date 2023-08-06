@@ -43,14 +43,6 @@ public class MixController {
 		return "/WEB-INF/views/test02.jsp";
 	}
 	
-<<<<<<< HEAD
-//	@RequestMapping("/test03")
-//	public String test(Model model, @RequestParam int no) {
-//		model.addAllAttributes("name", name);
-//		model.addAllAttributes("type",type);
-//		return "/WEB-INF/views/test03.jsp";
-//	}
-=======
 	@RequestMapping("/test03")
 	public String test03(Model model) {
 		PocketmonDto dto = new PocketmonDto();
@@ -60,5 +52,4 @@ public class MixController {
 		model.addAttribute("dto", dto);
 		return "/WEB-INF/views/test03.jsp";
 	}
->>>>>>> branch 'main' of https://github.com/wkdwns0501/kh12file.git
 }

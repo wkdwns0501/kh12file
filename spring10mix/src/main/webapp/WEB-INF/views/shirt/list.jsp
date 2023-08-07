@@ -4,7 +4,7 @@
 
 <h1>상품 목록</h1>
 
-<h2><a href="add">상품등록</a></h2>
+<h2><a href="add2">상품등록</a></h2>
 
 <table border="1">
 	<thead>
@@ -24,7 +24,7 @@
 			<tr>
 				<td>${dto.shirtNo}</td>
 				<td align="left">
-					<a href="detail?shirtNo=${dto.shirtNo}">${dto.shirtName}</a>
+					<a href="detail2?shirtNo=${dto.shirtNo}">${dto.shirtName}</a>
 				</td>
 				<td>${dto.shirtColor}</td>	
 				<td>${dto.shirtPrice}원</td>	

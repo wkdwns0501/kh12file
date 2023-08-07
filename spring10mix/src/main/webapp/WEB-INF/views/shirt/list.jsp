@@ -27,7 +27,7 @@
 					<a href="detail?shirtNo=${dto.shirtNo}">${dto.shirtName}</a>
 				</td>
 				<td>${dto.shirtColor}</td>	
-				<td>${dto.shirtPrice}</td>	
+				<td>${dto.shirtPrice}원</td>	
 				<td>${dto.shirtKind}</td>	
 				<td>${dto.shirtType}</td>	
 				<td>${dto.shirtMaterial}</td>	

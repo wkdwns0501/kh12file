@@ -12,8 +12,11 @@
 	
 	<form action="add" method="post">
 		상품이름 : <input type="text" name="shirtName" required><br><br>
+		<!-- 
+			option에 value를 주면 표시되는 값과 다르게 전송을 한다
+		 -->
 		상품색상 : <select name="shirtColor" required>
-						<option value="none" disable>---선택---</option>
+						<option value="" >---선택---</option>
 						<option>블랙</option>
 						<option>화이트</option>
 						<option>그레이</option>
@@ -22,21 +25,21 @@
 					</select><br><br>
 		판매가격 : <input type="number" name="shirtPrice" required><br><br>
 		상품종류 : <select name="shirtKind" required>
-						<option value="none" disable>---선택---</option>
+						<option value="" >---선택---</option>
 						<option>라운드</option>
 						<option>브이넥</option>
 						<option>정장</option>
 					</select><br><br>
 		상품유형 : <select name="shirtType" required>
-						<option value="none" disable>---선택---</option>
+						<option value="" >---선택---</option>
 						<option>민소매</option>		
 						<option>반팔</option>		
 						<option>긴팔</option>		
 					</select><br><br>
 		상품재질 : <input type="text" name="shirtMaterial"><br><br>
-		판매수량 : <input type="number" name="shirtStock"><br><br>
+		판매수량 : <input type="number" name="shirtStock" required><br><br>
 		<button>상품등록</button>
 	</form>
-
+	<h2><a href="list">목록으로</a></h2>
 </body>
 </html>

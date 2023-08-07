@@ -24,8 +24,8 @@
 					<td>${dto.shirtColor}</td>
 				</tr>
 				<tr>
-					<th>판매가격(원)</th>
-					<td>${dto.shirtPrice}</td>
+					<th>판매가격</th>
+					<td>${dto.shirtPrice}원</td>
 				</tr>
 				<tr>
 					<th>상품종류</th>
@@ -49,11 +49,9 @@
 			<h1>존재하지 않는 상품입니다</h1>
 		</c:otherwise>
 	</c:choose>
-	<c:if test="${dto != null}">
 		<h2><a href="edit?shirtNo=${dto.shirtNo}">수정하기</a></h2>
 		<h2><a href="delete?shirtNo=${dto.shirtNo}">삭제하기</a></h2>
-	</c:if>
-	
-	<h2><a href="list">목록</a></h2>
+		<h2><a href="add">등록하기</a></h2>
+		<h2><a href="list">목록으로</a></h2>
 </body>
 </html>

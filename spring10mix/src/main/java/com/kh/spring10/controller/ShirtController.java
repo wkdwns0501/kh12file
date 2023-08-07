@@ -30,6 +30,7 @@ public class ShirtController {
 		int shirtNo = dao.sequence();
 		dto.setShirtNo(shirtNo);
 		dao.insert(dto);
+//		return "redirect:list";
 		return "redirect:detail?shirtNo="+ shirtNo;
 	}
 	
@@ -65,6 +66,7 @@ public class ShirtController {
 	public String delete(@RequestParam int shirtNo) {
 		boolean result = dao.delete(shirtNo);
 		if(result) return "redirect:list";
+//		if(result) return "redirect:/shirt/list";
 		else return "redirect:에러페이지";
 	}
 }

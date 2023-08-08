@@ -2,38 +2,45 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<h1>상품 목록</h1>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>셔츠 상품 목록</title>
+</head>
+<body>
 
-<h2><a href="add2">상품등록</a></h2>
+	<h1>셔츠 상품 목록</h1>
 
-<table border="1">
-	<thead>
-		<tr>
-			<th>번호</th>
-			<th width="40%">상품이름</th>
-			<th>상품색상</th>
-			<th>판매가격</th>
-			<th>상품종류</th>
-			<th>상품유형</th>
-			<th>상품재질</th>
-			<th>판매수량</th>
-		</tr>
-	</thead>
-	<tbody align="center">
-		<c:forEach var="dto" items="${list}">
+	<h2><a href="add2">신규상품등록</a></h2>
+
+	<table border="1">
+		<thead>
 			<tr>
-				<td>${dto.shirtNo}</td>
-				<td align="left">
-					<a href="detail2?shirtNo=${dto.shirtNo}">${dto.shirtName}</a>
-				</td>
-				<td>${dto.shirtColor}</td>	
-				<td>${dto.shirtPrice}원</td>	
-				<td>${dto.shirtKind}</td>	
-				<td>${dto.shirtType}</td>	
-				<td>${dto.shirtMaterial}</td>	
-				<td>${dto.shirtStock}</td>	
+				<th>상품번호</th>
+				<th width="40%">상품이름</th>
+				<th>상품색상</th>
+				<th>판매가격</th>
+				<th>상품종류</th>
+				<th>상품유형</th>
 			</tr>
-		</c:forEach>
-	</tbody>
+		</thead>
+		<tbody align="center">
+			<c:forEach var="dto" items="${list}">
+				<tr>
+					<td>${dto.shirtNo}</td>
+					<td align="left">
+						<a href="detail?shirtNo=${dto.shirtNo}">${dto.shirtName}</a>
+					</td>
+					<td>${dto.shirtColor}</td>	
+					<td>${dto.shirtPrice}원</td>	
+					<td>${dto.shirtKind}</td>	
+					<td>${dto.shirtType}</td>	
+				</tr>
+			</c:forEach>
+		</tbody>
 	
-</table>
+	</table>
+
+</body>
+</html>

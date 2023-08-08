@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>${dto.shirtNo}번 셔츠정보</title>
+<title>셔츠 상세정보</title>
 </head>
 <body>
 	<c:choose>

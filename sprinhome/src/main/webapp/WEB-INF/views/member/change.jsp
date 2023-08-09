@@ -9,7 +9,7 @@
 	<h3>비밀번호가 일치하지 않습니다</h3>
 </c:if>
 
-<form action="updateInfo" method="post" autocomplete="off">
+<form action="change" method="post" autocomplete="off">
 	변경 닉네임 <input type="text" name="memberNickname" value="${memberDto.memberNickname}" required><br><br>
 	변경 이메일 <input type="email" name="memberEmail" value="${memberDto.memberEmail}" ><br><br>
 	변경 연락처 <input type="tel" name="memberContact" value="${memberDto.memberContact}" ><br><br>

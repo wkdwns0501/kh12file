@@ -10,7 +10,7 @@
 
 		<h2>환영합니다!</h2>
 		
-		<img src="https://fastly.picsum.photos/id/237/536/354.jpg?hmac=i0yVXW1ORpyCZpQ-CknuyV-jbtU7_x9EBQVhvT5aRr0">
+		<img width="200" src="/terri.jpg">
 		
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
 		

@@ -125,16 +125,16 @@ public class MemberController {
 		return "/WEB-INF/views/member/passwordFinish.jsp";
 	}
 	
-	@GetMapping("/updateInfo")
-	public String updateInfo(HttpSession session, Model model) {
+	@GetMapping("/change")
+	public String change(HttpSession session, Model model) {
 		String memberId = (String) session.getAttribute("storage");
 		MemberDto memberDto = memberDao.selectOne(memberId);
 		model.addAttribute("memberDto", memberDto);
-		return "/WEB-INF/views/member/updateInfo.jsp";
+		return "/WEB-INF/views/member/change.jsp";
 	}
 	
-	@PostMapping("/updateInfo")
-	public String updateInfo(@ModelAttribute MemberDto inputDto, HttpSession session) {
+	@PostMapping("/change")
+	public String change(@ModelAttribute MemberDto inputDto, HttpSession session) {
 		String memberId = (String) session.getAttribute("storage");
 		//비밀번호 검사 후 변경 처리 요청
 		MemberDto findDto = memberDao.selectOne(memberId);
@@ -144,7 +144,7 @@ public class MemberController {
 			return "redirect:mypage";
 		}
 		else {//비밀번호가 일치하지 않는다면 -> 다시 입력하도록 되돌려보냄
-			return "redirect:updateInfo?error";
+			return "redirect:change?error";
 		}
 		
 	}

@@ -1,3 +1,4 @@
+<%@page import="java.util.Enumeration"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -11,7 +12,7 @@
 <table border="1" width="500">
 	<tr>
 		<th>닉네임</th>
-		<td>${memberDto.memberNickname}</td>
+		<td>${requestScope.memberDto.memberNickname}</td>
 	</tr>
 	<tr>
 		<th>이메일</th>
@@ -73,5 +74,6 @@
 
 <h3><a href="password"> 비밀번호변경</a></h3>
 <h3><a href="updateInfo"> 개인정보변경</a></h3>
+<h3><a href="exit"> 회원탈퇴하기</a></h3>
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

@@ -67,7 +67,7 @@ public class MemberController {
 //		[3] 비밀번호가 일치하면 메인페이지로 이동
 		if(isCorrectPw) {
 			//세션에 아이디 저장
-			session.setAttribute("name", inputDto.getMemberId());
+			session.setAttribute("storage", inputDto.getMemberId());
 			//로그인 시간 갱신
 			memberDao.updateMemberLogin(inputDto.getMemberId());
 			//메인 페이지로 이동
@@ -80,7 +80,7 @@ public class MemberController {
 	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
-		session.removeAttribute("name");
+		session.removeAttribute("storage");
 		return "redirect:/";
 	}
 	
@@ -146,5 +146,30 @@ public class MemberController {
 		else {//비밀번호가 일치하지 않는다면 -> 다시 입력하도록 되돌려보냄
 			return "redirect:updateInfo?error";
 		}
+		
+	}
+	@GetMapping("/exit")
+	public String exit() {
+		return "/WEB-INF/views/member/exit.jsp";
+	}
+	@PostMapping("/exit")
+	public String exit(HttpSession session, @RequestParam String memberPw) {
+		String memberId = (String) session.getAttribute("storage");
+		MemberDto memberDto = memberDao.selectOne(memberId);
+		if(memberDto.getMemberPw().equals(memberPw)) {//비밀번호가 일치한다면
+			//삭제
+			memberDao.delete(memberId);
+			//로그아웃
+			session.removeAttribute("storage"); //세션에서 storage의 값을 삭제
+//			session.invalidate(); //세션 소멸 (비추천)
+			return "redirect:exitFinish";
+		}
+		else {//비밀번호 불일치
+			return "redirect:exit?error";
+		}
+	}
+	@RequestMapping("/exitFinish")
+	public String exitFinish() {
+		return "/WEB-INF/views/member/exitFinish.jsp";
 	}
 }

@@ -2,6 +2,8 @@ package com.kh.springhome.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,9 +29,11 @@ public class BoardController {
 	}
 	
 	@PostMapping("/write")
-	public String write(@ModelAttribute BoardDto boardDto) {
+	public String write(@ModelAttribute BoardDto boardDto, HttpSession session) {
+		String boardWriter = (String) session.getAttribute("storage");
 		int boardNo = boardDao.sequence();
 		boardDto.setBoardNo(boardNo);
+		boardDto.setBoardWriter(boardWriter);
 		boardDao.insert(boardDto);
 		return "redirect:detail?boardNo="+ boardNo;
 	}
@@ -43,6 +47,7 @@ public class BoardController {
 	
 	@RequestMapping("/detail")
 	public String detail(@RequestParam int boardNo, Model model) {
+		boardDao.upReadcount(boardNo);
 		BoardDto boardDto = boardDao.selectOne(boardNo);
 		model.addAttribute("boardDto", boardDto);
 		return "/WEB-INF/views/board/detail.jsp";
@@ -57,7 +62,9 @@ public class BoardController {
 	
 	@PostMapping("/edit")
 	public String edit(@ModelAttribute BoardDto boardDto) {
-		if(boardDao.update(boardDto)) return "redirect:detail?boardNo=" + boardDto.getBoardNo();
+		if(boardDao.update(boardDto)) {
+			return "redirect:detail?boardNo=" + boardDto.getBoardNo();
+		}
 		else return "redirect:에러페이지 주소";
 	}
 	

@@ -30,7 +30,7 @@ public class ExceptionControllerAdvice {
 	@ExceptionHandler(Exception.class) //Exception 오류가 발생하면 여기로 불러옴
 	public String error(Exception e) {
 //		e.printStackTrace(); //catch 구문에 있던 것 //콘솔에 찍힘 //이렇게 안쓰고 로거로씀
-		//에러 로그에는 예외 객체를 한 개 첨부시킬 수 있다 (자동 print stack trace
+		//에러 로그에는 예외 객체를 한 개 첨부시킬 수 있다 (자동 print stack trace)
 		log.error("오류", e);
 		return "/WEB-INF/views/error/500.jsp"; //500 - 실행오류 //사용자 화면에 찍힘
 	}

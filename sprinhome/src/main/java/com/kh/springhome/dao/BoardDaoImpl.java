@@ -28,8 +28,8 @@ public class BoardDaoImpl implements BoardDao{
 	
 	@Override
 	public void insert(BoardDto boardDto) {
-		String sql = "insert into board(board_no, board_title, board_content) values(?, ?, ?)";
-		Object[] data = {boardDto.getBoardNo(), boardDto.getBoardTitle(), boardDto.getBoardContent()};
+		String sql = "insert into board(board_no, board_writer, board_title, board_content) values(?, ?, ?, ?)";
+		Object[] data = {boardDto.getBoardNo(),boardDto.getBoardWriter(), boardDto.getBoardTitle(), boardDto.getBoardContent()};
 		jdbcTemplate.update(sql, data);
 	}
 
@@ -59,5 +59,12 @@ public class BoardDaoImpl implements BoardDao{
 		String sql = "delete board where board_no=?";
 		Object[] data = {boardNo};
 		return jdbcTemplate.update(sql, data) > 0;
+	}
+	
+	@Override
+	public boolean upReadcount(int boardReadcount) {
+		String sql = "update board set board_readcount = board_readcount + 1 where board_no=?";
+		Object[] data = {boardReadcount};
+		return jdbcTemplate.update(sql,data)>0;
 	}
 }

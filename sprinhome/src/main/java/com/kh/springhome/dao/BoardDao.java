@@ -11,4 +11,5 @@ public interface BoardDao {
 	boolean delete(int boardNo);
 	List<BoardDto> selectList();
 	BoardDto selectOne(int boardNo);
+	boolean upReadcount(int boardReadcount);
 }

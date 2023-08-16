@@ -3,6 +3,8 @@ package com.kh.springhome.controller;
 import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -112,12 +114,16 @@ public class BoardController {
 	public String detail(@RequestParam int boardNo, Model model, HttpSession session) {
 		String boardWriter = (String) session.getAttribute("storage");
 		BoardDto boardDto = boardDao.selectOne(boardNo);
-		if(boardDto.getBoardWriter() == null) {
-			boardDao.updateBoardReadcount(boardNo);
-		}
-		else {
-			if(boardDto.getBoardWriter().equals(boardWriter) == false) {
-				boardDao.updateBoardReadcount(boardNo); //조회수 증가
+		Set<String> idst = new HashSet<>();
+		if(!(idst.contains(boardWriter))) {
+			idst.add(boardWriter);
+			if(boardDto.getBoardWriter() == null) {
+				boardDao.updateBoardReadcount(boardNo);
+			}
+			else {
+				if(boardDto.getBoardWriter().equals(boardWriter) == false) {
+					boardDao.updateBoardReadcount(boardNo); //조회수 증가
+				}
 			}
 		}
 		model.addAttribute("boardDto", boardDto);

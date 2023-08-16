@@ -17,6 +17,7 @@ public class BoardListMapper implements RowMapper<BoardDto>{
 		boardDto.setBoardNo(rs.getInt("board_no"));
 		boardDto.setBoardWriter(rs.getString("board_writer"));
 		boardDto.setBoardTitle(rs.getString("board_title"));
+//		boardDto.setBoardContent(rs.getString("board_content")); //헷갈리니까 써주는게 좋다
 		boardDto.setBoardReadcount(rs.getInt("board_readcount"));
 		boardDto.setBoardLikecount(rs.getInt("board_likecount"));
 		boardDto.setBoardReplycount(rs.getInt("board_replycount"));

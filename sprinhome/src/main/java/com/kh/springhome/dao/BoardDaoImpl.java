@@ -28,14 +28,18 @@ public class BoardDaoImpl implements BoardDao{
 	
 	@Override
 	public void insert(BoardDto boardDto) {
-		String sql = "insert into board(board_no, board_writer, board_title, board_content) values(?, ?, ?, ?)";
-		Object[] data = {boardDto.getBoardNo(),boardDto.getBoardWriter(), boardDto.getBoardTitle(), boardDto.getBoardContent()};
+		String sql = "insert into board(board_no, board_writer, board_title, board_content)"
+				+ " values(?, ?, ?, ?)";
+		Object[] data = {boardDto.getBoardNo(), boardDto.getBoardWriter(), 
+				boardDto.getBoardTitle(), boardDto.getBoardContent()};
 		jdbcTemplate.update(sql, data);
 	}
 
 	@Override
 	public List<BoardDto> selectList() {
-		String sql = "select board_no, board_writer, board_title, board_readcount, board_likecount, board_replycount, board_ctime, board_utime from board order by board_no desc";
+		String sql = "select board_no, board_writer, board_title,"
+				+ " board_readcount, board_likecount, board_replycount,"
+				+ " board_ctime, board_utime from board order by board_no desc";
 		return jdbcTemplate.query(sql, boardListMapper);
 	}
 
@@ -49,8 +53,10 @@ public class BoardDaoImpl implements BoardDao{
 	
 	@Override
 	public boolean update(BoardDto boardDto) {
-		String sql = "update board set board_title=?, board_content=?, board_utime=sysdate where board_no=?";
-		Object[] data = {boardDto.getBoardTitle(), boardDto.getBoardContent(), boardDto.getBoardNo()};
+		String sql = "update board set board_title=?, board_content=?,"
+							+ " board_utime=sysdate where board_no=?";
+		Object[] data = {boardDto.getBoardTitle(), boardDto.getBoardContent(),
+									boardDto.getBoardNo()};
 		return jdbcTemplate.update(sql, data) > 0;
 	}
 	
@@ -62,9 +68,17 @@ public class BoardDaoImpl implements BoardDao{
 	}
 	
 	@Override
-	public boolean upReadcount(int boardReadcount) {
+	public boolean updateBoardReadcount(int boardNo) {
 		String sql = "update board set board_readcount = board_readcount + 1 where board_no=?";
-		Object[] data = {boardReadcount};
+		Object[] data = {boardNo};
 		return jdbcTemplate.update(sql,data)>0;
 	}
+
+	@Override
+	public Integer selectMax(String boardWriter) {
+		String sql = "select max(board_no) from board where board_writer = ? ";
+		Object[] data = {boardWriter};
+		return jdbcTemplate.queryForObject(sql, Integer.class, data);
+	}
+	
 }

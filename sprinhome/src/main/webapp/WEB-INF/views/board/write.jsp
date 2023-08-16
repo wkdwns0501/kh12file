@@ -6,8 +6,8 @@
 	<h2>게시글 작성</h2>
 	
 	<form action="write" method="post">
-		제목 : <input type="text" name="boardTitle"><br><br>
-		내용 : <textarea name="boardContent"></textarea><br><br>
+		제목 : <input type="text" name="boardTitle" required><br><br>
+		내용 : <textarea name="boardContent" required></textarea><br><br>
 		<button>글쓰기</button>
 	</form>
 

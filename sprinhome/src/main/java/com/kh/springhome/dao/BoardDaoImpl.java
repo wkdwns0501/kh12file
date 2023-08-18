@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.springhome.dto.BoardDto;
+import com.kh.springhome.dto.BoardListDto;
 import com.kh.springhome.mapper.BoardListMapper;
 import com.kh.springhome.mapper.BoardMapper;
 
@@ -36,10 +37,18 @@ public class BoardDaoImpl implements BoardDao{
 	}
 
 	@Override
-	public List<BoardDto> selectList() {
-		String sql = "select board_no, board_writer, board_title,"
-				+ " board_readcount, board_likecount, board_replycount,"
-				+ " board_ctime, board_utime from board order by board_no desc";
+	public List<BoardListDto> selectList() {
+//		String sql = "select board_no, board_writer, board_title," 
+//				+ " board_readcount, board_likecount, board_replycount,"
+//				+ " board_ctime, board_utime from board order by board_no desc"; //닉네임 넣기전
+		//기존 조회 구문
+//		String sql = "select * from board_list order by board_no desc";
+		
+		//계층형 조회 구문
+		String sql = "select * from board_list "
+				+ "connect by prior board_no=board_parent "
+				+ "start with board_parent is null "
+				+ "order siblings by board_group desc, board_no asc";
 		return jdbcTemplate.query(sql, boardListMapper);
 	}
 
@@ -80,5 +89,42 @@ public class BoardDaoImpl implements BoardDao{
 		Object[] data = {boardWriter};
 		return jdbcTemplate.queryForObject(sql, Integer.class, data);
 	}
+	
+	//검색창 구현 3가지 방법
+	//[1]
+//	@Override
+//	public List<BoardDto> selectList(String type, String keyword) {
+//		String sql;
+//		if(type.equals("board_title")) {
+//			sql = "select * from board where instr(board_title, ?) > 0 order by board_no desc";
+//		}
+//		else {//type이 작성자인 경우
+//			sql = "select * from board where instr(board_writer, ?) > 0 order by board_no desc";
+//		}
+//		Object[] data = {keyword};
+//		return jdbcTemplate.query(sql, boardListMapper, data);
+//	}
+	//[2]
+	@Override
+	public List<BoardListDto> selectList(String type, String keyword) {
+//		String sql = "select * from board where instr("+type+", ?) > 0 order by board_no desc";//닉네임 넣기전
+		//기존 조회 구문
+//		String sql = "select * from board_list where instr("+type+", ?) > 0 order by board_no desc";
+		//계층형 조회 구문
+		String sql = "select * from board_list "
+				+ "connect by prior board_no=board_parent "
+				+ "start with board_parent is null "
+				+ "order siblings by board_group desc, board_no asc";
+		Object[] data = {keyword};
+		return jdbcTemplate.query(sql, boardListMapper, data);
+	}
+	//[3]
+//	@Override
+//	public List<BoardDto> selectList(String type, String keyword) {
+//		String sql = "select * from board where instr(#1, ?) > 0 order by board_no desc";
+//		sql = sql.replace("#1", type);
+//		Object[] data = {keyword};
+//		return jdbcTemplate.query(sql, boardListMapper, data);
+//	}
 	
 }

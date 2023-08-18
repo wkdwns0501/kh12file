@@ -3,8 +3,7 @@ package com.kh.springhome.controller;
 import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -20,9 +19,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kh.springhome.dao.BoardDao;
 import com.kh.springhome.dao.MemberDao;
 import com.kh.springhome.dto.BoardDto;
+import com.kh.springhome.dto.BoardListDto;
+import com.kh.springhome.dto.MemberDto;
 import com.kh.springhome.error.AuthorityException;
 import com.kh.springhome.error.NoTargetException;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping("/board")
 public class BoardController {
@@ -73,60 +77,76 @@ public class BoardController {
 		return "redirect:detail?boardNo=" + boardNo;
 	}
 	
+	//목록+검색
+	//- 검색일 경우에는 type과 keyword라는 파라미터가 존재
+	//- 목록일 경우에는 type과 keyword라는 파라미터가 없음
+	//- 만약 불완전한 상태(type이나 keyword만 있는 경우)라면 목록으로 처리
 	@RequestMapping("/list")
-	public String list(Model model) {
-//		List<BoardDto> list = boardDao.selectList();
-//		model.addAttribute("list", list);
-		model.addAttribute("list", boardDao.selectList());
+	public String list(Model model,
+			@RequestParam(required = false) String type,
+			@RequestParam(required = false) String keyword) {
+		boolean isSearch = type != null && keyword != null;
+		if(isSearch) {//검색일 경우
+			List<BoardListDto> list = boardDao.selectList(type, keyword);
+			model.addAttribute("list",list);
+			model.addAttribute("isSearch",true);
+		}
+		else {//목록일 경우
+//			List<BoardListDto> list = boardDao.selectList();
+//			model.addAttribute("list", list);
+			model.addAttribute("list", boardDao.selectList());
+			model.addAttribute("isSearch", false);
+		}
 		return "/WEB-INF/views/board/list.jsp";
 	}
 	
-//	@RequestMapping("/list")
-//	public String list(Model model
-//			, @RequestParam String type
-//			, @RequestParam String keyword) {
-//		List<BoardDto> list = boardDao.selectList();
-//		model.addAttribute("list", list);
-//		return "/WEB-INF/views/board/list?type=" + type + "&keyword=" + keyword;
-//	}
-	
-//	@GetMapping("/list")
-//	public String list(Model model) {
-//		List<BoardDto> list = boardDao.selectList();
-//		model.addAttribute("list", list);
-//		return "/WEB-INF/views/board/list.jsp";
-//	}
-//	
-//	@PostMapping("/list")
-//	public String list(Model model
-//			, @RequestParam String type
-//			, @RequestParam String keyword
-//			, @RequestParam int boardNo) {
-//		BoardDto boardDto = boardDao.selectOne(boardNo);
-//		List<BoardDto> list = boardDao.selectList();
-//		if(type.equals() {
-//			
-//		}
-//		return "/WEB-INF/views/board/list?type=" + type + "&keyword=" + keyword;
-//	}
-	
 	@RequestMapping("/detail")
 	public String detail(@RequestParam int boardNo, Model model, HttpSession session) {
-		String boardWriter = (String) session.getAttribute("storage");
+		
+		//조회수 중복 방지를 위한 마스터플랜
+		//1. 세션에 history라는 이름의 저장소가 있는지 확인
+		//2. 없으면 생성, 있으면 추출
+		//3. 지금 읽는 글 번호가 history에 존재하는지 확인
+		//4. 없으면 추가하고 다시 세션에 저장
+		
+//		Set<Integer> history;
+//		if(session.getAttribute("history") != null) { //있으면 (1)
+//			history = (Set<Integer>) session.getAttribute("history");//(2)
+//		}
+//		else {//없으면 (1)
+//			history = new HashSet<>();//(2)
+//		}
+//		
+//		boolean isRead = history.contains(boardNo); //(3)
+//		
+//		if(isRead == false) { //읽은 적이 없으면 (4)
+//			history.add(boardNo); //글번호를 추가하고
+//			session.setAttribute("history", history); //session갱신
+//		}
+////		log.debug("history = {}",history);
+//		if(isRead == false) {
+//			boardDao.updateBoardReadcount(boardNo);
+//		}
+//		String writer = (String) session.getAttribute("storage");
 		BoardDto boardDto = boardDao.selectOne(boardNo);
-		Set<String> idst = new HashSet<>();
-		if(!(idst.contains(boardWriter))) {
-			idst.add(boardWriter);
-			if(boardDto.getBoardWriter() == null) {
-				boardDao.updateBoardReadcount(boardNo);
-			}
-			else {
-				if(boardDto.getBoardWriter().equals(boardWriter) == false) {
-					boardDao.updateBoardReadcount(boardNo); //조회수 증가
-				}
-			}
-		}
+//		if(isRead == false) {
+//			if(boardDto.getBoardWriter() == null) {
+//				boardDao.updateBoardReadcount(boardNo);
+//			}
+//			else {
+//				if(boardDto.getBoardWriter().equals(writer) == false) {
+//					boardDao.updateBoardReadcount(boardNo); //조회수 증가
+//				}
+//			}
+//		}
 		model.addAttribute("boardDto", boardDto);
+		
+		//작성자의 회원정보 추가
+		String boardWriter = boardDto.getBoardWriter();
+		if(boardWriter != null) {
+			MemberDto memberDto = memberDao.selectOne(boardWriter);
+			model.addAttribute("writerDto", memberDto);
+		}
 		return "/WEB-INF/views/board/detail.jsp";
 	}
 	

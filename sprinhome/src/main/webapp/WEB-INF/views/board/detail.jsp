@@ -14,7 +14,12 @@
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td>${boardDto.boardWriterString}</td>
+				<td>
+					${boardDto.boardWriterString}
+						<c:if test="${writerDto != null}">
+							(${writerDto.memberNickname})
+						</c:if>
+				</td>
 			</tr>
 			<tr height="150">
 				<th>내용</th>

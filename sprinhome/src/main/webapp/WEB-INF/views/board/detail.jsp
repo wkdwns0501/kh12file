@@ -38,7 +38,7 @@
 			<%--수정/삭제는 소유자일 경우만 나와야 한다 --%>
 		<c:if test="${sessionScope.storage != null}">
 			<button><a href="write">글쓰기</a></button>
-			<button><a href="#">답글쓰기</a></button>
+			<button><a href="write?boardParent=${boardDto.boardNo}">답글쓰기</a></button>
 				<c:if test="${sessionScope.storage == boardDto.boardWriter}">
 					<button><a href="edit?boardNo=${boardDto.boardNo}">수정하기</a></button>
 					<button><a href="delete?boardNo=${boardDto.boardNo}">삭제하기</a></button>

@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.springhome.dao.MemberDao;
+import com.kh.springhome.dto.MemberBlockDto;
 import com.kh.springhome.dto.MemberDto;
+import com.kh.springhome.error.AuthorityException;
 
 //회원 관련 기능을 처리하는 컨트롤러
 @Controller
@@ -66,6 +68,13 @@ public class MemberController {
 		
 //		[3] 비밀번호가 일치하면 메인페이지로 이동
 		if(isCorrectPw) {
+			//(주의) 만약 차단된 회원이라면 추가 작업을 중지하고 오류 발생
+			MemberBlockDto blockDto = memberDao.selectBlockOne(findDto.getMemberId());
+			if(blockDto != null) {
+//				return "redirect:오류페이지";
+				throw new AuthorityException("차단된 회원");
+			}
+			
 			//세션에 아이디+등급 저장
 			session.setAttribute("storage", findDto.getMemberId());
 			session.setAttribute("level", findDto.getMemberLevel());

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카카오 로그인</title>
+</head>
+<style>
+    *{
+            box-sizing: border-box;
+            font-family: 맑은 고딕;
+        }
+        #logo{
+            display: block;
+            width:180px;
+            height:50px;
+            margin: 35px 0px;
+        }
+        #input{
+            display: block;
+            width:400px;
+            padding: 0.60em;
+            margin: 10px 0px;
+            border-color: lightgrey;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+        }
+        .btn{
+            display: block;
+            width:400px;
+            font-size: 16px;
+            padding: 0.50em;
+            margin:35px 0px;
+            border-style: solid;
+            border-radius: 5px;
+        }
+        .login-btn{
+            display: block;
+            background-color: rgb(255,229,2);
+            border-color: rgb(255,229,2);
+        }
+        .qrlogin-btn{
+            display: block;
+            background-color: rgb(242,240,242);
+            border-color: rgb(242,240,242);
+        }
+        hr{
+            display: block;
+            width:400px;
+        }
+        input::placeholder{
+            font-size: 16px;
+        }
+     </style>
+<body>
+    <div align="center">
+        <from action="#" method="post" autocomplete="off">
+            <img id="logo" src="./images/kakao_logo.png">
+            <input id="input" type="text" name="memberId" placeholder="카카오메일 아이디, 이메일, 전화번호">
+            <input id="input" type="password" name="memberPw" placeholder="비밀번호">
+            <button class="btn login-btn" >로그인</button>
+            <hr>
+            <button class="btn qrlogin-btn" >QR코드 로그인</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>쿠팡 로그인 창</title>
+    <!-- css 파일을 불러오는 코드 -->
+    <link rel="stylesheet" type="text/css" href="commons.css">
+    <style>
+        .a{
+            border-style: solid;
+            border-color: lightgray;
+        }
+        .btn-login {
+            font-weight: bold;
+            border-color: rgb(54, 106, 255);
+            background-color: rgb(54, 106, 255);
+            color: white;
+            cursor: pointer;
+            border-style: solid;
+            height: 30px;
+        }
+        .btn-join {
+            font-weight: bold;
+            border-color: lightgray;
+            background-color: white;
+            color: black;
+            cursor: pointer;
+            border-style: solid;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <form action="#" method="post" autocomplete="off">
+        <div class="container w-300">
+            <div class="row">
+                <img src="./images/coupang_logo.png" width="200">
+            </div>
+            <div class="row">
+                <input type="text" name="memberId" class=" a form-input w-300" placeholder="아이디(이메일)">
+            </div>
+            <div class="row">
+                <input type="text" name="memberPw" class="a form-input w-300" placeholder="비밀번호">
+            </div>
+            <div class="row">
+                <button class="w-100 btn-login">로그인</button>
+            </div>
+            <div class="row"><hr></div>
+            <div class="row">
+                <button class="w-100 btn-join">회원가입</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

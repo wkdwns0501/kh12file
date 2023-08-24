@@ -3,54 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>쿠팡 로그인 창</title>
+    <title>쿠팡 로그인</title>
     <!-- css 파일을 불러오는 코드 -->
     <link rel="stylesheet" type="text/css" href="commons.css">
+    <!-- <link rel="stylesheet" type="text/css" href="test.css"> -->
     <style>
-        .a{
-            border-style: solid;
-            border-color: lightgray;
+        /*
+            입력창 변형 스타일
+            - 배경이미지를 포함하는 입력창
+            - background-image 속성 사용
+        */
+
+        .form-input.form-image {
+            padding-left: 2em;
+
+            /* background-image: url("./images/email-icon.png"); */
+            background-size: 1.25em;
+            background-repeat: no-repeat;
+            background-position-x: 0.35em;
+            /* background-position-y: 50%; */
+            background-position-y: center;
         }
-        .btn-login {
-            font-weight: bold;
-            border-color: rgb(54, 106, 255);
-            background-color: rgb(54, 106, 255);
-            color: white;
-            cursor: pointer;
-            border-style: solid;
-            height: 30px;
+
+        [name=memberId] {
+            background-image: url("./images/email_icon.png");
         }
-        .btn-join {
-            font-weight: bold;
-            border-color: lightgray;
-            background-color: white;
-            color: black;
-            cursor: pointer;
-            border-style: solid;
-            height: 30px;
+
+        [name=memberPw] {
+            background-image: url("./images/lock_icon.png");
         }
     </style>
 </head>
 <body>
     <form action="#" method="post" autocomplete="off">
-        <div class="container w-300">
+        <div class="container w-400">
             <div class="row">
-                <img src="./images/coupang_logo.png" width="200">
+                <!-- <img src="./images/coupang_logo.png" width="200">-->
+                <h1>
+                    <span style="color:rgb(142,87,39);">c</span><span style="color:rgb(142,87,39);">o</span><span style="color:rgb(142,87,39);">u</span><span style="color:rgb(247,85,47);">p</span><span style="color:rgb(255,196,0);">a</span><span style="color:rgb(136,204,47);">n</span><span style="color:rgb(49,180,221);">g</span>
+                </h1>
             </div>
             <div class="row">
-                <input type="text" name="memberId" class=" a form-input w-300" placeholder="아이디(이메일)">
+                <input type="text" name="memberId" 
+                    class="form-input form-image w-100"
+                    placeholder="아이디(이메일)">
             </div>
             <div class="row">
-                <input type="text" name="memberPw" class="a form-input w-300" placeholder="비밀번호">
+                <input type="text" name="memberPw" 
+                    class="form-input form-image w-100"
+                    placeholder="비밀번호">
             </div>
+            <div class="row mt-20">
+                <button class="btn btn-positive w-100">로그인</button>
+            </div>
+            <hr>
             <div class="row">
-                <button class="w-100 btn-login">로그인</button>
+                <button class="btn w-100">회원가입</button>                
             </div>
-            <div class="row"><hr></div>
-            <div class="row">
-                <button class="w-100 btn-join">회원가입</button>
-            </div>
-        </div>
+        </div>        
     </form>
 </body>
 </html>

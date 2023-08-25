@@ -67,11 +67,15 @@
 .form-input, 
 .btn 
 {
+    display: inline-block;
+    text-decoration: none;
+    vertical-align: bottom;
     font-size: 20px;
     padding: 0.5em 1em;
     outline: none; /*outline은 입력 창 선택 시 강조 효과 */
     border: 1px solid #636e72;
     border-radius: 0.1em;
+    line-height: 1.2em;
 }
 .form-input:focus {/*선택된 상태를 focus라 한다 */
     border-color: #2d3436;
@@ -111,6 +115,17 @@
     background-position-y: center;
 }
 
+/* 
+        textarea는 크기 조정을 resize로 조정한다
+    */
+    textarea.form-input {
+        resize: vertical;
+        min-height: 6em;
+    }
+    textarea.form-input.fixed {
+        resize: none;
+    }
+    
 /*
     버튼은 입력창과 동일하게 구현
     글자를 두껍게 보여주도록 처리(bold)

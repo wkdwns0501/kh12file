@@ -67,9 +67,11 @@
 .form-input, 
 .btn 
 {
+    /* a 태그 때문에 추가한 속성 */
     display: inline-block;
     text-decoration: none;
     vertical-align: bottom;
+
     font-size: 20px;
     padding: 0.5em 1em;
     outline: none; /*outline은 입력 창 선택 시 강조 효과 */
@@ -115,17 +117,17 @@
     background-position-y: center;
 }
 
-/* 
-        textarea는 크기 조정을 resize로 조정한다
-    */
-    textarea.form-input {
-        resize: vertical;
-        min-height: 6em;
-    }
-    textarea.form-input.fixed {
-        resize: none;
-    }
-    
+/*
+    textarea는 크기 조정을 resize라는 속성으로 제어한다
+*/
+textarea.form-input {
+    resize: vertical;
+    min-height:6em;
+}
+textarea.form-input.fixed {
+    resize: none;
+}
+
 /*
     버튼은 입력창과 동일하게 구현
     글자를 두껍게 보여주도록 처리(bold)
@@ -206,3 +208,101 @@
 .me-30 { margin-right: 30px;}
 .me-40 { margin-right: 40px;}
 .me-50 { margin-right: 50px;}
+
+
+/*
+    테이블 디자인
+    - 클래스가 table인 항목을 디자인
+    - 연계 선택자를 이용하여 대상을 제한해야 함
+
+    연계 선택자
+    [1] .table th - .table 안에 있는 모든 th를 의미 (후손선택자)
+    [2] .table > thead > tr > th - 직접적인 경로를 알려주어 th를 선택(자식선택자)
+*/
+.table {
+    width:100%;
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+.table > thead > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > th, 
+.table > tbody > tr > td, 
+.table > tfoot > tr > th, 
+.table > tfoot > tr > td 
+{
+    padding:0.25em;
+}
+
+/*
+    확장 스타일 - 테두리가 있는 테이블
+*/
+.table.table-border {
+    border: 1px solid #2d3436;
+}
+.table.table-border > thead > tr > th,
+.table.table-border > thead > tr > td,
+.table.table-border > tbody > tr > th, 
+.table.table-border > tbody > tr > td, 
+.table.table-border > tfoot > tr > th, 
+.table.table-border > tfoot > tr > td
+{ 
+    border: 1px solid #2d3436;
+}
+
+/*
+    확장 스타일 - 마우스 반응 테이블
+*/
+.table.table-hover > tbody > tr:hover {
+    background-color: #dfe6e9;
+}
+
+/*
+    확장 스타일 - 줄무늬 테이블
+*/
+.table.table-stripe > thead {
+    background-color: #dfe6e9;
+}
+.table.table-stripe > tbody > tr:nth-child(2n) {
+    background-color: #dfe6e9;
+}
+
+/*
+    확장 스타일 - 옆트임 테이블
+*/
+.table.table-slit {
+    border-top: 1px solid #2d3436;
+    border-bottom: 1px solid #2d3436;
+}
+.table.table-slit > thead {
+    border-bottom: 1px solid #2d3436;
+}
+.table.table-slit > tfoot {
+    border-top: 1px solid #2d3436;
+}
+
+.table.table-slit > tbody > tr :not(tr:last-child) {
+    border-bottom: 1px dotted #2d3436;
+}
+
+
+/*
+    페이지 네비게이터 디자인
+*/
+.page-navigator > a {
+    display:inline-block;
+    font-size: 12px;
+    padding: 0.5em;
+    min-width:2.25em;
+    cursor: pointer;
+    text-decoration: none;
+    /* border:1px solid #2d3436; */
+    box-shadow: 0px 0px 1px 0px #2d3436;
+    color: #2d3436;
+}
+.page-navigator > a.on,
+.page-navigator > a:hover {
+    /* border-color: #0984e3; */
+    box-shadow: 0px 0px 2px 0px #0984e3;
+    color: #0984e3;
+}

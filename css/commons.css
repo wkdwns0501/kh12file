@@ -306,3 +306,15 @@ textarea.form-input.fixed {
     box-shadow: 0px 0px 2px 0px #0984e3;
     color: #0984e3;
 }
+
+/*
+    글자 색상과 관련된 클래스
+    - 아이콘에도 사용 가능
+*/
+.red { color: #d63031; }
+.blue { color:#0984e3; }
+.yellow { color: #fdcb6e; }
+.green { color: #00b894; }
+.gray { color: #b2bec3; }
+.black { color: #2d3436;}
+.white { color: #FFF;}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font 설정</title>
+    <!-- css 파일을 불러오는 코드 -->
+
+    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- 구글 웹폰트 사용을 위한 CDN-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+     <!-- 내가 만든 CSS 파일-->
+    <link rel="stylesheet" type="text/css" href="commons.css">
+    <link rel="stylesheet" type="text/css" href="test.css">
+    <style>
+        .f1 {
+            /* 그냥 글꼴을 설정하면 글꼴이 존재하는 PC에서만 정상출력 */
+            font-family: 빙그레 메로나체, sans-serif;
+        }
+
+        /* 
+            웹 폰트(Web Font)
+            - 글꼴 파일을 홈페이지에 내장시키는 방식
+            - 글꼴 파일은 확장자가 ttf(True Type Font) 또는 otf(Open Type Font)
+            - 등록을 위해 @font-face 사용
+        */
+        @font-face {
+            font-family: nanumPen;
+            src: url("./fonts/NanumPenScript-Regular.ttf");
+        }
+        @font-face {
+            font-family: notoSansKR;
+            src: url("./fonts/NotoSansKR-VariableFont_wght.ttf");
+        }
+    
+        .f2 {
+            font-family: nanumPen;
+        }
+        .f3 {
+            font-family: notoSansKR;
+        }
+        .f4 {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .f5 {
+            font-family: 'Nanum Gothic', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="container w-400">
+        <div class="row">
+            <h1>Font 설정</h1>
+        </div>
+        <div class="row f1">
+            가나다라마바사<br>
+            ABCDEFG<br>
+            abcdefg<br>
+            0123456789<br>
+            !@#$%^&*<br>
+        </div>
+        <div class="row f2">
+            가나다라마바사<br>
+            ABCDEFG<br>
+            abcdefg<br>
+            0123456789<br>
+            !@#$%^&*<br>
+        </div>
+        <div class="row f3">
+            가나다라마바사<br>
+            ABCDEFG<br>
+            abcdefg<br>
+            0123456789<br>
+            !@#$%^&*<br>
+        </div>
+        <div class="row f4">
+            가나다라마바사<br>
+            ABCDEFG<br>
+            abcdefg<br>
+            0123456789<br>
+            !@#$%^&*<br>
+        </div>
+        <div class="row f5">
+            가나다라마바사<br>
+            ABCDEFG<br>
+            abcdefg<br>
+            0123456789<br>
+            !@#$%^&*<br>
+        </div>
+    </div>
+</body>
+</html>

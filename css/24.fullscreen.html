@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>화면보호기</title>
+    <!-- css 파일을 불러오는 코드 -->
+
+    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- 구글 웹폰트 사용을 위한 CDN-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+     <!-- 내가 만든 CSS 파일-->
+    <link rel="stylesheet" type="text/css" href="commons.css">
+    <link rel="stylesheet" type="text/css" href="test.css">
+    <style>
+        .backdrop {
+            /*
+                opacity는 현재 태그 뿐 아니라 내부 태그의 투명도도 조절한다
+            */
+             background-color: rgba(0, 0, 0, 0.1); 
+            /* background-color: black; */
+            /*opacity: 0.5; */
+            /* (Q) 전체 화면이 까맣게 보일 수 있도록 위치 설정 */
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+        }
+        /* 
+            화면의 가운데 위치시키는 방법
+            [1] margin을 음수로 부여하는 방법(폭을 알 때)
+
+        .backdrop > .modal {
+        background-color: white;
+        width: 100px;
+        height: 100px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin-top: -50px;
+        margin-left: -50px;
+        }
+
+        [2] 폭을 몰라도 가운데로 배치하는 방법
+        - transform 속성을 사용하여 translate 함수로 이동 처리
+        - translate 함수는 현재 대상을 기준으로 비율을 계산한다
+         .backdrop > .modal {
+            background-color: white;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        [3] flxible layout을 사용하는 방법
+        .backdrop {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .backdrop > .modal {
+            background-color: white;
+        }
+        */
+        
+        /* 영역 가운데 위치시키는 필살 클래스 (2번 방법 사용) */
+        .position-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container w-600">
+        <div class="row">
+            <h1>Lorem Ipsum</h1>
+        </div>
+        <div class="row left">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sit amet varius purus. Quisque justo leo, tincidunt et ipsum eu, vehicula volutpat arcu. Sed eros velit, vulputate ac cursus quis, mattis vel ex. Proin tempus dapibus sagittis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur varius mauris in hendrerit porta. Mauris gravida massa vel sollicitudin laoreet. Etiam lectus lacus, mollis non pharetra quis, feugiat vel metus. Maecenas porta ligula ac justo mattis rutrum. Nam porta porta ipsum nec scelerisque.
+            Vivamus bibendum, elit suscipit facilisis aliquet, metus tortor varius felis, vitae varius ipsum diam non ligula. Curabitur iaculis purus at massa eleifend consectetur. Proin sagittis pulvinar magna non tincidunt. Donec tincidunt odio a metus aliquam pharetra vitae quis quam. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque tristique urna ut libero efficitur, ac tempus massa congue. Donec auctor tellus ut ullamcorper aliquet. Cras nec semper leo. Proin tortor purus, sollicitudin eget neque a, luctus lacinia augue. Quisque euismod tincidunt lorem, dictum iaculis nulla cursus ut. Phasellus rhoncus malesuada lectus ut ultrices. Praesent rhoncus quam nibh, id pulvinar nisi venenatis rutrum. Ut quis fermentum dui. Maecenas in tellus justo. Aliquam vel ultrices tortor.
+            Aenean quis sapien lobortis, bibendum augue quis, placerat metus. Praesent ullamcorper eros nec laoreet ultricies. Mauris sit amet hendrerit ipsum. Nam dignissim ipsum massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur lobortis, lacus in viverra eleifend, quam ipsum aliquam leo, vel pharetra odio odio nec leo. Ut massa odio, egestas sed nunc nec, venenatis consectetur velit. Integer rhoncus risus et quam porttitor, vitae cursus nisi mattis. Morbi urna lacus, consequat lobortis massa in, dapibus posuere sem. In mauris odio, fringilla in tristique nec, ornare feugiat turpis. Donec sit amet vulputate diam. Proin tincidunt risus sit amet finibus varius. Fusce condimentum, turpis vel pretium ullamcorper, augue magna porttitor ipsum, bibendum viverra odio arcu placerat tortor.
+            Vivamus euismod ultricies purus, pellentesque venenatis lacus tristique vitae. Maecenas elementum, nisl quis accumsan ultrices, nisi nunc feugiat arcu, vel auctor eros urna sed mi. Phasellus in tincidunt metus. Praesent gravida metus in lorem facilisis ultricies sit amet et augue. Duis laoreet ultrices felis. Ut tempor convallis commodo. Vestibulum eros ligula, molestie eu dui a, congue rutrum ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus porttitor ut ex vitae fermentum. Maecenas eu finibus nulla. Nulla quis nisi id nulla consequat tincidunt in eget purus. Nullam varius orci et mi rhoncus commodo. Nulla elementum eu augue fermentum posuere. Nam eu elit molestie, scelerisque lacus a, dignissim orci. Cras dapibus, dui id congue pharetra, enim lacus sagittis est, id dignissim mi tortor a lacus.
+            Donec commodo nisl at lacinia lobortis. Aenean lacus eros, euismod quis tortor sed, scelerisque consectetur orci. Donec ac ornare nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis in faucibus dolor. Vestibulum convallis risus non justo interdum auctor quis a ligula. Sed sapien mi, luctus vitae sollicitudin quis, condimentum vel orci. Morbi lobortis justo leo, ac vestibulum lacus lacinia tristique. Nunc at metus non mauris gravida volutpat. Duis elementum urna ultricies tempus suscipit. Nam gravida auctor neque, non dictum urna hendrerit eget.
+            Maecenas gravida commodo dolor congue vulputate. Donec hendrerit imperdiet congue. Aliquam gravida imperdiet sem. In hac habitasse platea dictumst. Ut rhoncus pharetra libero eget ultrices. Curabitur pretium ligula nec dolor sagittis, malesuada lobortis libero scelerisque. Mauris felis ante, lobortis vitae nunc ac, viverra faucibus augue. Integer vel pharetra leo. Phasellus consequat facilisis diam ut placerat.
+            Donec tempor iaculis elementum. Etiam sed rutrum lectus. Duis in risus a mi faucibus porttitor. Nulla hendrerit faucibus lacus nec dignissim. Vestibulum ultrices leo ut feugiat hendrerit. Quisque in sagittis tortor. Cras semper lectus a tortor euismod consectetur. Proin vitae enim sed erat egestas finibus. Nullam pretium mauris in sollicitudin placerat. Sed sodales quam eget euismod sagittis. Ut hendrerit dolor et porttitor finibus. Phasellus finibus, dolor euismod tristique consectetur, quam dolor ultrices enim, quis ornare risus sapien vitae enim. Maecenas placerat condimentum nibh at semper. Quisque a diam velit. Aliquam ultricies feugiat libero eget ultricies. Sed a commodo purus.
+            Donec sodales sit amet nibh eu hendrerit. Nunc varius turpis ac sapien lacinia consectetur. In et interdum ex, et facilisis purus. Nullam consectetur lectus sit amet commodo accumsan. Proin lectus libero, vestibulum sit amet est suscipit, congue facilisis lectus. Praesent at nunc est. Nulla in viverra tellus. Pellentesque rutrum lorem quis dui suscipit, nec rutrum est luctus. Nunc vel fringilla diam. Suspendisse facilisis sit amet purus id ullamcorper. Aenean at tortor sed arcu aliquam luctus non id nisl. Integer rutrum ex purus, nec scelerisque sapien lacinia sed.
+            Duis at justo quis nibh placerat tempus a ac urna. Pellentesque ullamcorper vulputate metus, ut vestibulum orci aliquam at. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget ex sed enim suscipit elementum. Nunc interdum tempus dui, at faucibus neque cursus maximus. Sed condimentum pulvinar lectus, eget mattis lorem dictum id. Sed porta nibh et arcu malesuada, ac tempor eros tempus. Quisque a sodales justo. Curabitur in felis a lectus faucibus eleifend tincidunt quis purus. Nullam id placerat orci. Sed suscipit finibus ante eget ultrices. Maecenas fermentum elementum elit et ultricies. Aliquam sed malesuada lectus.
+            Vestibulum elementum elit non commodo placerat. Proin eu nisl vel nunc tempus placerat vitae ac arcu. Phasellus at ullamcorper justo, in dapibus tellus. Sed viverra dui mi, sed imperdiet nisl pharetra sed. Mauris porta tempus rhoncus. Cras feugiat nulla a velit accumsan auctor. Donec porttitor a justo a molestie. Integer ullamcorper, lectus a finibus congue, neque libero volutpat nibh, et tincidunt lorem eros ac metus. Nunc vitae risus imperdiet, venenatis nibh eget, fermentum sem. Aliquam eros ante, vulputate vel tempus sit amet, faucibus sit amet mauris. Duis hendrerit aliquet ante venenatis tristique.
+        </div>
+    </div>
+
+    <!-- 화면 전체를 덮기 위한 영역 -->
+    <div class="backdrop">
+        <div class="modal position-center">
+            <i class="fa-solid fa-spinner fa-spin fa-3x blue"></i>
+        </div>
+    </div> 
+</body>
+</html>

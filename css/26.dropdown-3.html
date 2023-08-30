@@ -20,16 +20,26 @@
     <style>
         .dropdown {
             width: 300px;
+            position: relative;
+        }
+        .dropdown >.btn {
+            transition: top 0.5s ease-out;
         }
         .dropdown > .btn:not(:first-child){
-            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
         }
         /* 
              ~은 뒤에 있는 모든 태그를 선택할 수 있다 
              +는 뒤에 있는 태그 한 개를 선택할 수 있다
         */
-        .dropdown > .btn:first-child:hover ~ .btn {
-            display: inline-block;
+        .dropdown:hover > .btn:nth-child(2) {
+            top:100%
+        }
+        .dropdown:hover > .btn:nth-child(3) {
+            top:200%
         }
         
         

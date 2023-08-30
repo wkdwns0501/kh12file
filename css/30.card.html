@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카드 레이아웃</title>
+    <!-- css 파일을 불러오는 코드 -->
+
+    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- 구글 웹폰트 사용을 위한 CDN-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+     <!-- 내가 만든 CSS 파일-->
+    <link rel="stylesheet" type="text/css" href="commons.css">
+    <!-- <link rel="stylesheet" type="text/css" href="test.css"> -->
+    <style>
+        .row {
+            margin: 5px 0px;
+        }
+        .title {
+            font-size: 20px;
+        }
+        .card {
+            /* border: 1px solid #2d3436; */
+            box-shadow: 0 0 0 1px #2d3436;
+        }
+    </style>
+</head>
+<body>
+        <div class="container w-500">
+            <div class="row">
+                <h1>카드 레이아웃</h1>
+            </div>
+
+            <div class="row card">
+                <div class="float-container">
+                    <div class="float-left w-25" style="position: relative;">
+                        <img src="./images/nene_logo.png">
+                    </div>
+                    <div class="float-left w-75">
+                        <div class="row left title">네네치킨-영등포점</div>
+                        <div class="row left">
+                            <i class="fa-solid fa-star yellow"></i>
+                            <span class="yellow">4.9</span>
+                            <span class="gray">|</span>
+                            <span class="black">리뷰 152</span>
+                            <span class="gray">|</span>
+                            <span class="black">사장님 댓글 23</span>
+                        </div>
+                        <div class="row left">
+                            <span class="red">요기서 결제</span>
+                            <span class="gray">|</span>
+                            <span class="gray">17,000원 이상 배달</span>
+                        </div>
+                        <div class="row left float-container">
+                            <div class="col-2 left">
+                                <span class="red">3,800원 할인</span>
+                                <img src="./images/cesco_logo.png">
+                            </div>
+                            <div class="col-2 right">
+                                <span class="gray">50~60분</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+</html>

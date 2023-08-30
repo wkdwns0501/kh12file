@@ -16,24 +16,20 @@
 
      <!-- 내가 만든 CSS 파일-->
     <link rel="stylesheet" type="text/css" href="commons.css">
-    <!-- <link rel="stylesheet" type="text/css" href="test.css"> -->
+    <link rel="stylesheet" type="text/css" href="test.css">
     <style>
         .dropdown {
             width: 300px;
         }
-        .dropdown >.btn {
-            transition: opacity 0.2s linear;
-            /* linear , ease-in , ease-out , ease-in-out */
-        }
         .dropdown > .btn:not(:first-child){
-            opacity : 0;
+            display: none;
         }
         /* 
              ~은 뒤에 있는 모든 태그를 선택할 수 있다 
              +는 뒤에 있는 태그 한 개를 선택할 수 있다
         */
-        .dropdown:hover > .btn:first-child ~ .btn {
-            opacity : 1;
+        .dropdown > .btn:first-child:hover ~ .btn {
+            display: inline-block;
         }
         
         

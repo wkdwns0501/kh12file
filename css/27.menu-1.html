@@ -3,161 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1~2차 리스트</title>
-    <!-- 아이콘 사용을 위한 font awesome 6 cdn-->
+    <title>1차 리스트</title>
+    <!-- css 파일을 불러오는 코드 -->
+
+    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <!--css 파일을 불러오는 코드-->
+
+    <!-- 구글 웹폰트 사용을 위한 CDN-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+     <!-- 내가 만든 CSS 파일-->
     <link rel="stylesheet" type="text/css" href="commons.css">
     <link rel="stylesheet" type="text/css" href="test.css">
-
     <style>
         /*
-        메뉴는 계층형 구조를 가지는 가장 대표적인 도구
-        
-        1차메뉴
-            - 2차메뉴
-                - 3차메뉴
-                - 3차메뉴
-            - 2차메뉴
-                - 3차메뉴
-                - 3차메뉴
-                - 3차메뉴
-            - 2차메뉴
-        1차메뉴
+            메뉴는 계층형 구조를 가지는 가장 대표적인 도구
+            list tag를 이용하여 구현 (ul, li)
 
+            1차메뉴
+                - 2차메뉴
+                    -3차메뉴
+                    -3차메뉴
+                - 2차메뉴
+                    -3차메뉴
+                    -3차메뉴
+                    -3차메뉴
+                - 2차메뉴
+            1차메뉴
+                - 2차메뉴
+                    -3차메뉴
+                    -3차메뉴
+                - 2차메뉴
+                    -3차메뉴
+                    -3차메뉴
+                    -3차메뉴
+                - 2차메뉴
 
-
-        ul
-            -li -a
-                -ul
-                    -li -a
-                    -li -a
-                    -li -a
-            -li -a
-                -ul
-                    -li -a
-                    -li -a
-                    -li -a
-        */
-
+            ul.menu
+                - li - a
+                    -ul
+                        -li -a
+                        -li -a
+                        -li -a
+                - li - a
+                    - ul
+                        -li - a
+                        -li - a
+                        -li - a
+        */  
         /* 디자인 초기화 */
-        ul.menu,
-        ul.menu ul{
-            list-style: none;
+        ul.menu {
+            list-style: none; /* 점 제거 */
             margin: 0px;
             padding: 0px;
         }
-
-        ul.menu a{
-            color: inherit;
+        ul.menu a {
+            color: inherit; /* inherit : 상속 (바깥의 설정을 따라가겠다) */
             text-decoration: none;
         }
-
-        /*1차 메뉴의 배치를 가로로 변경*/
+        /* 1차 메뉴의 배치를 가로 배치로 변경 */
         .menu > li {
             display: inline-block;
         }
 
-        /*색상 변경 및 크기 설정*/
-        .menu,
-        .menu ul{
+        /* 색상 변경 및 크기 설정 */
+        .menu {
             font-size: 24px;
-            background-color: #93bcfa;
+            background-color: #2d3436;
         }
-        .menu li {
+        .menu > li {
             color: white;
-            background-color: #93bcfa;
-            width: 150px;
-        }
-        /*메뉴에 마우스가 올라가면 하이라이트 효과*/
-        .menu li:hover{
-            background-color:  #7296e3;
-            color: black;
-        }
-
-        /*
-            1차메뉴의 아래쪽에 2차메뉴가 위치하도록 position 변경
-        */
-
-        .menu li{
-            position: relative;
-        }
-        .menu ul{
-            position: absolute;
-            z-index:99999;
-            top:100%;
-            left:0;
-        }
-
-        /*2차 이상의 메뉴를 숨김 처리*/
-        ul.menu > li ul{
-            display: none;
-        }
-
-        /*
-            마우스가 올라간 메뉴 항목의 하위메뉴를 표시
-        */
-
-        ul.menu li:hover > ul {
-            display: block;
-        }
-
-        /*
-            a태그에 말줄임표 처리 구현
-        */
-        ul.menu a{
-            display: block;
-            width:100;
+            background-color: #2d3436;
             padding: 0.5em;
+            width: 150px;
 
-             /* 말줄임표 처리를 위한 디자인(반드시 폭이 있어야 함)*/
+            /* 말줄임표 처리를 위한 디자인(반드시 폭이 있어야 함) */
             text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap;
         }
-        /*
-            overflow로 인해 발생하는 추가 공간을 해결하기 위해 높이 설정
-        */
-        ul.menu{
-            height: 2.33em;
+
+        /* 메뉴에 마우스가 올라가면 하이라이트 효과 */
+        .menu li:hover {
+            background-color: #636e72;
         }
     </style>
 </head>
 <body>
+    
     <ul class="menu">
-        <li>
-            <a href="#">1차메뉴1</a>
-            <ul>
-                <li><a href="#">2차메뉴1</a></li>
-                <li><a href="#">2차메뉴2</a></li>
-                <li><a href="#">2차메뉴3</a></li>
-                <li><a href="#">2차메뉴4</a></li>             
-            </ul>
-        </li>
-        <li><a href="#">1차메뉴2</a>
-        <ul>
-            <li><a href="#">2차메뉴1</a></li>
-            <li><a href="#">2차메뉴2</a></li>
-            <li><a href="#">2차메뉴3</a></li>
-            <li><a href="#">2차메뉴4</a></li>             
-        </ul>
-    </li>
-        <li><a href="#">1차메뉴3</a>
-        <ul>
-            <li><a href="#">2차메뉴1</a></li>
-            <li><a href="#">2차메뉴2</a></li>
-            <li><a href="#">2차메뉴3</a></li>
-            <li><a href="#">2차메뉴4</a></li>             
-        </ul>
-    </li>
-        <li><a href="#">1차메뉴4</a>
-        <ul>
-            <li><a href="#">2차메뉴1</a></li>
-            <li><a href="#">2차메뉴2</a></li>
-            <li><a href="#">2차메뉴3</a></li>
-            <li><a href="#">2차메뉴4</a></li>             
-        </ul>
-    </li>
+        <li><a href="#">1차메뉴1234563213213</a></li>
+        <li><a href="#">1차메뉴2</a></li>
+        <li><a href="#">1차메뉴3</a></li>
+        <li><a href="#">1차메뉴4</a></li>
     </ul>
 </body>
 </html>

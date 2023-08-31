@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 - 정규표현식</title>
+    <!-- css 파일을 불러오는 코드 -->
+
+    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- 구글 웹폰트 사용을 위한 CDN-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+     <!-- 내가 만든 CSS 파일-->
+     <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./css/commons.css">
+    <!-- <link rel="stylesheet" type="text/css" href="./css/test.css"> -->
+    <style>
+
+    </style>
+
+    <!-- javascript 작성 공간 -->
+    <script>
+        function checkId() {
+            var id = document.querySelector(".a");
+            var span1 = document.querySelector(".b");
+            var idRegex = /^[a-z][a-z0-9]{4,19}$/;
+            if(idRegex.test(id.value)){
+                span1.textContent = "멋진 아이디입니다!";
+                span1.style.color = 'green';
+            }
+            else {
+                span1.textContent ="영문과 숫자 5~20자로 작성하세요"
+                span1.style.color = 'red';
+            }
+
+        }
+        function checkPw() {
+            var pw = document.querySelector(".c");
+            var span2 = document.querySelector(".d");
+            var pwRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$])[A-Za-z0-9!@#$]{8,16}$/;
+            if(pwRegex.test(pw.value)){
+                span2.textContent = "올바른 비밀번호 형식입니다";
+                span2.style.color = 'green';
+            }
+            else {
+                span2.textContent ="영문, 숫자, 특수문자 8~20자로 작성하세요"
+                span2.style.color = 'red';
+            }
+        }
+
+        function checkPwPw() {
+            var pw = document.querySelector(".c");
+            var pwpw = document.querySelector(".e");
+            var span3 = document.querySelector(".g");
+            if(pw.value == pwpw.value) {
+                span3.textContent = "비밀번호 일치합니다";
+                span3.style.color = 'green';
+            }
+            else {
+                span3.textContent ="비밀번호 일치하지 않습니다"
+                span3.style.color = 'red';
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <div class="container w-400">
+        <div class="row">
+            <h2>회원가입</h2>
+        </div>
+        <div class="row left">아이디</div>
+        <div class="row">
+            <input class="form-input w-100 a" oninput="checkId();" required>
+            <span class="b"></span>
+        </div>
+        <div class="row left">비밀번호</div>
+        <div class="row">
+            <input class="form-input w-100 c" oninput="checkPw();" required>
+            <span class="d"></span>
+        </div>
+        <div class="row left">비밀번호 확인</div>
+        <div class="row">
+            <input class="form-input w-100 e" oninput="checkPwPw();" required>
+            <span class="g"></span>
+        </div>
+        <div class="row">
+            <button type="submit" class="btn btn-positive w-100"> 가입하기</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -4,7 +4,7 @@
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
 <title>게시판 목록</title>
-
+<div class="container w-500">
 <h2>자유 게시판</h2>
 	
 	<%-- 검색일 경우 검색어를 추가로 출력
@@ -15,7 +15,7 @@
 	</c:if>
 	<%-- 글쓰기는 로그인 상태인 경우에만 출력 --%>
 	<c:if test="${sessionScope.storage != null}">
-			<button><a href="write">글쓰기</a></button><br>
+			<button class="btn btn-positive w-100"><a href="write">글쓰기</a></button><br>
 	</c:if>
 	
 <table border="1" width="800">
@@ -161,6 +161,6 @@
 	
 	<button>검색</button>
 </form>
-	<br>
+</div>
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

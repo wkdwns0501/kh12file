@@ -2,14 +2,37 @@
     pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
-<title>게시글 정보 수정</title>
+<form action="edit" method="post">
+<input type="hidden" name="boardNo" value="${boardDto.boardNo}">
 
-	<h2>게시글 정보 수정</h2>
-	<form action="edit"  method="post">
-		<input type="hidden" name="boardNo" value="${boardDto.boardNo}">
-		제목 : <input type="text" name ="boardTitle" value="${boardDto.boardTitle}" required><br><br>
-		내용 : <textarea name="boardContent" required>${boardDto.boardContent}</textarea><br><br>
-		<button>수정하기</button>
-	</form>
+<div class="container w-600">
+	<div class="row">
+		<h1>게시글 수정</h1>
+	</div>
+	
+	<div class="row left">
+		<label>제목</label>
+		<input class="form-input w-100" type="text" name="boardTitle" value="${boardDto.boardTitle}" required>
+	</div>
+	
+	<div class="row left">
+		<label>내용</label>
+		<textarea class="form-input w-100" name="boardContent" 
+			style="min-height:250px" required>${boardDto.boardContent}</textarea>
+	</div>
+	
+	<div class="row right">
+		<a href="list" class="btn">
+			<i class="fa-solid fa-list"></i>
+			목록
+		</a>
+		<button type="submit" class="btn btn-positive">
+			<i class="fa-solid fa-edit"></i>
+			수정
+		</button>
+	</div>
+</div>
+
+</form>
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

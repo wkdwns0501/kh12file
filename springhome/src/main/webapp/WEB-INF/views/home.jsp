@@ -7,10 +7,11 @@
 	- 절대경로를 사용할 것
  --%>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
-
-		<h2>환영합니다!</h2>
-		
-		<img width="200" src="/terri.jpg">
-		
+	<div class="container w-300">
+		<div class="row">
+			<h2>환영합니다!</h2>
+			<img width="300" src="/terri.jpg">
+		</div>
+	</div>
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
 		

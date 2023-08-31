@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수(Function)</title>
+    <script>
+        //자바스크립트(EcmaScript5) 에는 클래스가 없다
+        //- 자바스크립트에서는 함수로 모든것을 처리
+        //- 자바스크립트에는 접근제한도 없다
+
+        // static void show(int a) {
+        //     System.out.println("Hello!");
+        // }
+        function show(a) { //이상태 a 가 undefined
+            console.log("Hello!");
+            console.log(a);
+        }
+
+        //자바스크립트 함수는 아무렇게나 불러도 실행이 된다
+        //- 매개변수에 값이 안들어가면 undefined
+        //- 오버로딩이 불가능하다
+        show();
+        show(100);
+        show('hello');
+        show(100, 200, 300);
+
+        //함수의 궁극적인 목적은 화면과 연결된 기능을 구현하는 것
+        function message() {
+            alert("Hello!");
+        }
+    </script>
+</head>
+<body>
+    <button onclick="message();">눌러</button> 
+    <button ondblclick="message();">두번 눌러</button>
+</body>
+</html>

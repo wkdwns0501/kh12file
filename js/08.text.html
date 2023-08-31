@@ -39,6 +39,28 @@
             //console.log(tag.value);
             console.log(tag.value.length);
         }
+        //select 역시 입력창이므로 value 속성이 없지만 사용할 수 있다
+        function checkB() {
+            var tag = document.querySelector("#b");
+            console.log(tag.value);
+        }
+
+        //textarea는 value 속성이 없음에도 입력창이므로 value를 사용할 수 있다
+        function checkC() {
+            var tag = document.querySelector("#c");
+            console.log(tag.value);
+
+            // var tag2 = document.querySelector("#a");
+            // tag2.value = tag.value; // tag2.value = tag.value.length;
+
+            //#d, #e에 각각 글자 복사
+            //- textDontent는 HTML을 해석하지 않고 일반 글자로 취급
+            //- innerHTML 은 HTML을 해석하여 처리(매우 위험, 비추천)
+            var d = document.querySelector("#d");
+            d.textContent = tag.value;
+            var e = document.querySelector("#e");
+            e.innerHTML = tag.value;
+        }
     </script>
 </head>
 <body>
@@ -50,7 +72,7 @@
             <input type="text" class="form-input w-100" id="a" oninput="checkA();">
         </div>
         <div class="row">
-            <select class="form-input w-100" id="b">
+            <select class="form-input w-100" id="b" oninput="checkB();">
                 <option>사과</option>
                 <option>바나나</option>
                 <option>딸기</option>
@@ -58,8 +80,11 @@
             </select>
         </div>
         <div class="row">
-            <textarea class="form-input w-100" rows="5" id="c"></textarea>
+            <textarea class="form-input w-100" rows="5" id="c" oninput="checkC();"></textarea>
         </div>
+
+        <div class="row" id="d"></div>
+        <div class="row" id="e"></div>
     </div>
 </body>
 </html>

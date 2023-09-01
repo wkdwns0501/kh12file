@@ -615,3 +615,44 @@ a.link:hover
 {
     flex-wrap: wrap;
 }
+
+/* 
+    성공/실패에 대한 스타일 구현
+*/
+.success-feedback {
+    color:#00b894;
+    display: none;
+}
+.fail-feedback, 
+.fail2-feedback
+{
+    color :#d63031;
+    display: none;
+}
+.success ~ .success-feedback {
+    display: block;
+}
+.fail ~ .fail-feedback {
+    display: block;
+}
+.fail2 ~ .fail2-feedback {
+    display: block;
+}
+
+.success {
+    border-color: #00b894 !important;
+    background-image: url("./image/valid.png");
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: center;
+    background-size: 1em;
+}
+.fail , 
+.fail2{
+    border-color: #d63031 !important;
+    background-image: url("./image/invalid.png");
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: center;
+    background-size: 1em;
+}

@@ -641,7 +641,7 @@ a.link:hover
 
 .success {
     border-color: #00b894 !important;
-    background-image: url("./image/valid.png");
+    background-image: url("../image/valid.png");
     background-repeat: no-repeat;
     background-position-x: right;
     background-position-y: center;
@@ -650,7 +650,7 @@ a.link:hover
 .fail , 
 .fail2{
     border-color: #d63031 !important;
-    background-image: url("./image/invalid.png");
+    background-image: url("../image/invalid.png");
     background-repeat: no-repeat;
     background-position-x: right;
     background-position-y: center;

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 - 정규표현식</title>
+    <!-- css 파일을 불러오는 코드 -->
+
+    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- 구글 웹폰트 사용을 위한 CDN-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+     <!-- 내가 만든 CSS 파일-->
+     <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./css/commons.css">
+    <!-- <link rel="stylesheet" type="text/css" href="./css/test.css"> -->
+    <style>
+        /* 
+            성공/실패에 대한 스타일 구현
+        */
+        .success-feedback {
+            color:#00b894;
+            display: none;
+        }
+        .fail-feedback, 
+        .fail2-feedback
+        {
+            color :#d63031;
+            display: none;
+        }
+        .success ~ .success-feedback {
+            display: block;
+        }
+        .fail ~ .fail-feedback {
+            display: block;
+        }
+        .fail2 ~ .fail2-feedback {
+            display: block;
+        }
+
+        .success {
+            border-color: #00b894 !important;
+            background-image: url("./image/valid.png");
+            background-repeat: no-repeat;
+            background-position-x: right;
+            background-position-y: center;
+            background-size: 1em;
+        }
+        .fail , 
+        .fail2{
+            border-color: #d63031 !important;
+            background-image: url("./image/invalid.png");
+            background-repeat: no-repeat;
+            background-position-x: right;
+            background-position-y: center;
+            background-size: 1em;
+        }
+    </style>
+
+    <!-- javascript 작성 공간 -->
+    <script>
+        function checkId() {
+            var id = document.querySelector("[name=memberId]");
+
+            var idRegex = /^[a-z][a-z0-9]{4,19}$/;
+            id.classList.remove("success", "fail");
+            if(idRegex.test(id.value)){
+                id.classList.add("success");
+            }
+            else {
+                id.classList.add("fail");
+            }
+        }
+
+        function checkPw() {
+            var pw = document.querySelector("[name=memberPw]");
+
+            var pwRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$])[A-Za-z0-9!@#$]{8,16}$/;
+            var isValid = pwRegex.test(pw.value);
+
+            pw.classList.remove("success", "fail");
+            pw.classList.add(isValid ? "success" : "fail");
+        }
+
+        function checkPwPw() {
+            var pw = document.querySelector("[name=memberPw]");
+            var pwpw = document.querySelector("#password-check");
+
+            //var isVaild = 비밀번호가 1글자 이상 입력되어 있고 두 입력값이 같으면;
+            var isVaild = pw.value.length >= 1 && pw.value == pwpw.value;
+            pwpw.classList.remove("success", "fail", "fail2");
+            if(pw.value.length == 0){
+                pwpw.classList.add("fail2");
+            }
+            else if(isVaild) {
+                pwpw.classList.add("success");
+            }
+            else {
+                pwpw.classList.add("fail");
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <div class="container w-400">
+        <div class="row">
+            <h1>회원가입</h1>
+        </div>
+        <div class="row left">아이디</div>
+        <div class="row">
+            <input type="text" name="memberId" class="form-input w-100" oninput="checkId();">
+            <div class="success-feedback">멋진 아이디입니다!</div>
+            <div class="fail-feedback">아이디는 영문과 숫자 5~20자로 입력하세요</div>
+        </div>
+        <div class="row left">비밀번호</div>
+        <div class="row">
+            <input type="password" name="memberPw" class="form-input w-100" oninput="checkPw();">
+            <div class="success-feedback">올바른 비밀번호 형식입니다!</div>
+            <div class="fail-feedback">영문, 숫자, 특수문자 8~20자로 작성하세요</div>
+        </div>
+        <div class="row left">비밀번호 확인</div>
+        <div class="row">
+            <input type="password" id="password-check" class="form-input w-100" oninput="checkPwPw();">
+            <div class="success-feedback">비밀번호가 일치합니다</div>
+            <div class="fail-feedback">비밀번호가 일치하지 않습니다</div>
+            <div class="fail2-feedback">비밀번호를 먼저 작성하세요</div>
+        </div>
+        <div class="row">
+            <button type="submit" class="btn btn-positive w-100"> 가입하기</button>
+        </div>
+    </div>
+</body>
+</html>

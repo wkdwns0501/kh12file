@@ -4,6 +4,11 @@
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
+<script src="/js/boardWrite.js"></script>
+<script>
+
+</script>
+
 <form action="write" method="post" autocomplete="off">
 	<%-- 답글일 때만 추가 정보를 전송 --%>
 	<c:if test="${isReply}">

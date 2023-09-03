@@ -53,8 +53,9 @@
                 <i class="fa-solid fa-asterisk red"></i>
             </label>
 
-            <textarea name="boardContent" class="form-input w-100"
-                        rows="10" oninput="checkBoardContent();"></textarea>
+            <textarea name="boardContent"  id="a"
+            class="form-input w-100" style="min-height:250px"
+             oninput="checkBoardContent(); checkLength();"></textarea>
             <div class="fail-feedback">내용은 반드시 작성해야 합니다</div>
         </div>
 

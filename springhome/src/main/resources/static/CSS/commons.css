@@ -455,17 +455,17 @@ ul.menu,
 ul.menu ul
 {
     font-size: 24px;
-    background-color: #2d3436;
+    background-color: #85E6C5;
 }
 ul.menu li {
     color: white;
-    background-color: #2d3436;
+    background-color: #85E6C5;
     width: 150px;
 }
 
 /* 메뉴에 마우스가 올라가면 하이라이트 효과 */
 ul.menu li:hover {
-    background-color: #636e72;
+    background-color: #C8FFE0;
 }
 
 /* 
@@ -651,4 +651,46 @@ a.link:hover
 }
 .image.image-grayscale {
     filter: grayscale(100%);
+}
+
+/*
+    성공/실패에 대한 스타일 구현
+*/
+.success-feedback {
+    color: #00b894;
+    display: none;
+}
+.fail-feedback,
+.fail2-feedback
+{
+    color: #d63031;
+    display: none;
+}
+.success ~ .success-feedback {
+    display: block;
+}
+.fail ~ .fail-feedback {
+    display: block;
+}
+.fail2 ~ .fail2-feedback {
+    display: block;
+}
+.success {
+    /* important는 우선순위를 최상위로 올린다 */
+    border-color: #00b894 !important;
+    background-image: url("../image/valid.png");
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: center;
+    background-size: 1em;
+}
+.fail, 
+.fail2
+{
+    border-color: #d63031 !important;
+    background-image: url("../image/invalid.png");
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: center;
+    background-size: 1em;
 }

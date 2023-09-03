@@ -17,14 +17,33 @@ function checkBoardContent() {
 
     var len = document.querySelector(".len");
     len.textContent = textarea.value.length;
-    textarea.classList.remove("fail");
+    textarea.classList.remove("fail", "fail2");
     len.classList.remove("red");
-    if(isValid == false) {
+    if(textarea.value.length >= 1000) {
+        textarea.classList.add("fail2");
+        len.classList.add("red");
+        return false;
+    }
+    else if(isValid == false) {
         textarea.classList.add("fail");
         len.classList.add("red");
         return false;
     }
     return true;
+}
+
+function checkLength() {
+    var textarea = document.querySelector("#a");
+    
+    if(textarea.value.length > 1000) {
+        var copy = textarea.value;
+        while(copy.length > 1000) {
+            copy = copy.substring(0, copy.length -1);
+        }
+        textarea.value = copy;
+    }
+    var span = document.querySelector(".len");
+    span.textContent = textarea.value.length;
 }
 
 function checkForm() {

@@ -19,7 +19,9 @@
 		<input class="form-input w-100" type="password" name="changePw" required>
 	</div>
 	<div class="row">
-		<button type="submit" class="btn btn-positive w-100">비밀번호 변경</button>
+		<button type="submit" class="btn btn-positive w-100"
+		style="border-color: #85E6C5;  background-color: #85E6C5;">
+		비밀번호 변경</button>
 	</div>
 	<c:if test="${param.error != null}">
 	<div class="row important">

@@ -15,7 +15,7 @@
 				<i class="fa-solid fa-asterisk red"></i>
 			</label>
             <input type="text" name="memberNickname" class="form-input w-100"
-					value="${memberDto.memberNickname}" required>
+					value="${memberDto.memberNickname}">
         </div>
         <div class="row left">
             <label>이메일</label>
@@ -44,10 +44,12 @@
         		비밀번호 확인
 				<i class="fa-solid fa-asterisk red"></i>
 			</label>
-        	<input type="password" name="memberPw" required class="form-input w-100">
+        	<input type="password" name="memberPw" class="form-input w-100">
         </div>
         <div class="row">
-            <button type="submit" class="btn btn-positive w-100">정보변경</button>
+            <button type="submit" class="btn btn-positive w-100"
+            style="border-color: #85E6C5;  background-color: #85E6C5;">
+            정보변경</button>
         </div>
         <c:if test="${param.error != null}">
         <div class="row red">

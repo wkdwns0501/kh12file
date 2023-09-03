@@ -46,11 +46,12 @@
 	<div class="row right">
 		<%-- 회원일 때만 글쓰기,수정,삭제가 나와야 한다 --%>
 		<c:if test="${sessionScope.storage != null}">
-		<a class="btn btn-positive" href="write">
+		<a class="btn btn-positive" href="write" style="border-color: #85E6C5;  background-color: #85E6C5;">
 			<i class="fa-solid fa-pen"></i>
 			새글
 		</a>
-		<a class="btn btn-positive" href="write?boardParent=${boardDto.boardNo}">
+		<a class="btn btn-positive" href="write?boardParent=${boardDto.boardNo}" 
+		style="border-color: #85E6C5;  background-color: #85E6C5;">
 			<i class="fa-solid fa-comment"></i>
 			답글
 		</a>

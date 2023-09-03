@@ -2,7 +2,13 @@
     pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-<form action="join" method="post"  autocomplete="off">
+
+<script src="/js/memberjoin.js"></script>
+<script>
+
+</script>
+
+<form action="join" method="post"  autocomplete="off"  onsubmit="return checkForm();">
 
 	<div class="container w-400 mt-20">
             <div class="row mb-30">
@@ -16,15 +22,23 @@
                 -->
                 <label for="id-input">아이디<span class="fa-solid fa-asterisk red"></span></label>
                 <input type="text" name="memberId" class="form-input w-100" 
-                id="id-input" placeholder="영문 소문자+숫자 8~20자 이내">   
+                id="id-input" placeholder="영문 소문자+숫자 8~20자 이내"  onblur="checkId();">   
+                <div class="success-feedback"></div>
+            	<div class="fail-feedback">영문과 숫자 5~20자로 작성하세요</div>
             </div>
             <div class="row left">
                 <label>비밀번호<span class="fa-solid fa-asterisk red"></span></label>
-                <input type="password" name="memberPw" class="form-input w-100" placeholder="영문 대소문자+숫자+특수문자 반드시 포함 8~16자">
+                <input type="password" name="memberPw" class="form-input w-100" 
+                placeholder="영문, 숫자, 특수문자 8~20자"  onblur="checkPw();">
+                <div class="success-feedback"></div>
+            	<div class="fail-feedback">영문, 숫자, 특수문자 8~20자로 작성하세요</div>
             </div>
             <div class="row left">
                 <label>닉네임<span class="fa-solid fa-asterisk red"></span></label>
-                <input type="text" name="memberNickname" class="form-input w-100" placeholder="한글 또는 숫자 2~10자 이내">
+                <input type="text" name="memberNickname" class="form-input w-100" 
+                placeholder="한글 또는 숫자 2~10자 이내" onblur="checkNickname();">
+                <div class="success-feedback"></div>
+	            <div class="fail-feedback">한글 또는 숫자 2~10자 이내로 작성하세요</div>
             </div>
             <div class="row left">
                 <label>이메일</label>
@@ -36,17 +50,20 @@
             </div>
             <div class="row left">
                 <label>생년월일</label>
-                <input type="date" name="memberJoin" class="form-input w-100">
+                <input type="date" name="memberBirth" class="form-input w-100">
             </div>
             <div class="row left">
                 <label class="mb-10" style="display: block">주소</label>
                 <input style="width:8em" type="text" name="memberPost" class="form-input" placeholder="우편번호">
                 <button type="button" class="btn">우편번호 찾기</button>
-                <input type="text" name="memberAddr1" class="form-input mt-10 w-100" placeholder="기본주소">
-                <input type="text" name="memberAddr2" class="form-input mt-10 w-100" placeholder="상세주소">
+                <input type="text" name="memberAddr1" class="form-input mt-20 w-100" placeholder="기본주소">
+                <input type="text" name="memberAddr2" class="form-input mt-20 w-100" placeholder="상세주소">
             </div>    
             <div class="row mt-30">
-                <button type="submit" class="btn btn-positive w-100 fa-solid fa-arrow-right-to-bracket"> 가입하기</button>
+                <button type="submit" 
+                class="btn btn-positive w-100 fa-solid fa-arrow-right-to-bracket"
+                style="border-color: #85E6C5;  background-color: #85E6C5;"> 
+                가입하기</button>
             </div>
         </div>
 </form>

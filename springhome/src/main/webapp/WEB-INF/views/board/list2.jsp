@@ -134,7 +134,7 @@
 		
 		<input type="search" name="keyword"  required class="form-input"
 					placeholder="검색어 입력" value="${param.keyword}">
-		<button type="submit" class="btn btn-positive">
+		<button type="submit" class="btn btn-positive" style="border-color: #85E6C5;  background-color: #85E6C5;">
 			<i class="fa-solid fa-magnifying-glass"></i>
 			검색
 		</button>

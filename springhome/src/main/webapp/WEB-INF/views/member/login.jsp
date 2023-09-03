@@ -10,15 +10,16 @@
 		<h1>로그인</h1>
 	</div>
 	<div class="row">
-		<input type="text" name="memberId" placeholder="아이디" required
+		<input type="text" name="memberId" placeholder="아이디"
 				class="form-input w-100">
 	</div>
 	<div class="row">
 		<input type="password" name="memberPw" 
-				class="form-input w-100" placeholder="비밀번호" required>
+				class="form-input w-100" placeholder="비밀번호">
 	</div>
 	<div class="row mv-30"> 
-		<button type="submit" class="btn btn-positive w-100">
+		<button type="submit" class="btn btn-positive w-100"
+		style="border-color: #85E6C5;  background-color: #85E6C5;">
 			<i class="fa-solid fa-user"></i>
 			Login
 		</button>
@@ -30,9 +31,9 @@
 		param을 이용하여 파라미터를 비교할 수 있다.
 	 --%>
 	<c:if test="${param.error != null}">
-	<div class="row red">
-		<h3>아이디 또는 비밀번호가 일치하지 않습니다</h3> 
-	</div>
+		<div class="row red">
+			<h3>아이디 또는 비밀번호가 일치하지 않습니다</h3> 
+		</div>
 	</c:if>
 </div>
 

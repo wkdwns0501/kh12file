@@ -30,14 +30,14 @@
                 <img src="https://dummyimage.com/200x50/000/fff">
             </div>
             <div class="title">
-                <h1>내가 만든 홈페이지</h1>
+                <h1 style="color:#33BBC5">F A D O</h1>
             </div>
             <div class="etc"></div>
         </header>
         <nav>
-            <ul class="menu">
+            <ul class="menu center">
             	<c:choose>
-            		<c:when test="${sessionScope.name != null}">
+            		<c:when test="${sessionScope.storage != null}">
             			<li><a href="/">Home</a></li>
             			<li><a href="/member/mypage">내정보</a></li>
             			<li><a href="/member/logout">로그아웃</a></li>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>홈페이지 회원가입</title>
+    <!-- css 파일을 불러오는 코드 -->
+
+    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- 구글 웹폰트 사용을 위한 CDN-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+     <!-- 내가 만든 CSS 파일-->
+     <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./css/commons.css">
+    <link rel="stylesheet" type="text/css" href="./css/test.css">
+    <style>
+
+    </style>
+
+    <!-- javascript 작성 공간 -->
+    <script>
+    function checkMemberId() {
+    var id = document.querySelector("[name=memberId]");
+
+    var idRegex = /^[a-z][a-z0-9]{4,19}$/;
+    id.classList.remove("success", "fail");
+    if(idRegex.test(id.value)){
+        id.classList.add("success");
+        return true;
+    }
+    else {
+        id.classList.add("fail");
+        return false;
+    }
+}
+
+function checkMemberPw() {
+    var pw = document.querySelector("[name=memberPw]");
+
+    var pwRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$])[A-Za-z0-9!@#$]{8,16}$/;
+    var isValid = pwRegex.test(pw.value);
+
+    pw.classList.remove("success", "fail");
+    pw.classList.add(isValid ? "success" : "fail");
+    
+    return isValid;
+}
+
+function checkMemberPwPw() {
+    var pw = document.querySelector("[name=memberPw]");
+    var pwpw = document.querySelector("#password-check");
+
+    //var isVaild = 비밀번호가 1글자 이상 입력되어 있고 두 입력값이 같으면;
+    var isVaild = pw.value.length >= 1 && pw.value == pwpw.value;
+    pwpw.classList.remove("success", "fail", "fail2");
+    if(pw.value.length == 0){ //비밀번호 미작성
+        pwpw.classList.add("fail2");
+        return false;
+    }
+    else if(isVaild) { //비밀번호 일치
+        pwpw.classList.add("success");
+        return true;
+    }
+    else { //비밀번호 불일치
+        pwpw.classList.add("fail");
+        return false;
+    }
+}
+
+function checkMemberNickname() {
+    var nick = document.querySelector("[name=memberNickname]");
+
+    var nickRegex = /^[가-힣0-9]{2,10}$/;
+    var isValid = nickRegex.test(nick.value);
+
+    nick.classList.remove("success", "fail", "fail2");
+    if(isValid) {
+		// +중복검사(추후)
+		nick.classList.add("success");
+		return true;
+	}
+	else {
+		nick.classList.add("fail");
+		return false;
+	}
+}
+
+function checkMemberEmail() {
+    var email = document.querySelector("[name=memberEmail]");
+    var regex = /^(.*?)@(.*?)$/;
+
+    var isValid = email.value.length == 0 || regex.test(email.value);
+    email.classList.remove("success", "fail");
+    email.classList.add(isValid ? "success" : "fail");
+    return isValid;
+}
+
+function checkMemberContact() {
+    var contact = document.querySelector("[name=memberContact]");
+    var regex = /^010[1-9][0-9]{7}$/;
+
+    var isValid = contact.value.length == 0 || regex.test(contact.value);
+
+    contact.classList.remove("success", "fail");
+    contact.classList.add(isValid ? "success" : "fail");
+    return isValid;
+}
+
+function checkMemberBirth() {
+    var input = document.querySelector("[name=memberBirth]");
+    var regex = /^(19[0-9]{2}|20[0-9]{2})-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[01])$/;
+
+    var isValid = input.value.length == 0 || regex.test(input.value);
+    input.classList.remove("success", "fail");
+    input.classList.add(isValid ? "success" : "fail");
+    return isValid;
+}
+
+function checkMemberAddress() {
+	var input1= document.querySelector("[name=memberPost]");
+	var input2= document.querySelector("[name=memberAddr1]");
+	var input3= document.querySelector("[name=memberAddr2]");
+	
+	var isBlank = input1.value.length == 0 && input2.value.length == 0 && input3.value.length == 0;
+	var isFill = input1.value.length > 0 && input2.value.length > 0 && input3.value.length > 0;
+//	var isValid = 모두 비어있다 || 모두 채워져있다;
+	var isValid = isBlank || isFill;
+	
+	input1.classList.remove("success", "fail");
+	input2.classList.remove("success", "fail");
+	input3.classList.remove("success", "fail");
+	
+	input1.classList.add(isValid ? "success" : "fail");
+	input2.classList.add(isValid ? "success" : "fail");
+	input3.classList.add(isValid ? "success" : "fail");
+	
+	return isValid;
+}
+
+function checkForm() {
+    var r1 = checkMemberId();
+    var r2 = checkMemberPw();
+    var r3 = checkMemberPwPw();
+    var r4 = checkMemberNickname();
+    var r5 = checkMemberEmail();
+    var r6 = checkMemberBirth();
+    var r7 = checkMemberContact();
+    var r8 = checkMemberAddress();
+    return r1 && r2 && r3 && r4 && r5 && r6 && r7 && r8;
+}
+    </script>
+</head>
+<body>
+    <form action="join" method="post"  autocomplete="off"  onsubmit="return checkForm();">
+
+        <div class="container w-400 mt-20">
+                <div class="row mb-30">
+                    <h1>회원 가입</h1>            
+                </div>
+                <div class="row left">
+                    <label for="id-input">아이디 <span class="fa-solid fa-asterisk red"></span></label>
+                    <input type="text" name="memberId" class="form-input w-100" 
+                    id="id-input" placeholder="영문 소문자+숫자 8~20자 이내"  onblur="checkMemberId();">   
+                    <div class="success-feedback">사용 가능한 아이디</div>
+                    <div class="fail-feedback">영문과 숫자 5~20자로 작성</div>
+                </div>
+                <div class="row left">
+                    <label>비밀번호 <span class="fa-solid fa-asterisk red"></span></label>
+                    <input type="password" name="memberPw" class="form-input w-100" 
+                    placeholder="영문, 숫자, 특수문자 8~20자"  onblur="checkMemberPw();">
+                    <div class="success-feedback">사용 가능한 비밀번호</div>
+                    <div class="fail-feedback">영문, 숫자, 특수문자 반드시 1개 이상 포함 8~20자로 작성</div>
+                </div>
+                <div class="row left">
+                    <label>비밀번호 확인 <span class="fa-solid fa-asterisk red"></span></label>
+                    <input type="password" name="memberPw" class="form-input w-100"  id="password-check"
+                    placeholder="비밀번호 재입력"  onblur="checkMemberPwPw();">
+                    <div class="success-feedback">비밀번호가 일치합니다</div>
+                    <div class="fail-feedback">비밀번호가 일치하지 않습니다</div>
+                    <div class="fail2-feedback">비밀번호를 먼저 입력하세요</div>
+                </div>
+                <div class="row left">
+                    <label>닉네임 <span class="fa-solid fa-asterisk red"></span></label>
+                    <input type="text" name="memberNickname" class="form-input w-100" 
+                    placeholder="한글 또는 숫자 2~10자 이내" onblur="checkMemberNickname();">
+                    <div class="success-feedback">사용 가능한 닉네임</div>
+                    <div class="fail-feedback">한글 또는 숫자 2~10자 이내로 작성하세요</div>
+                    <div class="fail2-feedback">이미 사용중인 닉네임</div>
+                </div>
+                <div class="row left">
+                    <label>이메일</label>
+                    <input type="text" name="memberEmail" class="form-input w-100" 
+                    placeholder="testuser@kh.com" onblur="checkMemberEmail();">
+                    <div class="fail-feedback">이메일 형식이 잘못되었습니다</div>
+                </div>
+                <div class="row left">
+                    <label>연락처</label>
+                    <input type="tel" name="memberContact" class="form-input w-100" 
+                    placeholder="- 제외하고 입력" onblur="checkMemberContact();">
+                    <div class="fail-feedback">전화번호 형식이 잘못되었습니다</div>
+                </div>
+                <div class="row left">
+                    <label>생년월일</label>
+                    <input type="date" name="memberBirth" class="form-input w-100"
+                     onblur="checkMemberBirth();">
+                     <div class="fail-feedback">생년월일 형식이 잘못되었습니다</div>
+                </div>
+                <div class="row left">
+                    <label class="mb-10" style="display: block">주소</label>
+                    <input style="width:8em" type="text" name="memberPost"  size="6" maxlength="6" 
+                    class="form-input" placeholder="우편번호" onblur="checkMemberAddress();">
+                    <button type="button" class="btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <input type="text" name="memberAddr1" 
+                    class="form-input mt-10 w-100" placeholder="기본주소" onblur="checkMemberAddress();">
+                    <input type="text" name="memberAddr2" 
+                    class="form-input mt-10 w-100" placeholder="상세주소" onblur="checkMemberAddress();">
+                    <div class="fail-feedback">모든 주소를 작성해주세요</div>
+                </div>    
+                <div class="row mt-30">
+                    <button type="submit" 
+                    class="btn btn-positive w-100 fa-solid fa-arrow-right-to-bracket"
+                    style="border-color: #85E6C5;  background-color: #85E6C5;"> 
+                    가입하기</button>
+                </div>
+            </div>
+    </form>
+</body>
+</html>

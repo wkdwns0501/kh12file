@@ -535,6 +535,16 @@ ul.menu.fixed {
     top: 0;
 }
 
+/*
+    추가 : 메뉴 Flex로 변경
+*/
+ul.menu {
+    display: flex;
+}
+ul.menu > .menu-right {
+    margin-left: auto;
+}
+
 /* 
     링크 스타일
     - 방문한 링크는 :visited로 선택 가능
@@ -657,7 +667,8 @@ a.link:hover
     border-color: #d63031 !important;
     background-image: url("../image/invalid.png");
     background-repeat: no-repeat;
-    background-position-x: right;
-    background-position-y: center;
+    /* background-position-x: right;
+    background-position-y: center; */
+    background-position: center right 1em;
     background-size: 1em;
 }

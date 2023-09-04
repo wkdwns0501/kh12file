@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript 실습</title>
+    <!-- css 파일을 불러오는 코드 -->
+
+    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- 구글 웹폰트 사용을 위한 CDN-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+     <!-- 내가 만든 CSS 파일-->
+     <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./css/commons.css">
+    <!-- <link rel="stylesheet" type="text/css" href="./css/test.css"> -->
+    <style>
+
+    </style>
+
+    <!-- javascript 작성 공간 -->
+    <script>
+        function refreshCheckbox(tag) {
+            //<계획>
+            //1. 체크된 체크박스를 확인
+            //2-1. 전체가 체크된 경우 개별항목을 모두 체크
+            //2-2. 개별항목이 체크된경우 전체 체크여부를 확인
+
+            var price = document.querySelector(".price");
+            var total = 0;
+            if(tag.classList.contains("check-all")) {//2-1 //전체 체크일때
+
+                var itemList = document.querySelectorAll(".check-item");
+                var allList = document.querySelectorAll(".check-all");
+                
+                //tag의 체크 상태에 따라 allList와 itemList를 모두 체크/해제
+                for(var i=0; i < itemList.length; i++) { 
+                    itemList[i].checked = tag.checked; //리스트를 전체체크
+                    if(tag.checked) {   //만약 체크가 되었다면
+                        total += parseInt(itemList[i].value); //리스트의 값들을 정수로 변환해서 합계에 더함
+                    }
+                }
+            } 
+            else if(tag.classList.contains("check-item")) {//2-2 //개별 체크일때
+                //개별항목이 모두 체크되어 있는지를 알아야 함
+                //- itemList - 전체 체크박스 목록
+                //- checkedItemList - 체크된 체크박스 목록
+
+                //클래스이름이 check-item 인 모든요소를 가져옴
+                var itemList = document.querySelectorAll(".check-item"); 
+                //클래스이름이 check-item이면서 체크된 요소를 가져옴
+                var checkedItemList = document.querySelectorAll(".check-item:checked");
+                //모두 체크된것은 전체 체크박스 목록 과 체크된 체크박스 목록이 같을때이다
+                var allChecked = itemList.length == checkedItemList.length;
+
+                for(var i = 0 ; i< checkedItemList.length; i++) {
+                        total +=parseInt(checkedItemList[i].value); //체크된 요소의 값들을 정수로 변환하여 합계에 더함
+                }
+                var allList = document.querySelectorAll(".check-all");
+                for(var i=0; i < allList.length; i++) {
+                    allList[i].checked = allChecked; //개별의 체크박스가 모두 체크되면 전체 체크
+                }
+            }
+            price.textContent = total; //합계를 출력
+        }
+    </script>
+</head>
+<body>
+    <div class="container w-300">
+        <div class="row mb-30"><h1>KH 과일 상회</h1></div>
+        
+        <div class="row">
+            <label>
+                <input type="checkbox" class="check-all" oninput="refreshCheckbox(this)"> 모두선택
+            </label>
+            <hr style="width: 150px;">
+        </div>
+        <div class="row">
+            <label>
+                <input type="checkbox" value="500" class="check-item" oninput="refreshCheckbox(this)"> 사과 (500원)
+            </label>
+        </div>
+        <div class="row">
+            <label>
+                <input type="checkbox" value="1000"  class="check-item" oninput="refreshCheckbox(this)"> 딸기 (1000원)
+            </label>
+        </div>
+        <div class="row">
+            <label>
+                <input type="checkbox"  value="800" class="check-item" oninput="refreshCheckbox(this)"> 바나나 (800원)
+            </label>
+        </div>
+        <div class="row">
+            <label>
+                <input type="checkbox" value="2000"  class="check-item" oninput="refreshCheckbox(this)"> 포도 (2000원)
+            </label>
+            <hr style="width: 150px;">
+        </div>
+        <div class="row">예상 결제 금액 : <span class="price">0</span>원</div>
+    </div>
+</body>
+</html>

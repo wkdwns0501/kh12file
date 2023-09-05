@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글자크기 변경 예제 (독립형)</title>
+    <!-- css 파일을 불러오는 코드 -->
+
+    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- 구글 웹폰트 사용을 위한 CDN-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+     <!-- 내가 만든 CSS 파일-->
+     <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./css/commons.css">
+    <link rel="stylesheet" type="text/css" href="./css/test.css">
+    <style>
+
+    </style>
+
+    <!-- javascript 작성 공간 -->
+    <script>
+        window.addEventListener("load", function(){
+            var buttonList = document.querySelectorAll(".btn");
+            for(var i = 0; i < buttonList.length; i++) {
+                buttonList[i].addEventListener("click", function(){
+                    var text = document.querySelector(".target");
+                    text.style.fontSize = this.dataset.fontsize + "px";
+                });
+            }
+        });
+
+    </script>
+</head>
+<body>
+    <div class="container w-800">
+        <div class="row">
+            <h1>글자 크기 조절 문제</h1>
+        </div>
+        <div class="row">
+            <button class="btn" data-fontsize="10">아주작게</button>
+            <button class="btn" data-fontsize="12">작게</button>
+            <button class="btn" data-fontsize="16">보통</button>
+            <button class="btn" data-fontsize="20">조금크게</button>
+            <button class="btn" data-fontsize="24">크게</button>
+        </div>
+        <div class="row left target">
+            <p>
+                스위스에서 오셔서 산새들이 속삭이는 산림 숲속에서 숫사슴을 샅샅이 수색해 식사하고 산 속 샘물로 세수하며 사는 삼십 삼살 샴쌍둥이 미세스 스미스씨와 미스터 심슨씨는 삼성 설립 사장의 회사 자산 상속자인 사촌의 사돈 김상속씨의 숫기있고 숭글숭글한 숫색시 삼성소속 식산업 종사자 김삼순씨를 만나서 삼성 수산물 운송수송 수색 실장에게 스위스에서 숫사슴을 샅샅이 수색했던 것을 인정받아 스위스 수산물 운송 수송 과정에서 상해 삭힌 냄새가 나는 수산물을 수색해내는 삼성 소속 수산물 운송수송 수색 사원이 되서 살신성인으로 쉴새없이 수색하다 산성수에 손이 산화되어 수술실에서 수술하게 됐는데 쉽사리 수술이 잘 안돼서 심신에 좋은 산삼을 달여 슈르릅 들이켰더니 힘이 샘솟아 다시 몸사려 수색하다 삼성 소속 식산업 종사자 김삼순씨와 셋이서 삼삼오오 삼월 삼십 삼일 세시 삼십 삼분 삼십 삼초에 쉰 세살 김식사씨네 시내 스시식당에 식사하러 가서 싱싱한 샥스핀 스시와 삼색샤시참치스시를 살사소스와 슥슥삭삭 샅샅이 비빈 것과 스위스산 소세지를 샤샤샥 싹쓸어 입속에 쑤쎠넣어 살며시 삼키고 스산한 새벽 세시 삼십 삼분 삼십 삼초에 산림 숲속으로 사라졌다.
+            </p>
+            <p>
+                이수지가 저수지에 갔는데 이 수지가 저수지에 간 걸까 저 수지가 저수지에 간걸까 그 수지가 저수지에 간 걸까 하며 이수지는 고민했는데 고민 끝에 이수의 마이웨이를 부르며 불쾌지수가 올라가며 저수지를 떠나 경기도 수지구의 한 학원으로 달려가더니 지수함수를 배워서 잘 사용하여 주식 수지를 맞아 "나 이수지, 바로 고단수지! 수지맞았다!"하며 행복해했다.
+            </p>
+            <p>
+                딸날 돌하르방 코인가를 묻는 너를 보며 난 액자 속 사진을 찢어 버렸다.너와 헤어진 후 힘들어 하는 내게 박 법학사님과 백 법학사님께서 차라리 상담담당 선생님 성 선생님을 추천해 주셨어.그렇게 찾은 러브코치 상담당담 선생님 성 선생님이 내게 말했어.자기는 참치 꽁치찜을 좋아한다고 이게 무슨 헛 소리 인가 싶어.난 청송콩찰떡이 좋다고 했지 시답잖은 농담 속에 서울 찹쌀같이 나눠저 있던 마음이 쿵더더덕 덩기더더덕 녹아 버렸어.너로 인해 고장난 내 마음에 보일러 지금부터 난 난방방법변경을 할거야.공간감각이 사라질 정도로 내 몸에서 합성
+            </p>
+        </div>
+</body>
+</html>

@@ -49,5 +49,6 @@ function checkLength() {
 function checkForm() {
     var r1 = checkBoardTitle();
     var r2 = checkBoardContent();
-    return r1 && r2;
+    var r2 = checkLength();
+    return r1 && r2 && r3;
 }

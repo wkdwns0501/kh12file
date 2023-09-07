@@ -106,11 +106,21 @@ $("[name=memberPost], [name=memberAddr1], [name=memberAddr2]").blur(function(){
     status.address = isValid;
 });
 
+//페이지 이탈 방지
+    //- window에 beforeunload 이벤트 설정
+    $(window).on("beforeunload", function(){
+        return false;
+    });
+
+  //- form 전솔할 때는 beforeunload 이벤트를 제거
 $(".join-form").submit(function(e){
     $(".form-input").blur();  //전체적으로 이벤트 재발생
     if(!status.ok()) {
         e.preventDefault();
         // return false;
+    }
+    else {
+        $(window).off("beforeunload");
     }
 });
 

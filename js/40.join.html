@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Javascript 실습</title>
+    <title>회원가입창 페이지 분할</title>
     <!-- css 파일을 불러오는 코드 -->
 
     <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
@@ -66,11 +66,6 @@
                 $(".progressbar > .guage").css("width", percent + "%");
             }
 
-            //페이지 이탈 방지
-            //- window에 beforeunload 이벤트 설정
-            $(window).on("beforeunload", function(){
-                return false;
-            });
         });
     </script>
 </head>
@@ -152,7 +147,7 @@
                 </div>
                 <div class="row left">
                     <label class="mb-10" style="display: block">주소</label>
-                    <input style="width:8em" type="text" name="memberPost"  size="6" maxlength="6" 
+                    <input style="width:8em" type="text" name="memberPost" size="6" maxlength="6" 
                     class="form-input" placeholder="우편번호">
                     <button type="button" class="btn"><i class="fa-solid fa-magnifying-glass"></i></button>
                     <input type="text" name="memberAddr1" 

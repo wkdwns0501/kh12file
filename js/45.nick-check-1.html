@@ -29,14 +29,14 @@
          $(function(){
             //목표 : 아이디의 입력이 완료되면 중복검사를 요청하여 결과를 출력
             $("[name=memberNickname]").blur(function(){
-                var nick = $(this).val();
-                if(nick.length == 0) return;
+                var nickname = $(this).val();
+                if(nickname.length == 0) return;
 
                 $.ajax({
-                    url:"http://localhost:8080/nickCheck",
+                    url:"http://localhost:8080/nicknameCheck",
                     method:"post", //전송방식
                     data:{ //전송데이터 //post일 경우만 가능
-                        memberNickname : nick
+                        memberNickname : nickname
                     },
                     success:function(response){
                         //닉네임이 있으면 "Y" 없으면 "N이 반환된다"

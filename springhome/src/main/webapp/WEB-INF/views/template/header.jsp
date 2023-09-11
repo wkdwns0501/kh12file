@@ -45,20 +45,27 @@
             	<c:choose>
             		<c:when test="${sessionScope.storage != null}">
             			<li><a href="/">Home</a></li>
-            			<li><a href="/member/mypage">내정보</a></li>
-            			<li><a href="/member/logout">로그아웃</a></li>
             			<li><a href="/board/list">게시판</a></li>
-            			
-       					<%-- 관리자인 경우 추가 메뉴 출력 --%>
-						<c:if test="${sessionScope.level == '관리자'}">
-							<li><a href="/admin/home">관리자메뉴</a></li>
-						</c:if>
+            			<li class="menu-right">
+            				<a href="/member/mypage">내정보</a>
+            				<ul>
+	            				<li><a href="/member/logout">로그아웃</a></li>
+	            				<%-- 관리자인 경우 추가 메뉴 출력 --%>
+								<c:if test="${sessionScope.level == '관리자'}">
+									<li><a href="/admin/home">관리자메뉴</a></li>
+								</c:if>
+            				</ul>
+            			</li>
             		</c:when>
             		<c:otherwise>
             			<li><a href="/">Home</a></li>
-            			<li><a href="/member/join">회원가입</a></li>
-            			<li><a href="/member/login">로그인</a></li>
             			<li><a href="/board/list">게시판</a></li>
+            			<li class="menu-right">
+            				<a href="/member/login">로그인</a>
+            				<ul>
+	            				<li><a href="/member/join">회원가입</a></li>
+            				</ul>
+            			</li>
             		</c:otherwise>
             	</c:choose>
             </ul>

@@ -1,5 +1,6 @@
 package com.kh.spring11.rest;
 
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kh.spring11.dao.MemberDao;
+import com.kh.spring11.dao.PocketmonDao;
 import com.kh.spring11.dto.MemberDto;
+import com.kh.spring11.dto.PocketmonDto;
 
 //CORS를 해제하기 위한 설정(Annotation)
 @CrossOrigin //전부다 허용(위험!)
@@ -64,5 +67,14 @@ public class DummyRestController {
 		else {	
 			return "N";
 		}
+	}
+	
+	@Autowired
+	private PocketmonDao pocketmonDao;
+	
+	//프론트엔드에 포켓몬 목록을 반환하는 매핑
+	@RequestMapping("/pocketmon")
+	public List<PocketmonDto> pocketmon() {
+		return pocketmonDao.selectList();
 	}
 }

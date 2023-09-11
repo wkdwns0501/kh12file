@@ -30,4 +30,6 @@ public interface MemberDao {
 	
 	List<MemberBlockDto> selectBlockList();
 	MemberBlockDto selectBlockOne(String memberId);
+	
+	MemberDto selectOneByMemberNickname(String memberNickname);
 }

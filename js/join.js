@@ -1,18 +1,19 @@
 $(function(){
 
     var status = {
-        id:false,
-        pw:false,
-        pwCheck:false,
-        nickname:false,
-        email:false,
-        contact:false,
-        birth:false,
-        address:false,
+        memberId:false,
+        memberPw:false,
+        memberPwCheck:false,
+        memberNickname:false,
+        memberContact:false,
+        memberBirth:false,
+        memberEmail:false,
+        memberAddress:false,
         ok:function(){
-            return this.id && this.pw && this.pwCheck 
-            && this.nickname && this.email && this.contact 
-            && this.birth && this.address;
+            return this.memberId && this.memberPw 
+                        && this.memberPwCheck && this.memberNickname 
+                        && this.memberContact && this.memberBirth
+                        && this.memberEmail && this.memberAddress;
         },
     };
 
@@ -31,11 +32,11 @@ $(function(){
                         $(e.target).removeClass("success fail fail2");
                         if(response == "Y") {
                             $(e.target).addClass("success");
-                            status.id = true;
+                            status.memberId = true;
                         }
                         else {
                             $(e.target).addClass("fail2");
-                            status.id = false;
+                            status.memberId = false;
                         }
                     },
                     error : function(){
@@ -46,7 +47,7 @@ $(function(){
             }
             else { //형식이 유효하지 않다면 (1차 실패)
                 $(e.target).addClass("fail");
-                status.id = false;
+                status.memberId = false;
             }
         });
 
@@ -55,7 +56,7 @@ $(function(){
         var isValid = regex.test($(this).val());
         $(this).removeClass("success fail");
         $(this).addClass(isValid ? "success" : "fail");
-        status.pw = isValid;
+        status.memberPw = isValid;
     });
 
     $("#password-check").blur(function(){
@@ -65,15 +66,15 @@ $(function(){
         $(this).removeClass("success fail fail2");
         if(originPw.length == 0) {//비밀번호 미입력
             $(this).addClass("fail2");
-            status.pwCheck = false;
+            status.memberPwCheck = false;
         }
         else if(originPw == checkPw) {//비밀번호 일치
             $(this).addClass("success");
-            status.pwCheck = true;
+            status.memberPwCheck = true;
         }
         else {//비밀번호 불일치
             $(this).addClass("fail");
-            status.pwCheck = false;
+            status.memberPwCheck = false;
         }
     });
 
@@ -91,11 +92,11 @@ $("[name=memberNickname]").blur(function(e) {
                 $(e.target).removeClass("success fail fail2");
                 if(response == "Y") { //사용 가능한 닉네임
                     $(e.target).addClass("success");
-                    status.nickname = true;
+                    status.memberNickname = true;
                 }
                 else { //이미 사용중인 닉네임
                     $(e.target).addClass("fail2");
-                    status.nickname = false;
+                    status.memberNickname = false;
                 }
             },
             error : function(){
@@ -106,7 +107,7 @@ $("[name=memberNickname]").blur(function(e) {
     }
     else { //형식 오류
         $(e.target).addClass("fail");
-        status.nickname = false;
+        status.memberNickname = false;
     }
 });
 
@@ -115,7 +116,7 @@ $("[name=memberEmail]").blur(function() {
     var isValid = $(this).val() == "" || emailRegex.test($(this).val());
     $(this).removeClass("success fail");
     $(this).addClass(isValid ? "success" : "fail");
-    status.email = isValid;
+    status.memberEmail = isValid;
 });
 
 $("[name=memberContact]").blur(function(){
@@ -124,7 +125,7 @@ $("[name=memberContact]").blur(function(){
     var isValid = con.length == 0 || contactRegex.test(con);
     $(this).removeClass("success fail");
     $(this).addClass(isValid ? "success" : "fail");
-    status.contact = isValid;
+    status.memberContact = isValid;
 });
 
 $("[name=memberBirth]").blur(function(){
@@ -132,7 +133,7 @@ $("[name=memberBirth]").blur(function(){
     var isValid = $(this).val().length == 0 || birthRegex.test($(this).val());
     $(this).removeClass("success fail");
     $(this).addClass(isValid ? "success" : "fail");
-    status.birth = isValid;
+    status.memberBirth = isValid;
 });
 
 //css라서 선택자 , 가능
@@ -145,7 +146,7 @@ $("[name=memberPost], [name=memberAddr1], [name=memberAddr2]").blur(function(){
     var isValid = isBlank || isFill;
     $("[name=memberPost], [name=memberAddr1], [name=memberAddr2]").removeClass("success fail");
     $("[name=memberPost], [name=memberAddr1], [name=memberAddr2]").addClass(isValid ? "success" : "fail");
-    status.address = isValid;
+    status.memberAddress = isValid;
 });
 
 //페이지 이탈 방지
@@ -154,16 +155,16 @@ $("[name=memberPost], [name=memberAddr1], [name=memberAddr2]").blur(function(){
         return false;
     });
 
-  //- form 전솔할 때는 beforeunload 이벤트를 제거
-$(".join-form").submit(function(e){
-    $(".form-input").blur();  //전체적으로 이벤트 재발생
-    if(!status.ok()) {
-        e.preventDefault();
-        // return false;
-    }
-    else {
-        $(window).off("beforeunload");
-    }
-});
+    //- form 전송할 때는 beforeunload 이벤트를 제거
+    $(".join-form").submit(function(e){
+        $(".form-input").blur();  //전체적으로 이벤트 재발생
+        if(!status.ok()) {
+            e.preventDefault();
+            // return false;
+        }
+        else {
+            $(window).off("beforeunload");
+        }
+    });
 
 });

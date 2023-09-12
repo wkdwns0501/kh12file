@@ -51,13 +51,15 @@ public class InterceptorConfiguration implements WebMvcConfigurer{
 		//[2] MemberInterceptor를 회원 전용 페이지 처리과정에 간섭할 수 있도록 설정
 		registry.addInterceptor(memberInterceptor)
 					.addPathPatterns("/member/**",
-												"/board/**")
+												"/board/**", 
+												"/rest/reply/**")
 					.excludePathPatterns("/member/join"
 													, "/member/joinFinish"
 													, "/member/login"
 													, "/member/exitFinish"
 													, "/board/list"
-													, "/board/detail");
+													, "/board/detail"
+													, "/rest/reply/list");
 			//		.excludePathPatterns("/member/join*"
 									//				, "/member/login"
 									//				, "/member/exitFinish");

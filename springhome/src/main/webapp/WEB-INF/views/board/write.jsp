@@ -51,7 +51,7 @@
         </div>
         
         <div class="row right">
-            <span class="len red">0</span> / 1000
+            <span class="len">0</span> / 1000
         </div>
         
         <div class="row right">

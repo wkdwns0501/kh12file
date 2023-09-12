@@ -678,20 +678,22 @@ a.link:hover
 .success {
     /* important는 우선순위를 최상위로 올린다 */
     border-color: #00b894 !important;
-    background-image: url("../image/valid.png");
+    background-image: url("/images/valid.png");
     background-repeat: no-repeat;
-    background-position-x: right;
-    background-position-y: center;
+/*    background-position-x: right;*/
+/*    background-position-y: center;*/
+	background-position: center right 0.5em;
     background-size: 1em;
 }
 .fail, 
 .fail2
 {
     border-color: #d63031 !important;
-    background-image: url("../image/invalid.png");
+    background-image: url("/images/invalid.png");
     background-repeat: no-repeat;
-    background-position-x: right;
-    background-position-y: center;
+/*    background-position-x: right;*/
+/*    background-position-y: center;*/
+	background-position: center right 0.5em;
     background-size: 1em;
 }
 
@@ -705,8 +707,8 @@ a.link:hover
 .progressbar > .guage {
     width: 0%;
     height: 100%;
-    background: rgb(131,58,180);
-    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(40,180,205,1) 49%, rgba(0,212,255,1) 100%);
     /* 스르륵 */
     transition: width 0.1s ease-out;	
 }

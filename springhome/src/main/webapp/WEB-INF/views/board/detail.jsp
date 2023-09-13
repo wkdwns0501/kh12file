@@ -49,6 +49,7 @@ $(function(){
 	function loadList() {
 		
 		//Javascript로 boardNo라는 이름의 파라미터 값 읽기
+		//현재 웹 페이지의 URL에서 검색 매개변수를 추출
 		var params = new URLSearchParams(location.search);
 		var no = params.get("boardNo");
 		
@@ -83,7 +84,7 @@ $(function(){
 					//이렇게 써도 콘솔에는 로그인 중이면"testuser1"로 
 					//비로그인 중이면 ""로 나온다
 					
-					//내가 작성한 댓글이 아니라면
+					//비로그인 또는 내가 작성한 댓글이 아니라면
 					if(memberId.length == 0 || memberId != reply.replyWriter) { 
 						//버튼 삭제
 						$(htmlTemplate).find(".w-25").empty();
@@ -131,8 +132,7 @@ $(function(){
 						
 						
 						//취소 버튼에 대한 처리 구현
-						$(editHtmlTemplate).find(".btn-cancel")
-													.click(function(){
+						$(editHtmlTemplate).find(".btn-cancel").click(function(){
 														
 							//this == 취소버튼
 							$(this).parents(".edit-container")
@@ -222,6 +222,57 @@ $(function(){
 		</form>
 </script>
 
+<c:if test="${sessionScope.storage != null}">
+
+<script>
+	//좋아요 처리
+	//[1] 페이지가 로드되면 비동기 통신으로 좋아요 상태를 체크하여 하트 생성
+	//[2] 하트에 클릭 이벤트를 설정하여 좋아요 처리가 가능하도록 구현
+	$(function(){
+		var params = new URLSearchParams(location.search);
+		var boardNo = params.get("boardNo");
+	
+		$.ajax({
+			url:"/rest/like/check",
+			method:"post",
+			data:{boardNo : boardNo},
+			success:function(response) {
+				//response는 {"check":true, "count":0} 형태의 JSON이다
+			
+				if(response.check) {
+					$(".fa-heart").removeClass("fa-solid fa-regular").addClass("fa-solid");
+				}
+				else{
+					$(".fa-heart").removeClass("fa-solid fa-regular").addClass("fa-regular");
+				}
+				//전달받은 좋아요 개수를 하트 뒤의 span에 출력
+				$(".fa-heart").next("span").text(response.count);
+			}
+		});
+		
+		//[2]
+		$(".fa-heart").click(function(){
+			$.ajax({
+				url:"/rest/like/action",
+				method:"post",
+				data: {boardNo : boardNo},
+				success:function(response){
+					if(response.check) {
+						$(".fa-heart").removeClass("fa-solid fa-regular").addClass("fa-solid");
+					}
+					else{
+						$(".fa-heart").removeClass("fa-solid fa-regular").addClass("fa-regular");
+					}
+					//전달받은 좋아요 개수를 하트 뒤의 span에 출력
+					$(".fa-heart").next("span").text(response.count);
+				}
+			});
+		});
+	});
+</script>
+
+</c:if>
+
 <div class="container w-800">
 	<div class="row">
 		<h1>
@@ -248,8 +299,8 @@ $(function(){
 		<i class="fa-solid fa-eye"></i> 
 		${boardDto.boardReadcount}
 		&nbsp;&nbsp;
-		<i class="fa-solid fa-heart red"></i> 
-		${boardDto.boardLikecount}
+		<i class="fa-regular fa-heart red"></i> 
+		<span>?</span>
 		&nbsp;&nbsp;
 		<i class="fa-solid fa-comment blue"></i> 
 		${boardDto.boardReplycount}

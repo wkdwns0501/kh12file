@@ -1,7 +1,10 @@
 package com.kh.springhome.rest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kh.springhome.dao.MemberDao;
 import com.kh.springhome.dto.MemberDto;
+import com.kh.springhome.dto.StatDto;
 
 @CrossOrigin // 같은 프로젝트라 필요없다
 @RestController
@@ -40,5 +44,11 @@ public class MemberRestController {
 			return "N";
 		}
 	}
-
+	
+	//회원 등급별 인원 수 데이터 반환 매핑
+	@GetMapping("/stat/count")
+	public List<StatDto> statCount() {
+		return memberDao.selectGroupByMemberLevel();
+	}
+	
 }

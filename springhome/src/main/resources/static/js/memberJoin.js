@@ -25,7 +25,8 @@ $(function(){
             
             if(isValid) { //형식이 유효하다면
                 $.ajax({
-                    url:"http://localhost:8080/rest/member/idCheck",
+//                    url:"http://localhost:8080/rest/member/idCheck",
+                    url:"/rest/member/idCheck",
                     method:"post",
                     data : { memberId : $(e.target).val()},
                     success : function(response){
@@ -46,7 +47,7 @@ $(function(){
                 });
             }
             else { //형식이 유효하지 않다면 (1차 실패)
-                $(e.target).addClass("fail");
+                $(e.target).removeClass("success fail fail2").addClass("fail");
                 status.memberId = false;
             }
         });
@@ -84,7 +85,8 @@ $("[name=memberNickname]").blur(function(e) {
     
     if(isValid) {//형식 통과
         $.ajax({
-            url:"http://localhost:8080/rest/member/nicknameCheck",
+//            url:"http://localhost:8080/rest/member/nicknameCheck",
+            url:"/rest/member/nicknameCheck",
             method:"post",
             // data : { memberNickname : e.target.value }, //JS
             data : { memberNickname : $(e.target).val()}, //jQuery
@@ -106,7 +108,7 @@ $("[name=memberNickname]").blur(function(e) {
         });
     }
     else { //형식 오류
-        $(e.target).addClass("fail");
+        $(e.target).removeClass("success fail fail2").addClass("fail");
         status.memberNickname = false;
     }
 });

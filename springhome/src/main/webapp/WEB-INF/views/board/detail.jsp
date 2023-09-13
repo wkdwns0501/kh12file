@@ -5,6 +5,12 @@
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
+<style>
+	.note-viewer {
+		line-height: 2 !important;
+	}
+</style>
+
 <!-- 댓글과 관련된 처리를 할 수 있도록 jQuery 코드 구현 -->
 <script>
 $(function(){
@@ -308,8 +314,8 @@ $(function(){
 	<div class="row left">
 		<h2>${boardDto.boardTitle}</h2>
 	</div>
-	<div class="row left" style="min-height:250px">
-		<pre>${boardDto.boardContent}</pre>
+	<div class="row left note-viewer" style="min-height:250px">
+		${boardDto.boardContent}
 	</div>
 	
 	<%-- 댓글과 관련된 화면이 작성될 위치 --%>

@@ -67,6 +67,13 @@
    			<artifactId>lombok</artifactId>
     		<scope>provided</scope>
 		</dependency>
+		
+		<!-- 파일자동화 도구 -->
+		<dependency>
+		    <groupId>commons-io</groupId>
+		    <artifactId>commons-io</artifactId>
+		    <version>2.13.0</version>
+		</dependency>
 			
 	</dependencies>
 

@@ -30,4 +30,11 @@ public class AttachDaoImpl implements AttachDao{
 								attachDto.getAttachSize(), attachDto.getAttachType()};
 		jdbcTemplate.update(sql, data);		
 	}
+
+	@Override
+	public boolean delete(int attachNo) {
+		String sql = "delete attach where attach_no = ?";
+		Object[] data = {attachNo};
+		return jdbcTemplate.update(sql ,data) > 0;
+	}
 }

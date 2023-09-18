@@ -134,6 +134,7 @@ public class MemberRestController {
 		//return 객체 or Map; //JSON형태로 반환해야한다
 		return Map.of("attachNo", attachNo);
 	}
+	
 	@RequestMapping("/download")
 	public ResponseEntity<ByteArrayResource> download(@RequestParam int attachNo) throws IOException {
 		AttachDto attachDto = attachDao.selectOne(attachNo);
@@ -161,9 +162,12 @@ public class MemberRestController {
 				)
 			.body(resource);
 	}
+	
 	@PostMapping("/delete")
 	public void delete(HttpSession session) {
 		String memberId = (String)session.getAttribute("storage");
 		memberDao.deleteProfile(memberId);
 	}
+	
+	
 }

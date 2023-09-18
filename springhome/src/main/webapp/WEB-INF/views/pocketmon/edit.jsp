@@ -12,7 +12,7 @@
 	
 	<!-- input[type=file] 은 절.대.로. value를 설정할 수 없다 (보안상의 이유) -->
 	<input type="file" name="attach">
-	<c:if test="파일이 있으면">
+	<c:if test="${pocketmonDto.image}">
 		<img src="image?no=${pocketmonDto.no}" width="50" height="50">
 	</c:if>
 	

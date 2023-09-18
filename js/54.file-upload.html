@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Javascript 실습</title>
+    <title>파일 업로드</title>
     <!-- css 파일을 불러오는 코드 -->
 
     <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
@@ -55,6 +55,7 @@
                     data: form,
                     success: function(response){
                         // console.log(response);
+                        //{ "attachNo" : 1 }
                         //이미지의 src를 바꾸는 코드
                         $("img").attr("src", "http://localhost:8080/restfile/download?attachNo="+response.attachNo);
                     },
@@ -66,7 +67,7 @@
 <body>
     <input type="file" class="file-chooser">
     <button type="button" class="btn-save">설정하기</button>
-
+    <hr>
     <img src="https://dummyimage.com/200x200/000/fff" width="200" height="200">
 
 </body>

@@ -151,7 +151,7 @@
             <h2>2단계 : 닉네임</h2>
         </div>
         <div class="row left">
-            <label>닉네임</label>
+            <label>닉네임 <i class="fa-solid fa-asterisk red"></i></label>
             <input type="text" name="memberNickname" 
                 placeholder="한글 또는 숫자 2~10자" class="form-input w-100">
             <div class="success-feedback">멋진 닉네임입니다!</div>
@@ -175,7 +175,7 @@
             <h2>3단계 : 연락 가능한 정보</h2>
         </div>
         <div class="row left">
-            <label>이메일</label>
+            <label>이메일 <i class="fa-solid fa-asterisk red"></i></label>
             <input type="text" name="memberEmail" 
                     placeholder="test@kh.com" class="form-input w-100">
             <div class="fail-feedback">이메일 형식이 잘못되었습니다</div>

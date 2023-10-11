@@ -11,7 +11,7 @@
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.ico">
 
 <!-- css 파일을 불러오는 코드 -->
-<!-- 아이콘 사용을 위한 Font Awesome 6 CDN --> 
+<!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->  
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
 <!-- 구글 웹 폰트 사용을 위한 CDN -->

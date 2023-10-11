@@ -28,7 +28,8 @@ $(function(){
 		//비동기 통신 발생
 		$.ajax({
 // 			url:"http://localhost:8080/rest/reply/insert",
-			url:"/rest/reply/insert",
+// 			url:"${pageContext.request.contextPath}/rest/reply/insert",
+			url: window.contextPath+ "/rest/reply/insert",
 			method:"post",
 // 			data:{ replyOrigin : ?, replyContent : ? },
 			data : $(e.target).serialize(),
@@ -65,7 +66,8 @@ $(function(){
 		//비동기 통신으로 화면 갱신
 		$.ajax({
 // 			url:"http://localhost:8080/rest/reply/list",
-			url:"/rest/reply/list",
+// 			url:"${pageContext.request.contextPath}/rest/reply/list",
+			url: window.contextPath+ "/rest/reply/list",
 			method:"post",
 			data:{ replyOrigin : no },
 			success:function(response){
@@ -110,7 +112,8 @@ $(function(){
 				 		//var replyNo = $(e.target).data("reply-no");
 				 		//var replyNo = $(e.target).attr("data-reply-no");
 				 		$.ajax({
-				 			url:"/rest/reply/delete",
+// 				 			url:"${pageContext.request.contextPath}/rest/reply/delete",
+				 			url: window.contextPath+ "/rest/reply/delete",
 				 			method:"post",
 				 			data:{replyNo : replyNo},
 				 			success:function(response){
@@ -155,7 +158,7 @@ $(function(){
 							e.preventDefault();
 							
 							$.ajax({
-								url:"/rest/reply/edit",
+								url:window.contextPath+ "/rest/reply/edit",
 								method:"post",
 								//data:{replyNo : ?, replyContent : ?},
 								data : $(e.target).serialize(),
@@ -230,7 +233,7 @@ $(function(){
 
 <c:if test="${sessionScope.storage != null}">
 
-<script>
+<script>			
 	//좋아요 처리
 	//[1] 페이지가 로드되면 비동기 통신으로 좋아요 상태를 체크하여 하트 생성
 	//[2] 하트에 클릭 이벤트를 설정하여 좋아요 처리가 가능하도록 구현
@@ -239,7 +242,7 @@ $(function(){
 		var boardNo = params.get("boardNo");
 	
 		$.ajax({
-			url:"/rest/like/check",
+			url: window.contextPath + "/rest/like/check",
 			method:"post",
 			data:{boardNo : boardNo},
 			success:function(response) {
@@ -259,7 +262,7 @@ $(function(){
 		//[2]
 		$(".fa-heart").click(function(){
 			$.ajax({
-				url:"/rest/like/action",
+				url: window.contextPath+ "/rest/like/action",
 				method:"post",
 				data: {boardNo : boardNo},
 				success:function(response){

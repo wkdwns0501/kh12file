@@ -44,10 +44,10 @@ public class BoardDefenderInterceptor implements HandlerInterceptor{
 		if(session.getAttribute("history") != null)
 			history = (Set<Integer>) session.getAttribute("history");
 		else history = new HashSet<>();
-		System.out.println("history: " + history);
+//		System.out.println("history: " + history);
 		boolean isRead = history.contains(boardNo);
-		System.out.println("boardNo: " + boardNo);
-	    System.out.println("isRead: " + isRead);
+//		System.out.println("boardNo: " + boardNo);
+//	    System.out.println("isRead: " + isRead);
 		if(isRead == false) {
 			history.add(boardNo);
 			session.setAttribute("history", history);
@@ -56,7 +56,7 @@ public class BoardDefenderInterceptor implements HandlerInterceptor{
 		boolean isOwner = boardDto.getBoardWriter() != null 
 									&& memberId != null 
 									&& boardDto.getBoardWriter().equals(memberId);
-		System.out.println("isOwner: " + isOwner);
+//		System.out.println("isOwner: " + isOwner);
 		if(!isOwner && !isRead) {
 			boardDao.updateBoardReadcount(boardNo);
 		}

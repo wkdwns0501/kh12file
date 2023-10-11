@@ -14,7 +14,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
-<script src="/js/boardWrite.js"></script>
+<script src="${pageContext.request.contextPath}/js/boardWrite.js"></script>
 <script>
     $(function () {
         $('[name=boardContent]').summernote({

@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @SpringBootTest
-public class Test01 {
+public class Test01_selectList {
 	
 //	Spring JDBC // 이제 안쓰고 myBatis 쓴다
 //	@Autowired

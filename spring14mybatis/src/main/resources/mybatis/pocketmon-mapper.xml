@@ -37,4 +37,41 @@
 	  <delete id="del">
 	  	delete pocketmon where no = #{no}
 	  </delete>
+	  
+	  <!-- 
+	  	복합 검색 구문 (complex search)
+	  	- 다양한 형태의 검색을 한 번에 처리하기 위한 구문
+	  	- 값의 유무에 따라서 구문이 달라져야 함
+	  	- mybatis에서 제공하는 구문 태그를 이용하여 조건 또는 반복 처리 (JSTL과 비슷)
+	   -->
+	   
+	   <!-- 1단계 : type, keyword 유무에 따라 목록 또는 검색을 처리 -->
+<!-- 	   <if test="type과 keyword가 모두있다면"> -->
+	   <select id="complex1" resultType="PocketmonDto">
+	   		select * from pocketmon 
+	   		<if test="type != null and keyword != null">
+	   			where instr(${type}, #{keyword}) > 0
+	   		</if>
+	   </select>
+	   
+	   <!-- 2단계 : 개별 항목 유무에 따라 검색 구문을 다르게 생성(type, keyword 아님) -->
+<!-- 	   		<if test="번호가 있으면"></if> -->
+<!-- 	   		<if test="이름이 있으면"></if> -->
+<!-- 	   		<if test="속성이 있으면"></if> -->
+	   <select id="complex2" resultType="PocketmonDto">
+	   		select * from pocketmon where 1=1
+	   		<if test="no != null">and no = #{no}</if>
+	   		<if test="name != null">and instr(name, #{name}) > 0</if>
+	   		<if test="type != null">and type = #{type}</if>
+	   </select>
+	   
+	   <!-- 3단계 : 2단계를 개선 -->
+	   <select id="complex3" resultType="PocketmonDto">
+	   		select * from pocketmon 
+	   		<where>
+		   		<if test="no != null">and no = #{no}</if>
+		   		<if test="name != null">and instr(name, #{name}) > 0</if>
+		   		<if test="type != null">and type = #{type}</if>
+	   		</where>
+	   </select>
 </mapper>

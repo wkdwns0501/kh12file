@@ -1,4 +1,4 @@
-package com.kh.spring14;
+package com.kh.spring16;
 
 import org.apache.ibatis.session.SqlSession;
 import org.junit.jupiter.api.Test;
@@ -9,16 +9,17 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @SpringBootTest
-public class Test04_delete {
+public class Test06_delete {
 	
 	@Autowired
 	private SqlSession sqlSession;
 	
 	@Test
 	public void test() {
-		int no =27;
-		int count = sqlSession.delete("pocketmon.del", no);
+		int customerNo = 4;
+		int count = sqlSession.delete("customer.del", customerNo);
 		boolean result = count > 0;
-		log.debug("result = {}" , result);
+		log.debug("result = {}", result);
+		
 	}
 }

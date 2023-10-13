@@ -82,7 +82,7 @@
 	  			판매가(구간) 
 	  			- 숫자 비교 등에서는 부등롷를 사용할 일이 있는데 이 경우 문제가 발생
 	  			- 해결방법은 (1) 부등호 대신 다른 기호를 쓰거나 (2) 부등호를 해석하지 않도록 지시
-	  			<![CDATA[]]>
+	  			- <![CDATA[ 구문 ]]>
 	  		-->
 	  		<choose>
 	  			<when test="bookPriceMin != null and bookPriceMax != null">
@@ -96,13 +96,90 @@
 						and book_price >= #{bookPriceMin}
 					]]>
 	  			</when>
-	  			<when test="bokkPriceMax != null">
+	  			<when test="bookPriceMax != null">
 	  				<![CDATA[
 						and book_price <= #{bookPriceMax}
 					]]>
 	  			</when>
 	  		</choose>
+	  		
+	  		<!-- 
+	  			출간일(구간)
+	  			- 만약 date 형태일 경우는 시간까지 고려해야함
+	  			- 1월 1일 부터 1월 31일 까지면 시작일은 00시00분00초, 종료일은 23시59분59초
+	  		 -->
+				<!-- 	otherwise는 둘다 없을때 : 구문을 사용할게 없다 -->
+	  		<choose>
+	  			<when test="bookPublicationBegin != null and bookPublicationEnd != null">
+	  				and to_date(book_publication_date, 'YYYY-MM-DD')
+	  				between 
+	  					to_date(#{bookPublicationBegin} || ' ' || '00:00:00', 'YYYY-MM-DD HH24:MI:SS')
+	  					and
+	  					to_date(#{bookPublicationEnd} || ' ' || '23:59:59', 'YYYY-MM-DD HH24:MI:SS')
+	  			</when>
+	  			<when test="bookPublicationBegin != null">
+		  			<![CDATA[
+		  				and to_date(book_publication_date, 'YYYY-MM-DD')
+		  					>= to_date(#{bookPublicationBegin} || ' ' || '00:00:00', 'YYYY-MM-DD HH24:MI:SS')
+		  			]]>
+	  			</when>
+	  			<when test="bookPublicationEnd != null">
+	  				<![CDATA[
+		  				and to_date(book_publication_date, 'YYYY-MM-DD')
+	  						<= to_date(#{bookPublicationEnd} || ' ' || '23:59:59', 'YYYY-MM-DD HH24:MI:SS')
+		  			]]>
+	  			</when>
+	  		</choose>
+	  		
+	  		<!-- 페이지(구간) -->
+	  		<choose>
+	  			<when test="bookPageMin != null and bookPageMax != null">
+	  				and book_page_count
+	  					between #{bookPageMin} and #{bookPageMax}
+	  			</when>
+	  			<when test="bookPageMin != null">
+	  				<![CDATA[
+	  					and book_page_count >= #{bookPageMin}
+	  				]]>
+	  			</when>
+	  			<when test="bookPageMax != null">
+	  				<![CDATA[
+	  					and book_page_count <= #{bookPageMax}
+	  				]]>
+	  			</when>
+	  		</choose>
+	  		<!-- 장르 - 목록 포함 검사 -->
+<!-- 	  	<if test ="bookGenreList != null and bookGenreList.isEmpty()"> -->
+	  		<if test ="bookGenreList != null and bookGenreList.size() > 0">
+		  		and book_genre in 
+				<foreach collection="bookGenreList" open="(" close=")" separator="," item="genre">
+					#{genre}
+				</foreach>
+	  		</if>
+	  		
 	  	</where>
 	  	<!-- 정렬 구문 -->
+	  	<if test="orderList != null and orderList.size() > 0">
+		  	order by 
+		  	<foreach collection="orderList" separator="," item="order">${order}</foreach>
+	  	</if>
+	  	
+	  	<!-- Top N Query Footer 불러오기 -->
+		<include refid="pagingFooter"></include>
 	  </select>
+	  
+	  <!-- Top N Query를 위한 코드 조각 생성(상/하) -->
+		<sql id="pagingHeader">
+			<if test="begin != null and end != null">
+			select * from (
+				select rownum rn, TMP.* from(
+			</if>
+		</sql>
+		
+		<sql id="pagingFooter">
+			<if test="begin != null and end != null">
+				)TMP
+			) where rn between #{begin} and #{end}
+			</if>
+		</sql>
 </mapper>

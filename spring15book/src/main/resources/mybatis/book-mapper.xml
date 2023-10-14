@@ -58,6 +58,9 @@
 	  	- 장르는 주어진 리스트(bookGenreList)에 포함되어 있는지 검색
 	  -->
 	  <select id="complexSearch" resultType="BookDto">
+	  <!-- Top N Query Header 불러오기 -->
+		<include refid="pagingHeader"></include>
+	  
 	  	<!-- 메인 조회 구문 -->
 	  	select * from book
 	  	<!-- 조건 구문 -->

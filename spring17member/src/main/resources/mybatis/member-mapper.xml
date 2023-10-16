@@ -74,16 +74,21 @@
 	  		
 	  		<choose>
 	  			<when test="memberJoinBegin != null and memberJoinEnd != null">
-	  				and member_join between #{memberJoinBegin} and #{memberJoinEnd}
+	  				and member_join between 
+	  					to_date(#{memberJoinBegin} || ' ' || '00:00:00', 'yyyy-mm-dd hh24:mi:ss')
+	  					 and 
+	  					 to_date(#{memberJoinEnd} || ' ' || '23:59:59', 'yyyy-mm-dd hh24:mi:ss')
 	  			</when>
 	  			<when test="memberJoinBegin != null">
 		  			<![CDATA[
-		  				and member_join >= #{memberJoinBegin}
+		  				and member_join >=
+	  					to_date(#{memberJoinBegin} || ' ' || '00:00:00', 'yyyy-mm-dd hh24:mi:ss')
 		  			]]>
 	  			</when>
 	  			<when test="memberJoinEnd != null">
 	  				<![CDATA[
-		  				and member_join <= #{memberJoinEnd}
+		  				and member_join <= 
+	  					 to_date(#{memberJoinEnd} || ' ' || '23:59:59', 'yyyy-mm-dd hh24:mi:ss')
 		  			]]>
 	  			</when>
 	  		</choose>

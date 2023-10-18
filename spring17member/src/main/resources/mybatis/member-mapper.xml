@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 유사 - 아이디, 닉네임, 전화번호, 이메일 -->
+<!-- 구간 - 생년월일, 포인트, 접속일 -->
+<!-- 체크박스 - 등급 -->
+
+<mapper namespace="member">
+
+	<select id="list" resultType="MemberDto">
+		select * from member
+	</select>
+	
+	<select	id="complexSearch" resultType="MemberDto">
+	<include refid="pagingHeader"></include>
+		select * from member
+		<where>
+			<if test="memberId != null">
+				and instr(member_id, #{memberId}) > 0
+			</if>
+			<if test="memberNickname != null">
+				and instr(member_nickname, #{memberNickname}) > 0
+			</if>
+			<if test="memberContact != null">
+				and instr(member_contact, #{memberContact}) > 0
+			</if>
+			<if test="memberEmail != null">
+				and instr(member_email, #{memberEmail}) > 0
+			</if>
+			
+			<choose>
+	  			<when test="memberBirthBegin != null and memberBirthEnd != null">
+	  				and to_date(member_birth, 'YYYY-MM-DD')
+	  				between 
+	  					to_date(#{memberBirthBegin} || ' ' || '00:00:00', 'YYYY-MM-DD HH24:MI:SS')
+	  					and
+	  					to_date(#{memberBirthEnd} || ' ' || '23:59:59', 'YYYY-MM-DD HH24:MI:SS')
+	  			</when>
+	  			<when test="memberBirthBegin != null">
+		  			<![CDATA[
+		  				and to_date(member_birth, 'YYYY-MM-DD')
+		  					>= to_date(#{memberBirthBegin} || ' ' || '00:00:00', 'YYYY-MM-DD HH24:MI:SS')
+		  			]]>
+	  			</when>
+	  			<when test="memberBirthEnd != null">
+	  				<![CDATA[
+		  				and to_date(member_birth, 'YYYY-MM-DD')
+	  						<= to_date(#{memberBirthEnd} || ' ' || '23:59:59', 'YYYY-MM-DD HH24:MI:SS')
+		  			]]>
+	  			</when>
+	  		</choose>
+	  		
+	  		<choose>
+	  			<when test="memberPointMin != null and memberPointMax != null">
+					<![CDATA[
+						and member_point >= #{memberPointMin} 
+						and member_point <= #{memberPointMax}
+					]]>
+	  			</when>
+	  			<when test="memberPointMin != null">
+	  				<![CDATA[
+						and member_point >= #{memberPointMin}
+					]]>
+	  			</when>
+	  			<when test="memberPointMax != null">
+	  				<![CDATA[
+						and member_point <= #{memberPointMax}
+					]]>
+	  			</when>
+	  		</choose>
+	  		
+	  		<choose>
+	  			<when test="memberJoinBegin != null and memberJoinEnd != null">
+	  				and member_join between 
+	  					to_date(#{memberJoinBegin} || ' ' || '00:00:00', 'yyyy-mm-dd hh24:mi:ss')
+	  					 and 
+	  					 to_date(#{memberJoinEnd} || ' ' || '23:59:59', 'yyyy-mm-dd hh24:mi:ss')
+	  			</when>
+	  			<when test="memberJoinBegin != null">
+		  			<![CDATA[
+		  				and member_join >=
+	  					to_date(#{memberJoinBegin} || ' ' || '00:00:00', 'yyyy-mm-dd hh24:mi:ss')
+		  			]]>
+	  			</when>
+	  			<when test="memberJoinEnd != null">
+	  				<![CDATA[
+		  				and member_join <= 
+	  					 to_date(#{memberJoinEnd} || ' ' || '23:59:59', 'yyyy-mm-dd hh24:mi:ss')
+		  			]]>
+	  			</when>
+	  		</choose>
+	  		
+	  		<if test ="memberLevelList != null and memberLevelList.size() > 0">
+		  		and member_level in 
+				<foreach collection="memberLevelList" open="(" close=")" separator="," item="level">
+					#{level}
+				</foreach>
+	  		</if>
+	  		
+		</where>
+	  		<if test="orderList != null and orderList.size() > 0">
+			  	order by 
+			  	<foreach collection="orderList" separator="," item="order">${order}</foreach>
+	  		</if>
+	  		
+	  		<include refid="pagingFooter"></include>
+	</select>
+	
+			<sql id="pagingHeader">
+				<if test="begin != null and end != null">
+				select * from (
+					select rownum rn, TMP.* from(
+				</if>
+			</sql>
+			
+			<sql id="pagingFooter">
+				<if test="begin != null and end != null">
+					)TMP
+				) where rn between #{begin} and #{end}
+				</if>
+			</sql>
+</mapper>

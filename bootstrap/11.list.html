@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap layout</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.2/flatly/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="test.css" rel="stylesheet"> -->
+    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+
+                <!-- 메뉴바 -->
+                <nav class="navbar navbar-expand-lg bg-primary fixed-top" data-bs-theme="dark">
+                    <div class="container-fluid">
+                      <a class="navbar-brand" href="#">KH정보교육원</a>
+                      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+                        data-bs-target="#navbarColor01" aria-controls="navbarColor01" 
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span><!-- 메뉴바 아이콘 -->
+                      </button>
+                      <div class="collapse navbar-collapse" id="navbarColor01">
+                        <ul class="navbar-nav me-auto">
+                          <li class="nav-item">
+                            <a class="nav-link active" href="#">Home<!-- active : 활성화 클래스 -->
+                              <span class="visually-hidden">(current)</span>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#">Features</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#">Pricing</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                          </li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item" href="#">Action</a>
+                              <a class="dropdown-item" href="#">Another action</a>
+                              <a class="dropdown-item" href="#">Something else here</a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="#">Separated link</a>
+                            </div>
+                          </li>
+                        </ul>
+                        <!-- 검색창 (가입, 로그인을 만들고 싶다면 form 대신 div) -->
+                        <form class="d-flex"><!-- display : flex --> <!-- d-block = display : block -->
+                          <input class="form-control me-sm-2" type="search" placeholder="Search">
+                          <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                      </div>
+                    </div>
+                  </nav>
+                
+                <!-- 내용(배너, 컨텐츠 등)을 배치할 때는 margin top을 줘서 메뉴가 표시될 자리만큼 띄워야 한다 -->
+                  <div class="row mt-5 pt-5" style="min-height: 400px;">
+                    <div class="col-sm-10 offset-sm-1">
+                        
+                        <div class="row">
+                            <div class="col">
+                                <h1 class="text-center">자유 게시판</h1>
+                                <p class="text-muted text-center">
+                                    타인에 대한 비방은 경고 없이 삭제될 수 있습니다
+                                </p>
+                            </div>
+                        </div>
+                        <!-- 글쓰기 버튼 -->
+                        <div class="row mt-4 text-end"><div class="col">
+                            <a href="#" class="btn btn-outline-primary">글쓰기</a>
+                        </div></div>
+
+                        <!-- 테이블 -->
+                        <div class="row mt-4">
+                            <div class="col">
+                                <table class="table table-striped">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th>번호</th>
+                                            <th width="40%">제목</th>
+                                            <th>작성자</th>
+                                            <th>작성일</th>
+                                            <th>조회수</th>
+                                            <th>좋아요</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-center">
+                                        <tr>
+                                            <td>1</td>
+                                            <td class="text-start">안녕하세요</td>
+                                            <td>장준</td>
+                                            <td>2023-10-19</td>
+                                            <td>23</td>
+                                            <td>32</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td class="text-start">반갑습니다</td>
+                                            <td>재은</td>
+                                            <td>2023-10-19</td>
+                                            <td>72</td>
+                                            <td>27</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td class="text-start">재민시치라고해요</td>
+                                            <td>승원</td>
+                                            <td>2023-10-19</td>
+                                            <td>41</td>
+                                            <td>14</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- 글쓰기 버튼 -->
+                        <div class="row mt-4 text-end"><div class="col">
+                            <a href="#" class="btn btn-outline-primary">글쓰기</a>
+                        </div></div>
+
+                        <!-- 페이지네이션 -->
+                        <div class="row mt-4">
+                            <div class="col">
+                                <div>
+                                    <ul class="pagination justify-content-center">
+                                      <li class="page-item disabled">
+                                        <a class="page-link" href="#">&lt;</a>
+                                      </li>
+                                      <li class="page-item active">
+                                        <a class="page-link" href="#">1</a>
+                                      </li>
+                                      <li class="page-item">
+                                        <a class="page-link" href="#">2</a>
+                                      </li>
+                                      <li class="page-item">
+                                        <a class="page-link" href="#">3</a>
+                                      </li>
+                                      <li class="page-item">
+                                        <a class="page-link" href="#">4</a>
+                                      </li>
+                                      <li class="page-item">
+                                        <a class="page-link" href="#">5</a>
+                                      </li>
+                                      <li class="page-item">
+                                        <a class="page-link" href="#">6</a>
+                                      </li>
+                                      <li class="page-item">
+                                        <a class="page-link" href="#">7</a>
+                                      </li>
+                                      <li class="page-item">
+                                        <a class="page-link" href="#">8</a>
+                                      </li>
+                                      <li class="page-item">
+                                        <a class="page-link" href="#">9</a>
+                                      </li>
+                                      <li class="page-item">
+                                        <a class="page-link" href="#">10</a>
+                                      </li>
+                                      <li class="page-item">
+                                        <a class="page-link" href="#">&gt;</a>
+                                      </li>
+                                    </ul>
+                                  </div>
+                            </div>
+                        </div>
+                        <!-- 타입 -->
+
+                        <form>
+                            <div class="row mt-4">
+                                <div class="col-10 offset-1">
+                                    <div class="input-group">
+                                        <select name="type" class="form-select d-inline-block"
+                                            style="width: 100px; flex-grow: 0;">
+                                            <option value="">제목</option>
+                                            <option value="">작성자</option>
+                                        </select>
+                                        <input type="search" name="keyword" 
+                                            class="form-control" placeholder="검색어 입력">
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fa fa-magnifying-glass"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                  </div>
+
+                  <!-- 푸터 -->
+                  <hr>
+                  <div class="row">
+                    <div class="col-6">
+                        <h4 class="text-secondary">
+                            <span class="badge bg-primary">KH</span>
+                            &copy; KH정보교육원 Inst
+                        </h4>
+                        
+                    </div>
+                    <div class="col-3">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-action border-0">항목1</a>
+                            <a href="#" class="list-group-item list-group-item-action border-0">항목2</a>
+                            <a href="#" class="list-group-item list-group-item-action border-0">항목3</a>
+                          </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-action border-0">항목4</a>
+                            <a href="#" class="list-group-item list-group-item-action border-0">항목5</a>
+                            <a href="#" class="list-group-item list-group-item-action border-0">항목6</a>
+                            <a href="#" class="list-group-item list-group-item-action border-0">항목7</a>
+                          </div>
+                    </div>
+                  </div>
+
+            </div> 
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -4,3 +4,4 @@
 
 <h2><a href="default">기본 웹소켓 예제</a></h2>
 <h2><a href="time">타임 웹소켓 예제</a></h2>
+<h2><a href="group">그룹 웹소켓 예제</a></h2>

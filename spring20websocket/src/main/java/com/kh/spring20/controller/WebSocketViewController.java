@@ -15,5 +15,10 @@ public class WebSocketViewController {
 	public String defaultServer() {
 		return "default";
 	}
+	
+	@RequestMapping("/time")
+	public String time() {
+		return "time";
+	}
 
 }

@@ -1,5 +1,6 @@
 package com.kh.spring20.websocket;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -10,11 +11,13 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class MemberWebSocketServer extends TextWebSocketHandler{
+public class JsonWebSocketServer extends TextWebSocketHandler{
 
 	private Set<WebSocketSession> clients = new CopyOnWriteArraySet<>();
 	
@@ -48,9 +51,24 @@ public class MemberWebSocketServer extends TextWebSocketHandler{
 			return;
 		}
 		
-		//메세지에 송신자의 ID를 추가하여 전송
-		TextMessage tm = new TextMessage("[" + memberId + "]" + message.getPayload());
+		//메세지 전송 시 여러 정보를 JSON 문자열 형태로 변환하여 전송
+		//(ex) {"memberId" : "testuser1", "memberLevel" : "VIP", "content" : "Hello"}
 		
+		//자바에서 JSON을 생성하는 방법은 여러 가지가 있다(Jackson, Gson, ...)
+		//- 스프링 부트에 기본 탑재된 jackson-databind의 도구를 사용하여 처리 (ObjectMapper)
+		
+		//FE에게 보낼 메세지 객체를 생성
+		Map<String, Object> map = new HashMap<>();
+		map.put("memberId", memberId);
+		map.put("memberLevel", memberLevel);
+		map.put("content", message.getPayload());
+		
+		//도구를 만들어 JSON으로 변환
+		ObjectMapper mapper = new ObjectMapper();
+		String str = mapper.writeValueAsString(map);
+		TextMessage tm = new TextMessage(str);
+		
+		//메세지를 생서하여 변환된 내용을 담아 모든 사용자에게 전송
 		for(WebSocketSession client : clients) {
 			client.sendMessage(tm);
 		}

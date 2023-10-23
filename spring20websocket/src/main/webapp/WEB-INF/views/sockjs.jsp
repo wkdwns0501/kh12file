@@ -129,7 +129,12 @@
 			else if(data.content){//메세지 처리
 				var memberId;
 				if(data.dm == true) {//DM이라면
-					memberId = $("<strong>").text(data.memberId + "님으로 부터의 DM");
+					if(data.target){//target이 있다면 (내가 DM을 보내서 찍히는 메세지라면)
+						memberId = $("<strong>").text(data.target + "님에게 보낸 DM");
+					}
+					else {//target이 없다면 (내가 DM을 받아서 찍히는 메세지라면)
+						memberId = $("<strong>").text(data.memberId + "님으로 부터의 DM");
+					}
 				}
 				else {//DM이 아니라면
 					memberId = $("<strong>").text(data.memberId);

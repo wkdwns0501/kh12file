@@ -51,7 +51,7 @@ public class MemberWebSocketServer extends TextWebSocketHandler{
 		//메세지에 송신자의 ID를 추가하여 전송
 		TextMessage tm = new TextMessage("[" + memberId + "]" + message.getPayload());
 		
-		for(WebSocketSession client : clients) {
+		for(WebSocketSession client : clients) { //브로드캐스트 코드 (모두에게 뿌리겠다)
 			client.sendMessage(tm);
 		}
 	}

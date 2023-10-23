@@ -26,6 +26,9 @@ public class SockJsWebSocketServer extends TextWebSocketHandler{
 	private Set<ClientVO> clients = new CopyOnWriteArraySet<>(); //전체회원 //순서까지 하려면 list여야한다
 	private Set<ClientVO> members = new CopyOnWriteArraySet<>(); //로그인한 회원
 	
+	//JSON 변환기
+	private ObjectMapper mapper = new ObjectMapper();
+	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		ClientVO client = new ClientVO(session);
@@ -79,19 +82,46 @@ public class SockJsWebSocketServer extends TextWebSocketHandler{
 		ClientVO client = new ClientVO(session);
 		if(client.isMember() == false) return;
 		
-		//정보를 Map에 담아서 변환 후 전송
-		Map<String, Object> map = new HashMap<>();
-		map.put("memberId", client.getMemberId());
-		map.put("memberLevel", client.getMemberLevel());
-		map.put("content", message.getPayload());
+		//(+추가) 사용자는 메세지를 JSON 형태로 보내므로 이를 해석해야 한다(ObjectMapper)
+		Map params = mapper.readValue(message.getPayload(), Map.class);
+		//log.debug("params = {}", params);
+		//log.debug("DM인가요 = {}", params.get("target") != null);
 		
-		//시간 추가 등
-		ObjectMapper mapper = new ObjectMapper();
-		String messageJson = mapper.writeValueAsString(map);
-		TextMessage tm = new TextMessage(messageJson);
-		
-		for(ClientVO c : clients) {
-			c.send(tm);
+		boolean isDM =params.get("target") != null;
+		if(isDM) {//DM일 경우
+			//정보를 Map에 담아서 변환 후 전송
+			Map<String, Object> map = new HashMap<>();
+			map.put("dm", true);
+			map.put("memberId", client.getMemberId());
+			map.put("memberLevel", client.getMemberLevel());
+			map.put("content", params.get("content"));
+			//시간 추가 등
+			
+			String messageJson = mapper.writeValueAsString(map);
+			TextMessage tm = new TextMessage(messageJson);
+			
+			for(ClientVO c : members) {
+				if(c.getMemberId().equals(params.get("target"))) {//내가 찾던 사람이라면
+					c.send(tm);
+				}
+			}
 		}
+		else {//전체 채팅일 경우
+			//정보를 Map에 담아서 변환 후 전송
+			Map<String, Object> map = new HashMap<>();
+			map.put("memberId", client.getMemberId());
+			map.put("memberLevel", client.getMemberLevel());
+			map.put("content", params.get("content"));
+			//시간 추가 등
+			
+			String messageJson = mapper.writeValueAsString(map);
+			TextMessage tm = new TextMessage(messageJson);
+			
+			for(ClientVO c : clients) {
+				c.send(tm);
+			}
+		}
+		
+ 		
 	}
 }

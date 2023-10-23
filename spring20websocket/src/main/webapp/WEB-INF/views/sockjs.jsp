@@ -127,7 +127,13 @@
 				ul.appendTo(".client-list");
 			}
 			else if(data.content){//메세지 처리
-				var memberId = $("<strong>").text(data.memberId);
+				var memberId;
+				if(data.dm == true) {//DM이라면
+					memberId = $("<strong>").text(data.memberId + "님으로 부터의 DM");
+				}
+				else {//DM이 아니라면
+					memberId = $("<strong>").text(data.memberId);
+				}
 				var memberLevel = $("<span>").text(data.memberLevel)
 																.addClass("badge bg-primary badge-pill ms-2");
 				var content = $("<div>").text(data.content);
@@ -144,12 +150,36 @@
 				$(".message-list").scrollTop($(".message-list")[0].scrollHeight);
 			}
 			
+			//메세지를 전송하는 코드
+			//- 메세지가 @로 시작하면 DM으로 처리(아이디 유무 검사정도 하면 좋다)
+			//- @아이디 메세지
 			$(".send-btn").click(function(){
 				var text = $(".message-input").val();
 				if(text.length == 0) return;
 				
-				window.socket.send(text);
-				$(".message-input").val("");
+				//window.socket.send(text); //일반 텍스트 형식으로 보낼 때
+				
+				if(text.startsWith("@")){//@로 시작하면
+					var space = text.indexOf(" ");
+					if(space == -1) return;
+					
+					var obj = {
+							target : text.substring(1, space),
+							content : text.substring(space + 1)
+					}
+					var str = JSON.stringify(obj); //객체를 JSON 문지열로 변환
+					window.socket.send(str); //JSON 형식으로 보낼 때
+					$(".message-input").val("");
+				}
+				else {
+					var obj = {
+							content:text
+					}
+					var str = JSON.stringify(obj); //객체를 JSON 문지열로 변환
+					window.socket.send(str); //JSON 형식으로 보낼 때
+					$(".message-input").val("");
+				}
+				
 			});
 		};
 		

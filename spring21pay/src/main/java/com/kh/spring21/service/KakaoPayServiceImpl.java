@@ -2,6 +2,7 @@ package com.kh.spring21.service;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -13,6 +14,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.kh.spring21.configuration.KakaoPayProperties;
+import com.kh.spring21.vo.KakaoPayApproveRequestVO;
+import com.kh.spring21.vo.KakaoPayApproveResponseVO;
 import com.kh.spring21.vo.KakaoPayReadyRequestVO;
 
 import request.KakaoPayReadyResponseVO;
@@ -56,5 +59,22 @@ public class KakaoPayServiceImpl implements KakaoPayService{
 	     		  template.postForObject(uri, entity, KakaoPayReadyResponseVO.class);
 	       
 		return response;
+	}
+	
+	@Override
+	public KakaoPayApproveResponseVO approve(KakaoPayApproveRequestVO request) throws URISyntaxException {
+		URI uri = new URI("https://kapi.kakao.com/v1/payment/approve");
+		
+		MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
+		body.add("cid", kakaoPayProperties.getCid());
+		body.add("tid", request.getTid());
+		body.add("partner_order_id", request.getPartnerOrderId());
+		body.add("partner_user_id", request.getPartnerUserId());
+		body.add("pg_token", request.getPgToken());
+		
+		HttpEntity entity = new HttpEntity(body, headers);
+		
+//		Map response = template.postForObject(uri, entity, Map.class);
+		return null;
 	}
 }

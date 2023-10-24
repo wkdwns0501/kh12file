@@ -30,6 +30,12 @@ public class Test05Ready {
 				   .build();
 		
 		KakaoPayReadyResponseVO response = kakaoPayService.ready(request);
-		log.debug("response = {}", response);
+		//log.debug("response = {}", response);
+		
+		//다음 테스트를 위해 필요한 값을 출력
+		log.debug("결제페이지 = {}", response.getNextRedirectPcUrl());
+		log.debug("tid = {}", response.getTid());
+		log.debug("partner_order_id = {}", request.getPartnerOrderId());
+		log.debug("partner_user_id = {}", request.getPartnerUserId());
 	}
 }

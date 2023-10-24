@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.spring21.service.KakaoPayService;
 import com.kh.spring21.vo.KakaoPayReadyRequestVO;
@@ -34,4 +35,8 @@ public class KakaoPayController {
 		return "redirect:" + response.getNextRedirectPcUrl();
 	}
 	
+//	@GetMapping("/test1/success")
+//	public String test1Success(@RequestParam String pg_token) {
+//		
+//	}
 }

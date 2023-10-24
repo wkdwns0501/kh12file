@@ -9,6 +9,7 @@ import com.kh.springhome.interceptor.AdminInterceptor;
 import com.kh.springhome.interceptor.BoardDefenderInterceptor;
 import com.kh.springhome.interceptor.BoardOwnerInterceptor;
 import com.kh.springhome.interceptor.MemberInterceptor;
+import com.kh.springhome.interceptor.TestInterceptor;
 
 /**
  	스프링에서 제공하는 설정파일
@@ -22,8 +23,8 @@ import com.kh.springhome.interceptor.MemberInterceptor;
 @Configuration
 public class InterceptorConfiguration implements WebMvcConfigurer{
 	
-//	@Autowired
-//	private TestInterceptor testInterceptor;
+	@Autowired
+	private TestInterceptor testInterceptor;
 	
 	@Autowired
 	private MemberInterceptor memberInterceptor;
@@ -45,7 +46,7 @@ public class InterceptorConfiguration implements WebMvcConfigurer{
 	public void addInterceptors(InterceptorRegistry registry) {
 		//[1] TestInterceptor를 모든 주소 처리과정에 간섭할 수 있도록 설정하겠다
 		
-//		registry.addInterceptor(testInterceptor).addPathPatterns("/**");
+		registry.addInterceptor(testInterceptor).addPathPatterns("/**");
 		//registry.addInterceptor(인터셉터 객체).addPathPatterns(간섭하고 싶은 주소);
 		
 		//[2] MemberInterceptor를 회원 전용 페이지 처리과정에 간섭할 수 있도록 설정

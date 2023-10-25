@@ -2,7 +2,6 @@ package com.kh.spring21.service;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -18,8 +17,9 @@ import com.kh.spring21.vo.KakaoPayApproveRequestVO;
 import com.kh.spring21.vo.KakaoPayApproveResponseVO;
 import com.kh.spring21.vo.KakaoPayReadyRequestVO;
 
+import lombok.extern.slf4j.Slf4j;
 import request.KakaoPayReadyResponseVO;
-
+@Slf4j
 @Service
 public class KakaoPayServiceImpl implements KakaoPayService{
 	
@@ -74,7 +74,11 @@ public class KakaoPayServiceImpl implements KakaoPayService{
 		
 		HttpEntity entity = new HttpEntity(body, headers);
 		
-//		Map response = template.postForObject(uri, entity, Map.class);
-		return null;
+		KakaoPayApproveResponseVO response = 
+				template.postForObject(uri, entity, KakaoPayApproveResponseVO.class);
+		
+		log.debug("결제 승인 완료 = {}", response.getTid());
+		
+		return response;
 	}
 }

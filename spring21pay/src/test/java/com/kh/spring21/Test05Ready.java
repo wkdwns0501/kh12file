@@ -9,9 +9,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.kh.spring21.service.KakaoPayService;
 import com.kh.spring21.vo.KakaoPayReadyRequestVO;
+import com.kh.spring21.vo.KakaoPayReadyResponseVO;
 
 import lombok.extern.slf4j.Slf4j;
-import request.KakaoPayReadyResponseVO;
 
 @Slf4j
 @SpringBootTest

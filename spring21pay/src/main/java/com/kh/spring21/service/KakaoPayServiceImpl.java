@@ -2,7 +2,6 @@ package com.kh.spring21.service;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -16,12 +15,14 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.kh.spring21.configuration.KakaoPayProperties;
 import com.kh.spring21.vo.KakaoPayApproveRequestVO;
 import com.kh.spring21.vo.KakaoPayApproveResponseVO;
+import com.kh.spring21.vo.KakaoPayCancelRequestVO;
+import com.kh.spring21.vo.KakaoPayCancelResponseVO;
 import com.kh.spring21.vo.KakaoPayDetailRequestVO;
 import com.kh.spring21.vo.KakaoPayDetailResponseVO;
 import com.kh.spring21.vo.KakaoPayReadyRequestVO;
+import com.kh.spring21.vo.KakaoPayReadyResponseVO;
 
 import lombok.extern.slf4j.Slf4j;
-import request.KakaoPayReadyResponseVO;
 @Slf4j
 @Service
 public class KakaoPayServiceImpl implements KakaoPayService{
@@ -91,10 +92,25 @@ public class KakaoPayServiceImpl implements KakaoPayService{
 		
 		MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
 		body.add("cid", kakaoPayProperties.getCid());
-		body.add("tid", "T53877f02b8b1abb0e72");
+		body.add("tid", request.getTid());
 		
 		HttpEntity entitiy = new HttpEntity(body, headers);
 		KakaoPayDetailResponseVO response = template.postForObject(uri, entitiy, KakaoPayDetailResponseVO.class);
+		return response;
+	}
+	
+	@Override
+	public KakaoPayCancelResponseVO cancel(KakaoPayCancelRequestVO request) throws URISyntaxException {
+		URI uri = new URI("https://kapi.kakao.com/v1/payment/cancel");
+		MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
+		body.add("cid", kakaoPayProperties.getCid());
+		body.add("tid", request.getTid());
+		body.add("cancel_amount", String.valueOf(request.getCancelAmount()));
+		body.add("cancel_tax_free_amount", "0");
+		
+		HttpEntity entity = new HttpEntity(body,headers);
+		
+		KakaoPayCancelResponseVO response = template.postForObject(uri, entity, KakaoPayCancelResponseVO.class);
 		return response;
 	}
 }

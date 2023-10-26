@@ -4,18 +4,32 @@
 
 <h1>가장 일반적인 결제</h1>
 
-<div class="product-list">
-	<c:forEach var="productDto" items="${list}">
-		<div class="product-item">
-			<input type="checkbox" name="productNo" value="${productDto.productNo}">
-			[${productDto.productNo}]
-			${productDto.productName} 
-			(${productDto.productPrice}원)
-			<input type="number" name="qty" value="1" min="1">
-		</div>
-	</c:forEach>
-	
-	<button class="purchase-btn" type="button">구매하기</button>
+<div class="table">
+
+<table border="1" class="product-list">
+    <thead>
+        <tr>
+            <th>선택</th>
+            <th>번호</th>
+            <th>제품 이름</th>
+            <th>가격</th>
+            <th>수량</th>
+        </tr>
+    </thead>
+    <tbody align="center">
+        <c:forEach var="productDto" items="${list}">
+            <tr class="product-item">
+                <td><input type="checkbox" name="productNo" value="${productDto.productNo}"></td>
+                <td>[${productDto.productNo}]
+                <td align="left">${productDto.productName}</td>
+                <td>${productDto.productPrice}원</td>
+                <td><input type="number" name="qty" value="1" min="1"></td>
+            </tr>
+        </c:forEach>
+    </tbody>
+</table>
+
+<button class="purchase-btn" type="button">구매하기</button>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

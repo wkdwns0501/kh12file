@@ -15,4 +15,7 @@ public class PaymentDetailDto {
 	private int paymentDetailProductQty; //구매상품수량
 	private String paymentDetailStatus; //구매상품상태 (완료/취소)
 	
+	public boolean isCanceled() {
+		return paymentDetailStatus.equals("취소");
+	}
 }

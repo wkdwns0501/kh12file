@@ -84,7 +84,11 @@
 	</resultMap>
 	
 	<select id="listAll" resultMap="paymentListVO">
-		select * from payment order by payment_no asc
+		select * from payment 
+		<if test="paymentMember != null">
+		where payment_member = #{paymentMember}
+		</if>
+		order by payment_no asc
 	</select>
 	
 	<!-- 결제 대표정보만 조회(결제 대표번호별) -->
@@ -114,6 +118,13 @@
 	<update id="cancelDetail">
 		update payment_detail set payment_detail_status = '취소'
 		where payment_detail_no = #{paymentDetailNo}
+	</update>
+	
+	<!-- 특정 payment_no에 속한 payment_detail에 대한 취소처리 -->
+	<update id="cancelDetailGroup">
+		update payment_detail
+		set payment_detail_status = '취소'
+		where payment_detail_origin = #{paymentDetailOrigin}
 	</update>
 	
 </mapper>

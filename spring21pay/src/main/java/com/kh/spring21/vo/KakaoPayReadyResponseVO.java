@@ -27,5 +27,6 @@ public class KakaoPayReadyResponseVO {
 	private String androidAppScheme;
 //	private String ios_app_scheme; //카카오페이 결제를 위한 아이폰 스킴
 	private String iosAppScheme;
-	private Date created_at; //결제 준비를 요청한 시각
+//	private Date created_at; //결제 준비를 요청한 시각
+	private Date createdAt; 
 }

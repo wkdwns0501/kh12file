@@ -69,6 +69,7 @@
 			 <알려줘야 하는 정보들>
 			- select에 적힌 구문을 부르면 내용을 채울 수 있을 거야!
 			- 구문을 실행하는 데 필요한 값은 column에 적혀있는 항목이야!
+			- 이 저장소는 javaType에 적혀 있는 형태야!
 			- 이 저장소에 들어갈 수 있는 데이터는 ofType에 적혀 있는 형태야!
 		-->
 		<collection property="paymentDetailList" select="listDetail" 

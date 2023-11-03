@@ -18,6 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.kh.spring22.dao.PocketmonDao;
 import com.kh.spring22.dto.PocketmonDto;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+//문서용 annotation
+@Tag(name = "포켓몬스터 리액트용 백엔드", description = "피카츄~")
+
 @CrossOrigin
 //@CrossOrigin(value = {"http://localhost:3000", "http://localhost:5500"})
 @RestController

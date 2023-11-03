@@ -18,6 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.kh.spring22.dao.PocketmonDao;
 import com.kh.spring22.dto.PocketmonDto;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 //문서용 annotation
@@ -39,19 +46,72 @@ public class PocketmonRestController {
 	@Autowired
 	private PocketmonDao pocketmonDao;
 	
+	//목록 매핑에 대한 설명용 annotation
+	@Operation(
+		description = "포켓몬스터 조회",
+		responses = {
+			@ApiResponse(
+				responseCode = "200",
+				description = "조회 성공",
+				content = {
+					@Content(
+						mediaType = "application/json",
+						array = @ArraySchema(
+							schema = @Schema(implementation = PocketmonDto.class)
+						)
+					)
+				}
+			),
+			@ApiResponse(
+				responseCode = "500",
+				description = "서버 오류",
+				content = @Content(
+					mediaType = "text/plain",
+					schema = @Schema(implementation = String.class),
+					examples = @ExampleObject("server error")
+				)
+			)
+		}
+	)
+	
 	@GetMapping("/") //리스트는 넘어갈때 JSON 형태로 날라간다 jackson - ObjectMapper
 	public List<PocketmonDto> list() {
 		return pocketmonDao.selectList();
 	}
 	
-	@PostMapping("/")
+	//등록 매핑에 대한 설명용 annotation
+	@Operation(
+		description = "포켓몬스터 신규 생성",
+		responses = {
+			@ApiResponse(
+				responseCode = "200",
+				description = "포켓몬스터 생성 완료"
+			),
+			@ApiResponse(
+				responseCode = "400",
+				description = "전송한 파라미터가 서버에서 요구하는 값과 다름"
+			),
+			@ApiResponse(
+				responseCode = "500",
+				description = "서버오류 발생"
+			)
+		}
+	)
+	
+	@PostMapping("/") //등록
 	//public void insert(@ModelAttribute PocketmonDto pocketmonDto) {//form-data 수신용
-	public void insert(@RequestBody PocketmonDto pocketmonDto) {//request body 직접 해석(ex : JSON)
+	public void insert(
+			@Parameter(
+				description = "생성할 몬스터명/타입 객체",
+				required = true,
+				schema = @Schema(implementation = PocketmonDto.class)
+			)
+			@RequestBody PocketmonDto pocketmonDto) {//request body 직접 해석(ex : JSON)
 		pocketmonDao.insert(pocketmonDto);
 	}
 	
 	//파라미터는 주소가 매우 지저분해지므로 최대한 경로변수를 활용 (파라미터가 1개일때 좋다)
-	@DeleteMapping("/{no}")
+	@DeleteMapping("/{no}") //삭제
 	//public boolean delete(@PathVariable int no){//데이터를 반환하면 상태설정이 불가능
 	public ResponseEntity<String> delete(@PathVariable int no) {//상태 설정이 가능한 객체를 반환
 		boolean result = pocketmonDao.delete(no);
@@ -61,7 +121,7 @@ public class PocketmonRestController {
 		else return ResponseEntity.status(404).build(); 
 	}
 	
-	@GetMapping("/{no}")
+	@GetMapping("/{no}") //상세조회
 	public ResponseEntity<PocketmonDto> find(@PathVariable int no) {
 		PocketmonDto pocketmonDto = pocketmonDao.selectOne(no);
 		if(pocketmonDto != null) {

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.spring22.dto.BookDto;
+import com.kh.spring22.error.NoTargetException;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,13 +31,16 @@ public class BookDaoImpl implements BookDao{
 	}
 
 	@Override
-	public boolean delete(int bookId) {
-		return sqlSession.delete("book.del", bookId) > 0;
+	public void delete(int bookId) {
+		int result = sqlSession.delete("book.del", bookId);
+		if(result == 0) throw new NoTargetException();
 	}
 
 	@Override
 	public BookDto selectOne(int bookId) {
-		return sqlSession.selectOne("book.findByBookId", bookId);
+		BookDto bookDto = sqlSession.selectOne("book.findByBookId", bookId);
+		if(bookDto == null) throw new NoTargetException();
+		return bookDto;
 	}
 	
 	@Override
@@ -44,19 +48,20 @@ public class BookDaoImpl implements BookDao{
 		return sqlSession.selectList("book.findByBookTitle", bookTitle);
 	}
 
-	@Override
-	public boolean edit(int bookId, BookDto bookDto) {
-		Map<String, Object> params = new HashMap<>();
-		params.put("bookId", bookId);
-		params.put("bookDto", bookDto);
-		return sqlSession.update("book.edit", params) > 0;
-	}
-	
-//	@Override //강사님 방법
-//	public void edit(int bookId, BookDto bookDto) {
-//		Map<String, Object> param = Map.of("bookId", bookId, "bookDto", bookDto);
-//		sqlSession.update("book.change", param);
+//	@Override //내 방법
+//	public boolean edit(int bookId, BookDto bookDto) {
+//		Map<String, Object> params = new HashMap<>();
+//		params.put("bookId", bookId);
+//		params.put("bookDto", bookDto);
+//		return sqlSession.update("book.edit", params) > 0;
 //	}
+	
+	@Override //강사님 방법
+	public void edit(int bookId, BookDto bookDto) {
+		Map<String, Object> param = Map.of("bookId", bookId, "bookDto", bookDto);
+		int result = sqlSession.update("book.edit", param);
+		if(result == 0) throw new NoTargetException();
+	}
 
 	@Override
 	public boolean editUnit(int bookId, BookDto bookDto) {

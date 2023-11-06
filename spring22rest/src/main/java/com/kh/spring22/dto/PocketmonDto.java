@@ -2,6 +2,8 @@ package com.kh.spring22.dto;
 
 import javax.validation.constraints.Pattern;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,6 +27,7 @@ public class PocketmonDto {
 	)
 	private String type;
 	
+	@JsonIgnore //JSON 생성 시 이 항목은 제외시켜라!
 	@Schema(hidden = true)
 	public boolean isEmpty() {
 		return no == 0 && name == null && type == null;

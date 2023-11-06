@@ -106,18 +106,18 @@ public class BookRestController {
     	description = "도서 삭제"
     )
 	
-	@DeleteMapping("/{bookId}")//삭제
-	public ResponseEntity<String> delete(@PathVariable int bookId) {
-		boolean result = bookDao.delete(bookId);
-		if(result) return ResponseEntity.status(200).build(); 
-		else return ResponseEntity.status(404).build(); 
-	}
+//	@DeleteMapping("/{bookId}")//삭제 //내 방법
+//	public ResponseEntity<String> delete(@PathVariable int bookId) {
+//		boolean result = bookDao.delete(bookId);
+//		if(result) return ResponseEntity.status(200).build(); 
+//		else return ResponseEntity.status(404).build(); 
+//	}
     
     //강사님 방법
-//    @DeleteMapping("/{bookId}")
-//	public void delete(@PathVariable int bookId) {
-//		bookDao.delete(bookId);
-//	}
+    @DeleteMapping("/{bookId}")
+	public void delete(@PathVariable int bookId) {
+		bookDao.delete(bookId);
+	}
 	
     @Operation(
         description = "도서 상세조회"
@@ -155,19 +155,19 @@ public class BookRestController {
         description = "도서 전체수정"
      )
     
-	@PutMapping("/{bookId}") //전체수정
-	public ResponseEntity<String> edit(@PathVariable int bookId ,
-			@RequestBody BookDto bookDto) {
-		boolean result = bookDao.edit(bookId, bookDto);
-		return result ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
-	}
+//	@PutMapping("/{bookId}") //전체수정 //내 방법
+//	public ResponseEntity<String> edit(@PathVariable int bookId ,
+//			@RequestBody BookDto bookDto) {
+//		boolean result = bookDao.edit(bookId, bookDto);
+//		return result ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+//	}
     
     //강사님 방법
-//    @PutMapping("/{bookId}")
-//	public void update(@RequestBody BookDto bookDto, @PathVariable int bookId) {
-//		//bookDto에 모든 항목이 있는지 검사해야함
-//		bookDao.edit(bookId, bookDto);
-//	}
+    @PutMapping("/{bookId}")
+	public void update(@RequestBody BookDto bookDto, @PathVariable int bookId) {
+		//bookDto에 모든 항목이 있는지 검사해야함
+		bookDao.edit(bookId, bookDto);
+	}
     
     @Operation(
         description = "도서 개별수정"

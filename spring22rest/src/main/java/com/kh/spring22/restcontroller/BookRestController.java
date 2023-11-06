@@ -112,12 +112,18 @@ public class BookRestController {
 		if(result) return ResponseEntity.status(200).build(); 
 		else return ResponseEntity.status(404).build(); 
 	}
+    
+    //강사님 방법
+//    @DeleteMapping("/{bookId}")
+//	public void delete(@PathVariable int bookId) {
+//		bookDao.delete(bookId);
+//	}
 	
     @Operation(
         description = "도서 상세조회"
      )
     
-	@GetMapping("/{bookId}") //상세조회
+	@GetMapping("/bookId/{bookId}") //상세조회
 	public ResponseEntity<BookDto> find(@PathVariable int bookId) {
 		BookDto bookDto = bookDao.selectOne(bookId);
 		if(bookDto != null) {
@@ -156,6 +162,13 @@ public class BookRestController {
 		return result ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
 	}
     
+    //강사님 방법
+//    @PutMapping("/{bookId}")
+//	public void update(@RequestBody BookDto bookDto, @PathVariable int bookId) {
+//		//bookDto에 모든 항목이 있는지 검사해야함
+//		bookDao.edit(bookId, bookDto);
+//	}
+    
     @Operation(
         description = "도서 개별수정"
      )
@@ -170,5 +183,12 @@ public class BookRestController {
 		boolean result = bookDao.editUnit(bookId, bookDto);
 		return result ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
 	}
+    
+    //강사님 방법
+//    @PatchMapping("/{bookId}")
+//	public void update2(@RequestBody BookDto bookDto, @PathVariable int bookId) {
+//		//bookDto에 항목이 하나라도 있는지 검사해야함
+//		bookDao.edit(bookId, bookDto);
+//	}
 	
 }

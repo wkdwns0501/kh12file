@@ -5,7 +5,8 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="book">
-	<insert id="add">
+	<!-- 등록 -->
+	<insert id="save">
 		insert into 
 		book(book_id, book_title, book_author, book_publication_date, 
 		book_price, book_publisher, book_page_count, book_genre) 
@@ -13,19 +14,27 @@
 		#{bookPrice}, #{bookPublisher}, #{bookPageCount}, #{bookGenre})
 	</insert>
 	
+	<!-- 전체 조회 -->
 	<select id="list" resultType="BookDto">
-		select * from book
+		select * from book order by book_id acs
 	</select>
 	
+	<!-- 상세 조회 -->
 	<!-- 이 구문은 실행을 위해 int 하나만 필요하므로 사실상 이름이 의미가 없다 -->
-	<select id="find" resultType="BookDto">
+	<select id="findByBookId" resultType="BookDto">
 		select * from book where book_id = #{bookId}
 	</select>
 	
-	<select id="titleSearch" resultType="BookDto">
+	<!-- 제목으로 검색 -->
+	<select id="findByBookTitle" resultType="BookDto">
+<!-- 		select * from book where book_title = #{bookTitle} -->
+<!-- 		select * from book where book_title like #{bookTitle} || '%' -->
+<!-- 		select * from book where book_title like concat(#{bookTitle} || '%') -->
+<!-- 		select * from book where instr(book_title, #{bookTitle}) > 0 -->
 		select * from book where upper(book_title) like '%' || upper(#{bookTitle}) || '%'
 	</select>
 	
+	<!-- 전체 수정 -->
 	<update id="edit">
 	 	update book 
 	 	set 
@@ -39,6 +48,7 @@
 	 	where book_id = #{bookId}
 	 </update>
 	 
+	 <!-- 일부 수정 -->
 	<update id="editUnit">
 	 	update book 
 	 	<set>
@@ -54,7 +64,7 @@
 	 	<if test="bookDto.bookPublicationDate != null">
 	 	book_publication_date = #{bookDto.bookPublicationDate},
 	 	</if>
-	 	<if test="bookDto.bookPrice > 0">
+	 	<if test="bookDto.bookPrice >= 0">
 	 	book_price = #{bookDto.bookPrice},
 	 	</if>
 	 	<if test="bookDto.bookPublisher != null">
@@ -70,6 +80,7 @@
 	 	where book_id = #{bookId}
 	 </update>
 	 
+	 <!-- 삭제 -->
 	 <delete id="del">
 	  	delete book where book_id = #{bookId}
 	 </delete>
@@ -79,7 +90,7 @@
 	 	- type, keyword 검색에서 type과 keyword는 할당되는 방식이 달라야 한다
 	 	- type은 있는 그래돌 변형 없이 할당 (정적 할당)
 	 	- keyword는 데이터의 형태에 맞게 변형하여 할당 (동적 할당)
-	   -->
+	  -->
 	  <select id="search" resultType="BookDto">
 	  	select * from book where instr(${type}, #{keyword}) > 0
 	  	order by ${type} asc

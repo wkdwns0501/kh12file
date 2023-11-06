@@ -10,6 +10,9 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.spring22.dto.BookDto;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Repository
 public class BookDaoImpl implements BookDao{
 	
@@ -21,9 +24,9 @@ public class BookDaoImpl implements BookDao{
 		return sqlSession.selectList("book.list");
 	}
 
-	@Override
+	@Override 
 	public void insert(BookDto bookDto) {
-		sqlSession.insert("book.add", bookDto);
+		sqlSession.insert("book.save", bookDto);
 	}
 
 	@Override
@@ -33,12 +36,12 @@ public class BookDaoImpl implements BookDao{
 
 	@Override
 	public BookDto selectOne(int bookId) {
-		return sqlSession.selectOne("book.find", bookId);
+		return sqlSession.selectOne("book.findByBookId", bookId);
 	}
 	
 	@Override
 	public List<BookDto> selectListByBookTitle(String bookTitle) {
-		return sqlSession.selectList("book.titleSearch", bookTitle);
+		return sqlSession.selectList("book.findByBookTitle", bookTitle);
 	}
 
 	@Override
@@ -48,6 +51,12 @@ public class BookDaoImpl implements BookDao{
 		params.put("bookDto", bookDto);
 		return sqlSession.update("book.edit", params) > 0;
 	}
+	
+//	@Override //강사님 방법
+//	public void edit(int bookId, BookDto bookDto) {
+//		Map<String, Object> param = Map.of("bookId", bookId, "bookDto", bookDto);
+//		sqlSession.update("book.change", param);
+//	}
 
 	@Override
 	public boolean editUnit(int bookId, BookDto bookDto) {

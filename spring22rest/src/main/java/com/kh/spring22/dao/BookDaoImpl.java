@@ -70,5 +70,12 @@ public class BookDaoImpl implements BookDao{
 		params.put("bookDto", bookDto);
 		return sqlSession.update("book.editUnit", params) > 0;
 	}
-
+	
+	@Override
+	public List<BookDto> selectListByPage(int page, int size) {
+		int end = page * size;
+		int begin = end - (size-1);
+		Map params = Map.of("begin", begin, "end", end);
+		return sqlSession.selectList("book.selectListByPage", params);
+	}
 }

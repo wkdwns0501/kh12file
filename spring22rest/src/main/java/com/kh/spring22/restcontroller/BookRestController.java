@@ -190,5 +190,12 @@ public class BookRestController {
 //		//bookDto에 항목이 하나라도 있는지 검사해야함
 //		bookDao.edit(bookId, bookDto);
 //	}
+    
+    //프론트엔드에서 페이지번호, 데이터개수를 보낼 경우 조회 매핑
+    @Operation(description = "도서 페이지네이션")
+    @GetMapping("page/{page}/size/{size}")
+    public List<BookDto> listByPage(@PathVariable int page, @PathVariable int size){
+    	return bookDao.selectListByPage(page, size);
+    }
 	
 }

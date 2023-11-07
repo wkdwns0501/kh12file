@@ -16,7 +16,7 @@
 	
 	<!-- 전체 조회 -->
 	<select id="list" resultType="BookDto">
-		select * from book order by book_id acs
+		select * from book order by book_id asc
 	</select>
 	
 	<!-- 상세 조회 -->
@@ -235,5 +235,14 @@
 			) where rn between #{begin} and #{end}
 			</if>
 		</sql>
+		
+		<!-- 페이징 목록 -->
+		<select id="selectListByPage" resultType="BookDto">
+			select * from (
+				select rownum rn, TMP.* from (
+					select * from book order by book_id asc
+				)TMP
+			) where rn between #{begin} and #{end}
+		</select>
 		
 </mapper>

@@ -28,7 +28,8 @@
 
 ## 프로젝트 설명
 
-
+- **세미 프로젝트:** https://github.com/nnn0008/semi-fado.git
+- **파이널 프로젝트:** https://github.com/LcsCho/kh12-final5.git
 
 ## 설치 및 사용법
 
